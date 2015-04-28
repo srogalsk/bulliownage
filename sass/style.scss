@@ -17,8 +17,15 @@
 
  /* variables */
  $main-background: #1D1D1D;
+
  $nav-background: #282828;
+ $seperator-color: #1D1D1D;
+
+
+
  $main-accent: #68CEDE;
+ $main-accent-hover: #77EDFF;
+
 
 
 /* general */
@@ -52,7 +59,8 @@ nav{
 	color: #fafafa;
 	font-size: 1.5em;
 	@include box-sizing(border-box);
-	padding-left: 70px;
+	padding-left: 0px;
+	text-align: center;
 }
 
 nav svg{
@@ -62,13 +70,40 @@ nav svg{
 	position: absolute;
 	top: 50%;
 	margin-top: -15px;
+	cursor: pointer;
+	@include transition(all .1s ease-out);
+
+	&:hover{
+		fill: $main-accent-hover;
+		@include transform(scale(1.05));
+	}
 }
 
-.icon-loop{
-	left: 20px;
+.icon-spinner2{
+	left: 35px;
 }
 
 .icon-cog{
-	right: 20px;
+	right: 35px;
 }
+
+/* ASIDE (left appended navigation buttons) */
+
+aside{
+	position: fixed;
+	top: 70px;
+	left: 0;
+	height: 100%;
+	width: 100px;
+	background: $nav-background;
+}
+
+.aside-button{
+	width: 100%;
+	height: 100px;
+	border-bottom: 1px solid $seperator-color;
+	cursor: pointer;
+}
+
+
 
