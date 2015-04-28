@@ -16,6 +16,9 @@
 
 
  /* variables */
+ $main-background: #1D1D1D;
+ $nav-background: #1D1D1D;
+ $main-accent: #6DD5E7;
 
 
 /* general */
@@ -31,7 +34,41 @@ html, body {
 }
 
 body {
+	background: $main-background;
+	font-family: "openregular", sans-serif;
 }
 
-/* rest */
+/* REST OF THE STUFF */
+
+/* NAVIGATION */
+
+nav{
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+	background: $nav-background;
+	color: #fafafa;
+	font-size: 1.5em;
+	@include box-sizing(border-box);
+	padding-left: 70px;
+}
+
+nav svg{
+	width: 30px;
+	height: 30px;
+	fill: $main-accent;
+	position: absolute;
+	top: 50%;
+	margin-top: -15px;
+}
+
+.icon-loop{
+	left: 20px;
+}
+
+.icon-cog{
+	right: 20px;
+}
 
