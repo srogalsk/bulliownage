@@ -1,0 +1,37 @@
+@import "bourbon/bourbon";
+
+/* fonts for days */
+@include font-face("robotolight", "../fonts/Roboto-Light", $file-formats: ttf eot);
+@include font-face("robotocon", "../fonts/RobotoCondensed-Regular", $file-formats: ttf eot);
+@include font-face("openlight", "../fonts/OpenSans-Light", $file-formats: ttf eot);
+@include font-face("openregular", "../fonts/OpenSans-Regular", $file-formats: ttf eot);
+@include font-face("opensemi", "../fonts/OpenSans-Semibold", $file-formats: ttf eot);
+@include font-face("raleway_r", "../fonts/Raleway-Regular", $file-formats: ttf eot);
+@include font-face("raleway_m", "../fonts/Raleway-Medium", $file-formats: ttf eot);
+@include font-face("quicksand_l", "../fonts/quicksand-light-webfont", $file-formats: ttf eot);
+@include font-face("quicksand_r", "../fonts/quicksand-regular-webfont", $file-formats: ttf eot);
+@include font-face("quicksand_b", "../fonts/quicksand-bold-webfont", $file-formats: ttf eot);
+
+
+
+
+ /* variables */
+
+
+/* general */
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	height: 100%;
+	width: 100%;
+	font-size: 14px;
+}
+
+body {
+}
+
+/* rest */
+
