@@ -1,4 +1,8 @@
-/* fonts for days */
+/* * * * * * * * * * * * * * * *
+ *                             *
+ *           FONTS             *
+ *                             *
+ * * * * * * * * * * * * * * * */
 @font-face {
   font-family: "robotolight";
   font-style: normal;
@@ -49,8 +53,12 @@
   font-style: normal;
   font-weight: normal;
   src: url("../fonts/montserrat-regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/montserrat-regular-webfont.ttf") format("truetype"); }
-/* variables */
-/* general */
+/* SASS VARIABLES */
+/* * * * * * * * * * * * * * * *
+ *                             *
+ *        GENERAL STYLE        *
+ *                             *
+ * * * * * * * * * * * * * * * */
 * {
   margin: 0;
   padding: 0; }
@@ -63,10 +71,23 @@ html, body {
 body {
   background: #1D1D1D;
   font-family: "monster_h", sans-serif;
-  font-weight: 600; }
+  font-weight: 600;
+  color: #dadada; }
 
-/* REST OF THE STUFF */
-/* NAVIGATION */
+main {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-top: 63px;
+  padding-bottom: 33px;
+  padding-left: 103px; }
+
+/* * * * * * * * * * * * * * * *
+ *                             *
+ *     NAVIGATION & FOOTER     *
+ *                             *
+ * * * * * * * * * * * * * * * */
+/* TOP NAV */
 nav {
   position: fixed;
   top: 0;
@@ -74,14 +95,14 @@ nav {
   height: 60px;
   line-height: 60px;
   background: #2F2F2F;
-  color: #fafafa;
   font-size: 1.5em;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding-left: 0px;
   text-align: center;
-  font-weight: 700; }
+  font-weight: 700;
+  color: #fafafa; }
 
 nav svg {
   width: 30px;
@@ -108,7 +129,7 @@ nav svg {
 .icon-cog {
   right: 35px; }
 
-/* ASIDE (left appended navigation buttons) */
+/* SIDE NAV */
 aside {
   position: fixed;
   top: 63px;
@@ -153,5 +174,19 @@ aside figure {
     background: rgba(255, 255, 255, 0.1); }
     aside figure:hover svg {
       fill: #77EDFF; }
+
+/* FOOTER */
+footer {
+  position: fixed;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  bottom: 0px;
+  left: 0;
+  color: #B1B1B1;
+  background: #2F2F2F;
+  font-size: 0.9em;
+  border-top: 3px solid #1D1D1D; }
 
 /*# sourceMappingURL=style.css.map */

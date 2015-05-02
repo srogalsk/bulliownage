@@ -1,22 +1,27 @@
 @import "bourbon/bourbon";
 
-/* fonts for days */
-@include font-face("robotolight", "../fonts/Roboto-Light", $file-formats: ttf eot);
-@include font-face("robotocon", "../fonts/RobotoCondensed-Regular", $file-formats: ttf eot);
-@include font-face("openlight", "../fonts/OpenSans-Light", $file-formats: ttf eot);
-@include font-face("openregular", "../fonts/OpenSans-Regular", $file-formats: ttf eot);
-@include font-face("opensemi", "../fonts/OpenSans-Semibold", $file-formats: ttf eot);
-@include font-face("raleway_r", "../fonts/Raleway-Regular", $file-formats: ttf eot);
-@include font-face("raleway_m", "../fonts/Raleway-Medium", $file-formats: ttf eot);
-@include font-face("monster_h", "../fonts/montserrat-hairline-webfont", $file-formats: ttf eot);
-@include font-face("monster_l", "../fonts/montserrat-light-webfont", $file-formats: ttf eot);
-@include font-face("monster_r", "../fonts/montserrat-regular-webfont", $file-formats: ttf eot);
+/* * * * * * * * * * * * * * * *
+ *                             *
+ *           FONTS             *
+ *                             *
+ * * * * * * * * * * * * * * * */
+ @include font-face("robotolight", "../fonts/Roboto-Light", $file-formats: ttf eot);
+ @include font-face("robotocon", "../fonts/RobotoCondensed-Regular", $file-formats: ttf eot);
+ @include font-face("openlight", "../fonts/OpenSans-Light", $file-formats: ttf eot);
+ @include font-face("openregular", "../fonts/OpenSans-Regular", $file-formats: ttf eot);
+ @include font-face("opensemi", "../fonts/OpenSans-Semibold", $file-formats: ttf eot);
+ @include font-face("raleway_r", "../fonts/Raleway-Regular", $file-formats: ttf eot);
+ @include font-face("raleway_m", "../fonts/Raleway-Medium", $file-formats: ttf eot);
+ @include font-face("monster_h", "../fonts/montserrat-hairline-webfont", $file-formats: ttf eot);
+ @include font-face("monster_l", "../fonts/montserrat-light-webfont", $file-formats: ttf eot);
+ @include font-face("monster_r", "../fonts/montserrat-regular-webfont", $file-formats: ttf eot);
 
 
 
 
- /* variables */
+ /* SASS VARIABLES */
  $main-background: #1D1D1D;
+ $main-font: #dadada;
 
  $nav-background: #2F2F2F;
  $seperator-color: #1D1D1D;
@@ -29,69 +34,84 @@
 
 
 
-/* general */
-* {
-	margin: 0;
-	padding: 0;
-}
+/* * * * * * * * * * * * * * * *
+ *                             *
+ *        GENERAL STYLE        *
+ *                             *
+ * * * * * * * * * * * * * * * */
+ * {
+ 	margin: 0;
+ 	padding: 0;
+ }
 
-html, body {
-	height: 100%;
-	width: 100%;
-	font-size: 14px;
-}
+ html, body {
+ 	height: 100%;
+ 	width: 100%;
+ 	font-size: 14px;
+ }
 
-body {
-	background: $main-background;
-	font-family: "monster_h", sans-serif;
-	font-weight: 600;
-}
+ body {
+ 	background: $main-background;
+ 	font-family: "monster_h", sans-serif;
+ 	font-weight: 600;
+ 	color: $main-font;
+ }
 
-/* REST OF THE STUFF */
+ main{
+ 	@include box-sizing(border-box);
+ 	padding-top: 63px;
+ 	padding-bottom: 33px;
+ 	padding-left: 103px;
+ }
 
-/* NAVIGATION */
 
-nav{
-	position: fixed;
-	top: 0;
-	width: 100%;
-	height: 60px;
-	line-height: 60px;
-	background: $nav-background;
-	color: #fafafa;
-	font-size: 1.5em;
-	@include box-sizing(border-box);
-	padding-left: 0px;
-	text-align: center;
-	font-weight: 700;
-}
+/* * * * * * * * * * * * * * * *
+ *                             *
+ *     NAVIGATION & FOOTER     *
+ *                             *
+ * * * * * * * * * * * * * * * */
 
-nav svg{
-	width: 30px;
-	height: 30px;
-	fill: $darker-accent;
-	position: absolute;
-	top: 50%;
-	margin-top: -15px;
-	cursor: pointer;
-	@include transition(all .1s ease-out);
+ /* TOP NAV */
+ nav{
+ 	position: fixed;
+ 	top: 0;
+ 	width: 100%;
+ 	height: 60px;
+ 	line-height: 60px;
+ 	background: $nav-background;
+ 	font-size: 1.5em;
+ 	@include box-sizing(border-box);
+ 	padding-left: 0px;
+ 	text-align: center;
+ 	font-weight: 700;
+ 	color: #fafafa;
+ }
 
-	&:hover{
-		fill: $main-accent-hover;
-		@include transform(scale(1.05));
-	}
-}
+ nav svg{
+ 	width: 30px;
+ 	height: 30px;
+ 	fill: $darker-accent;
+ 	position: absolute;
+ 	top: 50%;
+ 	margin-top: -15px;
+ 	cursor: pointer;
+ 	@include transition(all .1s ease-out);
 
-.icon-spinner2{
-	left: 35px;
-}
+ 	&:hover{
+ 		fill: $main-accent-hover;
+ 		@include transform(scale(1.05));
+ 	}
+ }
 
-.icon-cog{
-	right: 35px;
-}
+ .icon-spinner2{
+ 	left: 35px;
+ }
 
-/* ASIDE (left appended navigation buttons) */
+ .icon-cog{
+ 	right: 35px;
+ }
 
+/* SIDE NAV */
 aside{
 	position: fixed;
 	top: 63px;
@@ -145,6 +165,21 @@ aside figure{
 		background: rgba(255,255,255,0.1);
 
 	}
+}
+
+/* FOOTER */
+footer{
+	position: fixed;
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	bottom: 0px;
+	left: 0;
+	color: $gray-text;
+	background: $nav-background;
+	font-size: 0.9em;
+	border-top: 3px solid $main-background;
 }
 
 
