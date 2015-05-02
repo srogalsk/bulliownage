@@ -35,20 +35,20 @@
   font-weight: normal;
   src: url("../fonts/Raleway-Medium.eot?#iefix") format("embedded-opentype"), url("../fonts/Raleway-Medium.ttf") format("truetype"); }
 @font-face {
-  font-family: "quicksand_l";
+  font-family: "monster_h";
   font-style: normal;
   font-weight: normal;
-  src: url("../fonts/quicksand-light-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/quicksand-light-webfont.ttf") format("truetype"); }
+  src: url("../fonts/montserrat-hairline-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/montserrat-hairline-webfont.ttf") format("truetype"); }
 @font-face {
-  font-family: "quicksand_r";
+  font-family: "monster_l";
   font-style: normal;
   font-weight: normal;
-  src: url("../fonts/quicksand-regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/quicksand-regular-webfont.ttf") format("truetype"); }
+  src: url("../fonts/montserrat-light-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/montserrat-light-webfont.ttf") format("truetype"); }
 @font-face {
-  font-family: "quicksand_b";
+  font-family: "monster_r";
   font-style: normal;
   font-weight: normal;
-  src: url("../fonts/quicksand-bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/quicksand-bold-webfont.ttf") format("truetype"); }
+  src: url("../fonts/montserrat-regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/montserrat-regular-webfont.ttf") format("truetype"); }
 /* variables */
 /* general */
 * {
@@ -62,7 +62,8 @@ html, body {
 
 body {
   background: #1D1D1D;
-  font-family: "openregular", sans-serif; }
+  font-family: "monster_h", sans-serif;
+  font-weight: 600; }
 
 /* REST OF THE STUFF */
 /* NAVIGATION */
@@ -72,14 +73,15 @@ nav {
   width: 100%;
   height: 60px;
   line-height: 60px;
-  background: #282828;
+  background: #2F2F2F;
   color: #fafafa;
   font-size: 1.5em;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding-left: 0px;
-  text-align: center; }
+  text-align: center;
+  font-weight: 700; }
 
 nav svg {
   width: 30px;
@@ -109,16 +111,16 @@ nav svg {
 /* ASIDE (left appended navigation buttons) */
 aside {
   position: fixed;
-  top: 70px;
+  top: 63px;
   left: 0;
   height: 100%;
   width: 100px;
-  background: #282828; }
+  background: #2F2F2F; }
 
 aside figure {
   width: 100%;
   height: 100px;
-  border-bottom: 1px solid #1D1D1D;
+  border-bottom: 3px solid #1D1D1D;
   cursor: pointer;
   color: #55B7C5;
   text-align: center;
@@ -132,7 +134,7 @@ aside figure {
     font-size: 14px;
     position: relative;
     top: -62px;
-    font-family: "openlight", sans-serif;
+    font-family: "monster_h", sans-serif;
     color: #B1B1B1; }
   aside figure svg {
     fill: #55B7C5;
@@ -148,7 +150,7 @@ aside figure {
     transition: all 0.1s ease-out; }
   aside figure:hover {
     color: #77EDFF;
-    background: rgba(255, 255, 255, 0.02); }
+    background: rgba(255, 255, 255, 0.1); }
     aside figure:hover svg {
       fill: #77EDFF; }
 

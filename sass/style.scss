@@ -8,9 +8,9 @@
 @include font-face("opensemi", "../fonts/OpenSans-Semibold", $file-formats: ttf eot);
 @include font-face("raleway_r", "../fonts/Raleway-Regular", $file-formats: ttf eot);
 @include font-face("raleway_m", "../fonts/Raleway-Medium", $file-formats: ttf eot);
-@include font-face("quicksand_l", "../fonts/quicksand-light-webfont", $file-formats: ttf eot);
-@include font-face("quicksand_r", "../fonts/quicksand-regular-webfont", $file-formats: ttf eot);
-@include font-face("quicksand_b", "../fonts/quicksand-bold-webfont", $file-formats: ttf eot);
+@include font-face("monster_h", "../fonts/montserrat-hairline-webfont", $file-formats: ttf eot);
+@include font-face("monster_l", "../fonts/montserrat-light-webfont", $file-formats: ttf eot);
+@include font-face("monster_r", "../fonts/montserrat-regular-webfont", $file-formats: ttf eot);
 
 
 
@@ -18,7 +18,7 @@
  /* variables */
  $main-background: #1D1D1D;
 
- $nav-background: #282828;
+ $nav-background: #2F2F2F;
  $seperator-color: #1D1D1D;
 
 
@@ -43,7 +43,8 @@ html, body {
 
 body {
 	background: $main-background;
-	font-family: "openregular", sans-serif;
+	font-family: "monster_h", sans-serif;
+	font-weight: 600;
 }
 
 /* REST OF THE STUFF */
@@ -62,6 +63,7 @@ nav{
 	@include box-sizing(border-box);
 	padding-left: 0px;
 	text-align: center;
+	font-weight: 700;
 }
 
 nav svg{
@@ -92,7 +94,7 @@ nav svg{
 
 aside{
 	position: fixed;
-	top: 70px;
+	top: 63px;
 	left: 0;
 	height: 100%;
 	width: 100px;
@@ -102,7 +104,7 @@ aside{
 aside figure{
 	width: 100%;
 	height: 100px;
-	border-bottom: 1px solid $seperator-color;
+	border-bottom: 3px solid $seperator-color;
 	cursor: pointer;
 	color: $darker-accent;
 	text-align: center;
@@ -116,7 +118,7 @@ aside figure{
 		font-size: 14px;
 		position: relative;
 		top: -62px;
-		font-family: "openlight", sans-serif;
+		font-family: "monster_h", sans-serif;
 		color: $gray-text;
 	}
 
@@ -140,7 +142,7 @@ aside figure{
 
 		//font-size: 2.6em;
 		color: $main-accent-hover;
-		background: rgba(255,255,255,0.02);
+		background: rgba(255,255,255,0.1);
 
 	}
 }
