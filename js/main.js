@@ -1,4 +1,4 @@
-function loadNav(){
+function loadTopNav(){
 	document.write("    <nav>");
 	document.write("        <svg class=\"icon-spinner2\"><use xlink:href=\"#icon-spinner2\"><\/use>");
 	document.write("            <symbol id=\"icon-spinner2\" viewBox=\"0 0 1024 1024\">");
@@ -16,6 +16,9 @@ function loadNav(){
 	document.write("        <\/svg>");
 	document.write("    <\/nav>");
 	document.write("");
+}
+
+function loadSideNav(){
 	document.write("    <aside>");
 	document.write("        <figure>");
 	document.write("            <br\/>");
@@ -52,23 +55,9 @@ function loadFooter(){
 }
 
 
-$.fn.clicktoggle = function(a, b) {
-	return this.each(function() {
-		var clicked = false;
-		$(this).click(function() {
-			if (clicked) {
-				clicked = false;
-				return b.apply(this, arguments);
-			}
-			clicked = true;
-			return a.apply(this, arguments);
-		});
-	});
-};
 
-
-$(window).load(function() {
+// $(window).load(function() {
 
 
 
-});
+// });
