@@ -203,6 +203,14 @@ footer {
 
 /* * * * * * * * * * * * * * * *
  *                             *
+ *        WIRE GENERAL         *
+ *                             *
+ * * * * * * * * * * * * * * * */
+.coin_wrapper {
+  padding: 40px 40px; }
+
+/* * * * * * * * * * * * * * * *
+ *                             *
  *           WIRE 1            *
  *                             *
  * * * * * * * * * * * * * * * */
@@ -294,9 +302,21 @@ footer {
   margin-left: -15px;
   bottom: 7px; }
 
-.coin_wrapper {
-  padding: 40px 40px; }
+/* * * * * * * * * * * * * * * *
+ *                             *
+ *           WIRE 2            *
+ *                             *
+ * * * * * * * * * * * * * * * */
+#overview-panel {
+  background: rgba(255, 255, 255, 0.1);
+  width: 300px;
+  height: 400px; }
 
+/* * * * * * * * * * * * * * * *
+ *                             *
+ *           WIRE 4            *
+ *                             *
+ * * * * * * * * * * * * * * * */
 .coin_wrapper > h2 {
   font-weight: bolder;
   margin-top: 0;

@@ -203,6 +203,15 @@ footer{
 
 /* * * * * * * * * * * * * * * *
  *                             *
+ *        WIRE GENERAL         *
+ *                             *
+ * * * * * * * * * * * * * * * */
+ .coin_wrapper {
+ 	padding: 40px 40px;
+ }
+
+/* * * * * * * * * * * * * * * *
+ *                             *
  *           WIRE 1            *
  *                             *
  * * * * * * * * * * * * * * * */
@@ -325,56 +334,71 @@ footer{
  	bottom: 7px;
  }
 
-.coin_wrapper {
-	padding: 40px 40px;
-}
 
-.coin_wrapper > h2 {
-	font-weight: bolder;
-	margin-top: 0;
-	margin-bottom: 25px;
-}
+/* * * * * * * * * * * * * * * *
+ *                             *
+ *           WIRE 2            *
+ *                             *
+ * * * * * * * * * * * * * * * */
+ #overview-panel{
+ 	background: rgba(255,255,255,0.1);
+ 	width: 300px;
+ 	height: 400px;
+ }
 
-.coin_main {
-	width: 100%;
-	height: 100%;
-	display: inline-block;
-}
 
-.coin_image {
-	width: 275px;
-	height: 200px;
-	margin-bottom: 40px;
-	text-align: center;
-	float: left;
-}
+/* * * * * * * * * * * * * * * *
+ *                             *
+ *           WIRE 4            *
+ *                             *
+ * * * * * * * * * * * * * * * */
+ .coin_wrapper > h2 {
+ 	font-weight: bolder;
+ 	margin-top: 0;
+ 	margin-bottom: 25px;
+ }
 
-.coin_detail {
-	float: left;
-}
+ .coin_main {
+ 	width: 100%;
+ 	height: 100%;
+ 	display: inline-block;
+ }
 
-table {
-	width: 275px;
-	margin-left: auto;
-	margin-right: auto;
-}
-tr > td {
-	padding-bottom: 15px;
-}
+ .coin_image {
+ 	width: 275px;
+ 	height: 200px;
+ 	margin-bottom: 40px;
+ 	text-align: center;
+ 	float: left;
+ }
 
-tr > td:first-child {
-	text-align: right;
-	padding-right: 15px;
-}
+ .coin_detail {
+ 	float: left;
+ }
 
-tr > td:nth-child(2) {
-	text-align: left;
-}
+ table {
+ 	width: 275px;
+ 	margin-left: auto;
+ 	margin-right: auto;
+ }
+ tr > td {
+ 	padding-bottom: 15px;
+ }
 
-strong {
-	font-family: "monster_r";
-	font-weight: 700;
-}
+ tr > td:first-child {
+ 	text-align: right;
+ 	padding-right: 15px;
+ }
+
+ tr > td:nth-child(2) {
+ 	text-align: left;
+ }
+
+ strong {
+ 	font-family: "monster_r";
+ 	font-weight: 700;
+ }
+
 
 /* * * * * * * * * * * * * * * *
  *                             *
