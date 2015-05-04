@@ -288,4 +288,13 @@ footer {
   margin-left: -15px;
   bottom: 7px; }
 
+/* * * * * * * * * * * * * * * *
+ *                             *
+ *     RESPONSIVE HANDLING     *
+ *                             *
+ * * * * * * * * * * * * * * * */
+@media screen and (max-width: 1000px) {
+  #w1-wrapper section {
+    margin: 50px 0px; } }
+
 /*# sourceMappingURL=style.css.map */
