@@ -882,6 +882,9 @@ footer{
  }
 
  select {
+ 	@include appearance(none);
+ 	background: url("../assets/down_arrow.svg") no-repeat;
+	background-position: 125px center;
  	background-color: $input-bg-color;
  	width: 145px;
  	height: 27px;
@@ -889,6 +892,8 @@ footer{
  	border: none;
  	font-family: "monster_h";
  	font-size: 12px;
+ 	padding-left: 10px;
+ 	border-radius: 5px;
  	outline: 0;
  }
 
