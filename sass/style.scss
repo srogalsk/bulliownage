@@ -23,7 +23,6 @@
  $main-background: #1D1D1D;
  $main-font: #E6E6E6;
 
- //$nav-background: #2F2F2F;
  $nav-background: #272E32;
  $seperator-color: #1D1D1D;
 
@@ -38,6 +37,13 @@
  $positive-color: #A7FF8B;
  $negative-color: #FF6A65;
  $input-bg-color: #4c4c4c;
+
+ $graph-red: #FF6D67;
+ $graph-orange: #FFA859;
+ $graph-yellow: #F3FF88;
+ $graph-green: #9FFF98;
+ $graph-blue: #BBF5FF;
+ $graph-purple: #C29FFF;
 
 /* * * * * * * * * * * * * * * *
  *                             *
@@ -339,7 +345,7 @@ footer{
 
 /* * * * * * * * * * * * * * * *
  *                             *
- *         WIRE 2 & 3          *
+ *           WIRE 2            *
  *                             *
  * * * * * * * * * * * * * * * */
  .overview-panel{
@@ -459,15 +465,83 @@ footer{
  .graph-panel{
  	display: inline-block;
  	vertical-align: top;
- 	margin-left: 40px;
- 	@include calc(width, "100% - 350px");
+ 	margin-left: 50px;
+ 	@include calc(width, "100% - 360px");
  	height: 400px;
+ 	position: relative;
  	//background: gray;
 
- 	canvas{
- 		width: 100%;
+ 	&>section{
+ 		display: inline-block;
+ 		vertical-align: top;
+ 	}
+
+ 	.chart-wrap{
+ 		@include calc(width, "100% - 150px");
  		height: 100%;
  	}
+
+ 	.chart-y-label{
+ 		position: absolute;
+ 		width: 400px;
+ 		text-align: center;
+ 		@include transform-origin(top left);
+ 		@include transform(rotate(90deg));
+ 	}
+
+ 	.chart-x-label{
+ 		position: absolute;
+ 		text-align: center;
+ 		@include calc(width, "100% - 150px");
+ 		bottom: -25px;
+ 	}
+
+ 	.chart-legend{
+ 		width: 130px;
+ 		margin-left: 10px;
+ 		margin-top: 12px;
+ 		height: 200px;
+ 	}
+
+ 	.legend-item{
+ 		margin-bottom: 5px;
+ 		height: 20px;
+ 		line-height: 20px;
+ 		color: $gray-text;
+ 	}
+
+ 	.legend-item-color{
+ 		width: 14px;
+ 		height: 14px;
+ 		display: inline-block;
+ 		vertical-align: middle;
+ 		margin-right: 3px;
+ 	}
+
+ 	#legend-1{
+ 		background: $graph-red;
+ 	}
+
+ 	#legend-2{
+ 		background: $graph-orange;
+ 	}
+
+ 	#legend-3{
+ 		background: $graph-yellow;
+ 	}
+
+ 	#legend-4{
+ 		background: $graph-green;
+ 	}
+
+ 	#legend-5{
+ 		background: $graph-blue;
+ 	}
+
+ 	#legend-6{
+ 		background: $graph-purple;
+ 	}
+
  }
 
 /* * * * * * * * * * * * * * * *
@@ -579,7 +653,7 @@ footer{
  		margin-right: auto;
  		//@include box-sizing(border-box);
  	}
- 	 table {
+ 	table {
  		width: 275px;
  		margin-left: auto;
  		margin-right: auto;

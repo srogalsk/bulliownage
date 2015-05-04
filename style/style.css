@@ -304,7 +304,7 @@ footer {
 
 /* * * * * * * * * * * * * * * *
  *                             *
- *         WIRE 2 & 3          *
+ *           WIRE 2            *
  *                             *
  * * * * * * * * * * * * * * * */
 .overview-panel {
@@ -386,13 +386,66 @@ footer {
 .graph-panel {
   display: inline-block;
   vertical-align: top;
-  margin-left: 40px;
-  width: -webkit-calc(100% - 350px);
-  width: calc(100% - 350px);
-  height: 400px; }
-  .graph-panel canvas {
-    width: 100%;
+  margin-left: 50px;
+  width: -webkit-calc(100% - 360px);
+  width: calc(100% - 360px);
+  height: 400px;
+  position: relative; }
+  .graph-panel > section {
+    display: inline-block;
+    vertical-align: top; }
+  .graph-panel .chart-wrap {
+    width: -webkit-calc(100% - 150px);
+    width: calc(100% - 150px);
     height: 100%; }
+  .graph-panel .chart-y-label {
+    position: absolute;
+    width: 400px;
+    text-align: center;
+    -webkit-transform-origin: top left;
+    -moz-transform-origin: top left;
+    -ms-transform-origin: top left;
+    -o-transform-origin: top left;
+    transform-origin: top left;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg); }
+  .graph-panel .chart-x-label {
+    position: absolute;
+    text-align: center;
+    width: -webkit-calc(100% - 150px);
+    width: calc(100% - 150px);
+    bottom: -25px; }
+  .graph-panel .chart-legend {
+    width: 130px;
+    margin-left: 10px;
+    margin-top: 12px;
+    height: 200px; }
+  .graph-panel .legend-item {
+    margin-bottom: 5px;
+    height: 20px;
+    line-height: 20px;
+    color: #B1B1B1; }
+  .graph-panel .legend-item-color {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 3px; }
+  .graph-panel #legend-1 {
+    background: #FF6D67; }
+  .graph-panel #legend-2 {
+    background: #FFA859; }
+  .graph-panel #legend-3 {
+    background: #F3FF88; }
+  .graph-panel #legend-4 {
+    background: #9FFF98; }
+  .graph-panel #legend-5 {
+    background: #BBF5FF; }
+  .graph-panel #legend-6 {
+    background: #C29FFF; }
 
 /* * * * * * * * * * * * * * * *
  *                             *
