@@ -465,7 +465,7 @@ footer{
  		background: $nav-background;
  		font-size: 0;
  		border-top: 2px solid rgba(0,0,0,0.7);
-
+ 		white-space: nowrap;
  		.mobile-toggle-button{
  			width: 50%;
  			height: 100%;
@@ -615,7 +615,7 @@ footer{
 
  	.chart-legend{
  		position: absolute;
- 		width: 130px;
+ 		width: 135px;
  		right: -5px;
  		margin-top: 12px;
  	}

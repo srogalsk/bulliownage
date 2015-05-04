@@ -394,7 +394,8 @@ a {
     height: 50px;
     background: #272E32;
     font-size: 0;
-    border-top: 2px solid rgba(0, 0, 0, 0.7); }
+    border-top: 2px solid rgba(0, 0, 0, 0.7);
+    white-space: nowrap; }
     .overview-panel .mobile-toggle .mobile-toggle-button {
       width: 50%;
       height: 100%;
@@ -508,7 +509,7 @@ a {
     bottom: -25px; }
   .graph-panel .chart-legend {
     position: absolute;
-    width: 130px;
+    width: 135px;
     right: -5px;
     margin-top: 12px; }
   .graph-panel .legend-item {
