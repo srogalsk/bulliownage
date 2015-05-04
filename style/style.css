@@ -107,31 +107,72 @@ nav {
   border-bottom-right-radius: 0px;
   box-shadow: 0px 2px 5px #1D1D1D;
   z-index: 999; }
+  nav svg {
+    width: 30px;
+    height: 30px;
+    fill: #55B7C5;
+    position: absolute;
+    top: 50%;
+    margin-top: -15px;
+    cursor: pointer;
+    -webkit-transition: all 0.1s ease-out;
+    -moz-transition: all 0.1s ease-out;
+    transition: all 0.1s ease-out; }
+    nav svg:hover {
+      fill: #77EDFF;
+      -webkit-transform: scale(1.05);
+      -moz-transform: scale(1.05);
+      -ms-transform: scale(1.05);
+      -o-transform: scale(1.05);
+      transform: scale(1.05); }
+  nav .icon-spinner2 {
+    left: 35px; }
+  nav .icon-cog {
+    right: 35px; }
 
-nav svg {
-  width: 30px;
-  height: 30px;
-  fill: #55B7C5;
-  position: absolute;
-  top: 50%;
-  margin-top: -15px;
-  cursor: pointer;
-  -webkit-transition: all 0.1s ease-out;
-  -moz-transition: all 0.1s ease-out;
-  transition: all 0.1s ease-out; }
-  nav svg:hover {
-    fill: #77EDFF;
-    -webkit-transform: scale(1.05);
-    -moz-transform: scale(1.05);
-    -ms-transform: scale(1.05);
-    -o-transform: scale(1.05);
-    transform: scale(1.05); }
-
-.icon-spinner2 {
-  left: 35px; }
-
-.icon-cog {
-  right: 35px; }
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  background: #272E32;
+  font-size: 1.5em;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-left: 0px;
+  text-align: center;
+  font-weight: 700;
+  color: #fafafa;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  box-shadow: 0px 2px 5px #1D1D1D;
+  z-index: 999;
+  display: none; }
+  .mobile-nav svg {
+    width: 40px;
+    height: 40px;
+    fill: #55B7C5;
+    position: absolute;
+    top: 50%;
+    margin-top: -20px;
+    cursor: pointer;
+    -webkit-transition: all 0.1s ease-out;
+    -moz-transition: all 0.1s ease-out;
+    transition: all 0.1s ease-out; }
+    .mobile-nav svg:hover {
+      fill: #77EDFF;
+      -webkit-transform: scale(1.05);
+      -moz-transform: scale(1.05);
+      -ms-transform: scale(1.05);
+      -o-transform: scale(1.05);
+      transform: scale(1.05); }
+  .mobile-nav .icon-keyboard-arrow-left {
+    left: 20px; }
+  .mobile-nav .icon-add {
+    right: 20px; }
 
 /* SIDE NAV */
 aside {
@@ -293,7 +334,7 @@ footer {
   height: 350px;
   width: 210px;
   margin: 50px 10px;
-  background: #a1a1a1; }
+  background-image: url("../assets/demo.png"); }
 
 #iphone-home {
   width: 30px;
@@ -553,20 +594,26 @@ footer {
  *           WIRE 4            *
  *                             *
  * * * * * * * * * * * * * * * */
-.coin_head_wrapper > h2 {
-  font-weight: bolder;
-  margin-top: 0;
-  margin-bottom: 25px;
-  margin-left: 35px; }
-
-.back_mobile {
-  display: none;
-  visibility: hidden; }
-
 .coin_main {
   width: 100%;
   height: 100%;
-  display: inline-block; }
+  position: relative; }
+  .coin_main .breadcrumb {
+    font-size: 1.2em;
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: 15px;
+    cursor: pointer; }
+    .coin_main .breadcrumb svg {
+      fill: #E6E6E6;
+      width: 20px;
+      height: 20px;
+      position: relative;
+      top: 5px; }
+    .coin_main .breadcrumb:hover {
+      color: #68CEDE; }
+      .coin_main .breadcrumb:hover svg {
+        fill: #68CEDE; }
 
 .coin_image {
   width: 275px;
@@ -699,35 +746,8 @@ select {
     display: none;
     visibility: hidden; }
 
-  .coin_head_wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    line-height: 60px;
-    background: #272E32;
-    font-size: 1.5em;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    padding-left: 0px;
-    text-align: center;
-    font-weight: 700;
-    color: #fafafa;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px; }
-
-  .back_desk {
-    display: none;
-    visibility: hidden; }
-
-  .back_mobile {
-    display: inline;
-    visibility: visible;
-    position: absolute;
-    margin-top: 17px;
-    left: 10px; }
+  .mobile-nav {
+    display: block; }
 
   .coin_main {
     display: inline; }
@@ -742,8 +762,11 @@ select {
     margin-left: auto;
     margin-right: auto; }
 
-  .head_text {
-    margin-left: -30px; }
+  .breadcrumb {
+    display: none; }
+
+  .my_stack .label-and-search {
+    display: none; }
 
   .overview-panel {
     width: 100%; }
