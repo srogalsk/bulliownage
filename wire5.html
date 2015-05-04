@@ -36,7 +36,7 @@
                             <polygon points="135.412,0 35.709,99.702 135.412,199.404 163.695,171.119 92.277,99.702 163.695,28.285" />
                         </g>
                     </svg>
-                    <span class="head_text">Item Detail</span>
+                    <span class="head_text">Add Item</span>
                 </h2>
             </div>
             <div class="coin_main">
@@ -52,7 +52,7 @@
                             <td>Metal</td>
                             <td>
                                 <select>
-                                    <option value="gold">Gold</option>
+                                    <option selcted value="gold">Gold</option>
                                     <option value="silver">Silver</option>
                                     <option value="platinum">Platinum</option>
                                 </select>
@@ -62,25 +62,33 @@
                             <td>Type</td>
                             <td>
                                 <select>
-                                    <option value="us_eagle">US Eagle</option>
+                                    <option selected value="us_eagle">US Eagle</option>
                                 </select>
                             </td>
                         </tr>
                         <tr>
                             <td>Purchase Date</td>
-                            <td><input type="date" name="purchase_date" /></td>
+                            <td>
+                                <input name="purchase_date" value="04 March 2015" />
+                            </td>
                         </tr>
                         <tr>
                             <td>Qty.</td>
-                            <td><input type="number" name="quantity" /></td>
+                            <td>
+                                <input name="quantity" value="1" />
+                            </td>
                         </tr>
                         <tr>
                             <td>Premium</td>
-                            <td><input type="number" name="quantity" /></td>
+                            <td>
+                                <input name="quantity" value="47.00" />
+                            </td>
                         </tr>
                         <tr>
                             <td>Unit Price</td>
-                            <td><input type="number" name="quantity" /></td>
+                            <td>
+                                <input name="quantity" value="1250.60" />
+                            </td>
                         </tr>
                         <tr>
                             <td>Gold %</td>
@@ -107,6 +115,8 @@
                             <td><strong>1199.10</strong></td>
                         </tr>
                     </table>
+                    <a href=""><span id="save">Save to My Stack</span></a>
+                    <a href=""><span id="cancel">Cancel</span></a>
                 </section>
             </div>
         </section>

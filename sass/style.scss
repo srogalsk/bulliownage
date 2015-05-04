@@ -37,6 +37,7 @@
 
  $positive-color: #A7FF8B;
  $negative-color: #FF6A65;
+ $input-bg-color: #4c4c4c;
 
 /* * * * * * * * * * * * * * * *
  *                             *
@@ -485,6 +486,20 @@ footer{
 
  .coin_detail {
  	float: left;
+ 	a {
+ 		text-decoration: none;
+ 		color: $main-font;
+ 	}
+ 	span{
+ 		display: block;
+ 		height: 55px;
+ 		line-height: 55px;
+ 		text-align: center;
+ 		font-size: 1.3em;
+ 		margin-left: auto;
+ 		margin-right: auto;
+ 		//@include box-sizing(border-box);
+ 	}
  }
 
  .img_box {
@@ -502,6 +517,9 @@ footer{
  	margin-right: auto;
  	margin-top: 20px;
  	border-radius: 100%;
+ 	-webkit-border-radius: 100%;
+ 	-moz-border-radius: 100%;
+ 	-ms-border-radius: 100%;
  	background-color: #5D5D5D;
  }
 
@@ -529,6 +547,65 @@ footer{
  	font-weight: 700;
  }
 
+/* * * * * * * * * * * * * * * *
+ *                             *
+ *           WIRE 5            *
+ *                             *
+ * * * * * * * * * * * * * * * */
+
+input {
+	background-color: $input-bg-color;
+	width: 125px;
+	height: 27px;
+	padding: 0 10px;
+	border: none;
+	color: white;
+	font-family: "monster_h";
+	font-size: 12px;
+	border-radius: 5px;
+	outline: 0;
+}
+
+input:focus {
+	outline: 2px solid $main-accent;
+}
+
+select {
+	background-color: $input-bg-color;
+	width: 145px;
+	height: 27px;
+	color: white;
+	border: none;
+	font-family: "monster_h";
+	font-size: 12px;
+	outline: 0;
+}
+
+#save {
+	background: #397C86;
+ 	border: 1px solid #151515;
+ 	&:hover{
+ 		border: 1px solid $main-accent;
+ 	}
+ 	color: white;
+ 	text-decoration: none;
+ 	width: 275px;
+}
+
+#cancel {
+	background: #1C3A3F;
+	border: 1px solid #151515;
+ 	&:hover{
+ 		border: 1px solid $main-accent;
+ 	}
+ 	color: white;
+ 	text-decoration: none;
+ 	width: 275px;
+ 	//width: 200px;
+ 	height: 40px;
+ 	line-height: 40px;
+ 	margin-top: 15px;
+}
 
 /* * * * * * * * * * * * * * * *
  *                             *

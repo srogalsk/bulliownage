@@ -410,6 +410,17 @@ footer {
 
 .coin_detail {
   float: left; }
+  .coin_detail a {
+    text-decoration: none;
+    color: #E6E6E6; }
+  .coin_detail span {
+    display: block;
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+    font-size: 1.3em;
+    margin-left: auto;
+    margin-right: auto; }
 
 .img_box {
   width: 200px;
@@ -425,6 +436,9 @@ footer {
   margin-right: auto;
   margin-top: 20px;
   border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
   background-color: #5D5D5D; }
 
 table {
@@ -446,6 +460,57 @@ tr > td:nth-child(2) {
 strong {
   font-family: "monster_r";
   font-weight: 700; }
+
+/* * * * * * * * * * * * * * * *
+ *                             *
+ *           WIRE 5            *
+ *                             *
+ * * * * * * * * * * * * * * * */
+input {
+  background-color: #4c4c4c;
+  width: 125px;
+  height: 27px;
+  padding: 0 10px;
+  border: none;
+  color: white;
+  font-family: "monster_h";
+  font-size: 12px;
+  border-radius: 5px;
+  outline: 0; }
+
+input:focus {
+  outline: 2px solid #68CEDE; }
+
+select {
+  background-color: #4c4c4c;
+  width: 145px;
+  height: 27px;
+  color: white;
+  border: none;
+  font-family: "monster_h";
+  font-size: 12px;
+  outline: 0; }
+
+#save {
+  background: #397C86;
+  border: 1px solid #151515;
+  color: white;
+  text-decoration: none;
+  width: 275px; }
+  #save:hover {
+    border: 1px solid #68CEDE; }
+
+#cancel {
+  background: #1C3A3F;
+  border: 1px solid #151515;
+  color: white;
+  text-decoration: none;
+  width: 275px;
+  height: 40px;
+  line-height: 40px;
+  margin-top: 15px; }
+  #cancel:hover {
+    border: 1px solid #68CEDE; }
 
 /* * * * * * * * * * * * * * * *
  *                             *
