@@ -10,19 +10,111 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <script src="./js/jquery-1.11.2.min.js"></script>
-    <script src="./js/velocity.min.js"></script>
+    <script src="./js/Chart.js"></script>
     <script src="./js/main.js"></script>
-    <title>CoinFlip</title>
+    <title>Home - CoinFlip</title>
 </head>
 
 <body>
-    <script type="text/javascript">loadTopNav();</script>
-    <script type="text/javascript">loadSideNav(1);</script>
-
+    <script type="text/javascript">
+    loadTopNav();
+    </script>
+    <script type="text/javascript">
+    loadSideNav(0);
+    </script>
     <main>
+        <section class="coin_wrapper">
+            <section class="overview-panel">
+                <section class="total-value">
+                    <div class="total-dollars">$18,234.10</div>
+                    <table class="current_gold">
+                        <tr>
+                            <td>Daily</td>
+                            <td>+3.5%</td>
+                        </tr>
+                        <tr>
+                            <td>Overall</td>
+                            <td>+1.2%</td>
+                        </tr>
+                    </table>
+                    <div class="total-label" id="my_gold_value">My Gold Value</div>
+                </section>
+                <section class="market-list">
+                    <section class="market-item-header">
+                        Current Spot
+                    </section>
+                    <section class="market-item-stats">
+                        <table>
+                            <tr>
+                                <td>1206.10</td>
+                                <td>1207.10</td>
+                                <td class="pos-change">+23.40</td>
+                            </tr>
+                            <tr>
+                                <td>Bid</td>
+                                <td>Ask</td>
+                                <td>Change</td>
+                            </tr>
+                        </table>
+                    </section>
+                </section>
+            </section>
+            <section class="graph-panel">
+                <canvas id="total-chart"></canvas>
+            </section>
+            <section class="my_stack">
+                <table>
+                    <caption>
+                        <section>
+                            <h3>My Stack</h3>
+                            <div class="stack_ctrl">
+                                <input type="search" />
+                            </div>
+                        </section>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Item</th>
+                            <th>Qty.</th>
+                            <th>Weight/unit (g)</th>
+                            <th>% au</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td>US Eagle</td>
+                            <td>1</td>
+                            <td>1.244</td>
+                            <td>.917</td>
+                            <td>1199.10</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>US Eagle</td>
+                            <td>5</td>
+                            <td>1.244</td>
+                            <td>.917</td>
+                            <td>5995.50</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>US Eagle</td>
+                            <td>5</td>
+                            <td>1.244</td>
+                            <td>.917</td>
+                            <td>5995.50</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </section>
     </main>
-
-    <script type="text/javascript">loadFooter();</script>
+    <script type="text/javascript">
+    loadFooter();
+    </script>
 </body>
 
 </html>
