@@ -304,13 +304,82 @@ footer {
 
 /* * * * * * * * * * * * * * * *
  *                             *
- *           WIRE 2            *
+ *         WIRE 2 & 3          *
  *                             *
  * * * * * * * * * * * * * * * */
-#overview-panel {
-  background: rgba(255, 255, 255, 0.1);
-  width: 300px;
-  height: 400px; }
+.overview-panel {
+  width: 300px; }
+  .overview-panel .total-value {
+    width: 100%;
+    height: 80px;
+    background: #272E32;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px 20px; }
+    .overview-panel .total-value > div {
+      display: inline-block;
+      vertical-align: bottom; }
+    .overview-panel .total-value .total-dollars {
+      margin-top: 3px;
+      font-size: 2em;
+      font-weight: 900; }
+    .overview-panel .total-value .total-change {
+      color: #B1B1B1;
+      position: relative;
+      bottom: 3px;
+      left: 2px; }
+    .overview-panel .total-value .total-label {
+      font-size: 1.1em; }
+  .overview-panel .market-status {
+    width: 100%;
+    height: 20px;
+    margin-top: 20px;
+    font-size: 1.05em; }
+    .overview-panel .market-status > div {
+      display: inline-block; }
+    .overview-panel .market-status .market-open {
+      float: left; }
+    .overview-panel .market-status .market-time {
+      float: right; }
+  .overview-panel .market-list {
+    width: 100%;
+    margin-top: 20px; }
+    .overview-panel .market-list .market-item-header {
+      border-bottom: 1px solid #272E32;
+      padding-bottom: 10px;
+      position: relative;
+      cursor: pointer; }
+      .overview-panel .market-list .market-item-header svg {
+        position: absolute;
+        right: 5px;
+        top: 3px;
+        fill: #E6E6E6;
+        width: 15px;
+        height: 15px; }
+      .overview-panel .market-list .market-item-header:hover {
+        color: #77EDFF; }
+        .overview-panel .market-list .market-item-header:hover svg {
+          fill: #77EDFF; }
+    .overview-panel .market-list .market-item-stats {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      width: 100%;
+      padding: 10px 25px; }
+      .overview-panel .market-list .market-item-stats table {
+        width: 100%; }
+        .overview-panel .market-list .market-item-stats table tr:first-child {
+          color: #68CEDE; }
+      .overview-panel .market-list .market-item-stats td {
+        text-align: center;
+        width: 33%;
+        margin: 0;
+        padding: 5px 0; }
+  .overview-panel .pos-change {
+    color: #A7FF8B !important; }
+  .overview-panel .neg-change {
+    color: #FF6A65 !important; }
 
 /* * * * * * * * * * * * * * * *
  *                             *
