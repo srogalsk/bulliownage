@@ -343,6 +343,8 @@ footer{
  *                             *
  * * * * * * * * * * * * * * * */
  .overview-panel{
+ 	display: inline-block;
+ 	vertical-align: top;
  	width: 300px;
  	//border: 1px solid gray;
 
@@ -454,6 +456,20 @@ footer{
 
  }
 
+ .graph-panel{
+ 	display: inline-block;
+ 	vertical-align: top;
+ 	margin-left: 40px;
+ 	@include calc(width, "100% - 350px");
+ 	height: 400px;
+ 	//background: gray;
+
+ 	canvas{
+ 		width: 100%;
+ 		height: 100%;
+ 	}
+ }
+
 /* * * * * * * * * * * * * * * *
  *                             *
  *           WIRE 4            *
@@ -553,36 +569,36 @@ footer{
  *                             *
  * * * * * * * * * * * * * * * */
 
-input {
-	background-color: $input-bg-color;
-	width: 125px;
-	height: 27px;
-	padding: 0 10px;
-	border: none;
-	color: white;
-	font-family: "monster_h";
-	font-size: 12px;
-	border-radius: 5px;
-	outline: 0;
-}
+ input {
+ 	background-color: $input-bg-color;
+ 	width: 125px;
+ 	height: 27px;
+ 	padding: 0 10px;
+ 	border: none;
+ 	color: white;
+ 	font-family: "monster_h";
+ 	font-size: 12px;
+ 	border-radius: 5px;
+ 	outline: 0;
+ }
 
-input:focus {
-	outline: 2px solid $main-accent;
-}
+ input:focus {
+ 	outline: 2px solid $main-accent;
+ }
 
-select {
-	background-color: $input-bg-color;
-	width: 145px;
-	height: 27px;
-	color: white;
-	border: none;
-	font-family: "monster_h";
-	font-size: 12px;
-	outline: 0;
-}
+ select {
+ 	background-color: $input-bg-color;
+ 	width: 145px;
+ 	height: 27px;
+ 	color: white;
+ 	border: none;
+ 	font-family: "monster_h";
+ 	font-size: 12px;
+ 	outline: 0;
+ }
 
-#save {
-	background: #397C86;
+ #save {
+ 	background: #397C86;
  	border: 1px solid #151515;
  	&:hover{
  		border: 1px solid $main-accent;
@@ -590,11 +606,11 @@ select {
  	color: white;
  	text-decoration: none;
  	width: 275px;
-}
+ }
 
-#cancel {
-	background: #1C3A3F;
-	border: 1px solid #151515;
+ #cancel {
+ 	background: #1C3A3F;
+ 	border: 1px solid #151515;
  	&:hover{
  		border: 1px solid $main-accent;
  	}
@@ -605,7 +621,7 @@ select {
  	height: 40px;
  	line-height: 40px;
  	margin-top: 15px;
-}
+ }
 
 /* * * * * * * * * * * * * * * *
  *                             *
