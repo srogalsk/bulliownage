@@ -100,31 +100,82 @@
  	border-bottom-right-radius: $nav-border-rad;
  	box-shadow: 0px 2px 5px $main-background;
  	z-index: 999;
- }
 
- nav svg{
- 	width: 30px;
- 	height: 30px;
- 	fill: $darker-accent;
- 	position: absolute;
- 	top: 50%;
- 	margin-top: -15px;
- 	cursor: pointer;
- 	@include transition(all .1s ease-out);
+ 	svg{
+ 		width: 30px;
+ 		height: 30px;
+ 		fill: $darker-accent;
+ 		position: absolute;
+ 		top: 50%;
+ 		margin-top: -15px;
+ 		cursor: pointer;
+ 		@include transition(all .1s ease-out);
 
- 	&:hover{
- 		fill: $main-accent-hover;
- 		@include transform(scale(1.05));
+ 		&:hover{
+ 			fill: $main-accent-hover;
+ 			@include transform(scale(1.05));
+ 		}
+ 	}
+
+
+ 	.icon-spinner2{
+ 		left: 35px;
+ 	}
+
+ 	.icon-cog{
+ 		right: 35px;
  	}
  }
 
- .icon-spinner2{
- 	left: 35px;
+
+
+
+ .mobile-nav{
+ 	position: fixed;
+ 	top: 0;
+ 	left: 0;
+ 	width: 100%;
+ 	height: 60px;
+ 	line-height: 60px;
+ 	background: $nav-background;
+ 	font-size: 1.5em;
+ 	@include box-sizing(border-box);
+ 	padding-left: 0px;
+ 	text-align: center;
+ 	font-weight: 700;
+ 	color: #fafafa;
+ 	border-bottom-left-radius: $nav-border-rad;
+ 	border-bottom-right-radius: $nav-border-rad;
+ 	box-shadow: 0px 2px 5px $main-background;
+ 	z-index: 999;
+ 	display: none;
+
+ 	svg{
+ 		width: 40px;
+ 		height: 40px;
+ 		fill: $darker-accent;
+ 		position: absolute;
+ 		top: 50%;
+ 		margin-top: -20px;
+ 		cursor: pointer;
+ 		@include transition(all .1s ease-out);
+
+ 		&:hover{
+ 			fill: $main-accent-hover;
+ 			@include transform(scale(1.05));
+ 		}
+ 	}
+
+ 	.icon-keyboard-arrow-left{
+ 		left: 20px;
+ 	}
+
+ 	.icon-add{
+ 		right: 20px;
+ 	}
  }
 
- .icon-cog{
- 	right: 35px;
- }
+
 
 /* SIDE NAV */
 aside{
@@ -219,6 +270,7 @@ footer{
  .coin_wrapper {
  	padding: 40px 40px;
  }
+
 
 /* * * * * * * * * * * * * * * *
  *                             *
@@ -331,7 +383,8 @@ footer{
  	height: 350px;
  	width: 210px;
  	margin: 50px 10px;
- 	background: #a1a1a1;
+ 	//background: #a1a1a1;
+ 	background-image: url("../assets/demo.png");
  }
 
  #iphone-home{
@@ -676,21 +729,35 @@ footer{
  *           WIRE 4            *
  *                             *
  * * * * * * * * * * * * * * * */
- .coin_head_wrapper > h2 {
- 	font-weight: bolder;
- 	margin-top: 0;
- 	margin-bottom: 25px;
- 	margin-left: 35px;
- }
- .back_mobile {
- 	display: none;
- 	visibility: hidden;
- }
 
  .coin_main {
  	width: 100%;
  	height: 100%;
- 	display: inline-block;
+ 	position: relative;
+
+ 	.breadcrumb{
+ 		font-size: 1.2em;
+ 		height: 30px;
+ 		line-height: 30px;
+ 		margin-bottom: 15px;
+ 		cursor: pointer;
+
+ 		svg{
+ 			fill: $main-font;
+ 			width: 20px;
+ 			height: 20px;
+ 			position: relative;
+ 			top: 5px;
+ 		}
+
+ 		&:hover{
+ 			color: $main-accent;
+
+ 			svg{
+ 				fill: $main-accent;
+ 			}
+ 		}
+ 	}
  }
 
  .coin_image {
@@ -847,33 +914,8 @@ footer{
  		display: none;
  		visibility: hidden;
  	}
- 	.coin_head_wrapper {
- 		position: fixed;
- 		top: 0;
- 		left: 0;
- 		width: 100%;
- 		height: 60px;
- 		line-height: 60px;
- 		background: $nav-background;
- 		font-size: 1.5em;
- 		@include box-sizing(border-box);
- 		padding-left: 0px;
- 		text-align: center;
- 		font-weight: 700;
- 		color: #fafafa;
- 		border-bottom-left-radius: $nav-border-rad;
- 		border-bottom-right-radius: $nav-border-rad;
- 	}
- 	.back_desk {
- 		display: none;
- 		visibility: hidden;
- 	}
- 	.back_mobile {
- 		display: inline;
- 		visibility: visible;
- 		position: absolute;
- 		margin-top: 17px;
- 		left: 10px;
+ 	.mobile-nav {
+ 		display: block;
  	}
  	.coin_main {
  		display: inline;
@@ -888,8 +930,15 @@ footer{
  		margin-left: auto;
  		margin-right: auto;
  	}
- 	.head_text {
- 		margin-left: -30px;
+
+ 	.breadcrumb{
+ 		display: none;
+ 	}
+
+ 	.my_stack{
+ 		.label-and-search{
+ 			display: none;
+ 		}
  	}
 
  	.overview-panel{
