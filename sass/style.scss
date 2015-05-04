@@ -580,16 +580,24 @@ footer{
  		margin-top: 25px;
  		margin-left: auto;
  		margin-right: auto;
+ 		text-align: center;
+ 		border-spacing: 0px;
  		th {
  			width: 16%;
- 			text-align: left;
+ 			//text-align: left;
  			border-bottom: 1px solid white;
  			padding-top: 10px;
  			padding-bottom: 10px;
+ 			font-family: "monster_r";
+ 			font-weight: bold;
  		}
  		td {
  			padding-top: 10px;
  			padding-bottom: 10px;
+ 		}
+ 		tbody > tr:hover {
+ 			background-color: rgba(255,255,255,0.1);
+ 			cursor: pointer;
  		}
  		caption {
  			text-align: left;
@@ -600,11 +608,28 @@ footer{
  				}
  				.stack_ctrl {
  					float: right;
-
+ 					input {
+ 						width: 215px;
+ 						border-radius: 0;
+ 						margin-right: 15px;
+ 						padding-left: 5px;
+ 					}
+ 					svg {
+ 						margin-bottom: -7px;
+ 						cursor: pointer;
+ 					}
  				}
  			}
  		}
  	}
+ }
+ .coin_mini {
+ 	width: 35px;
+ 	height: 35px;
+ 	border-radius: 100%;
+ 	margin-left: auto;
+ 	margin-right: auto;
+ 	background-color: #5D5D5D;
  }
 
 /* * * * * * * * * * * * * * * *

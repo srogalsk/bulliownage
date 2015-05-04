@@ -476,22 +476,44 @@ footer {
     width: 90%;
     margin-top: 25px;
     margin-left: auto;
-    margin-right: auto; }
+    margin-right: auto;
+    text-align: center;
+    border-spacing: 0px; }
     .my_stack table th {
       width: 16%;
-      text-align: left;
       border-bottom: 1px solid white;
       padding-top: 10px;
-      padding-bottom: 10px; }
+      padding-bottom: 10px;
+      font-family: "monster_r";
+      font-weight: bold; }
     .my_stack table td {
       padding-top: 10px;
       padding-bottom: 10px; }
+    .my_stack table tbody > tr:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      cursor: pointer; }
     .my_stack table caption {
       text-align: left; }
       .my_stack table caption section h3 {
         float: left; }
       .my_stack table caption section .stack_ctrl {
         float: right; }
+        .my_stack table caption section .stack_ctrl input {
+          width: 215px;
+          border-radius: 0;
+          margin-right: 15px;
+          padding-left: 5px; }
+        .my_stack table caption section .stack_ctrl svg {
+          margin-bottom: -7px;
+          cursor: pointer; }
+
+.coin_mini {
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #5D5D5D; }
 
 /* * * * * * * * * * * * * * * *
  *                             *
