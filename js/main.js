@@ -18,9 +18,12 @@ function loadTopNav(){
 	document.write("");
 }
 
-function loadSideNav(){
+function loadSideNav(selected){
 	document.write("    <aside>");
-	document.write("        <figure>");
+	if(selected == 0)
+		document.write("        <figure class='nav-selected'>");
+	else
+		document.write("        <figure>");
 	document.write("            <br\/>");
 	document.write("            <svg class=\"icon-home2\"><use xlink:href=\"#icon-home2\"><\/use>");
 	document.write("                <symbol id=\"icon-home2\" viewBox=\"0 0 1024 1024\">");
@@ -31,15 +34,24 @@ function loadSideNav(){
 	document.write("");
 	document.write("            <figcaption>Home<\/figcaption>");
 	document.write("        <\/figure>       ");
-	document.write("        <figure>");
+	if(selected == 1)
+		document.write("        <figure class='nav-selected'>");
+	else
+		document.write("        <figure>");
 	document.write("            Au");
 	document.write("            <figcaption>My Gold<\/figcaption>");
 	document.write("        <\/figure>       ");
-	document.write("        <figure>");
+	if(selected == 2)
+		document.write("        <figure class='nav-selected'>");
+	else
+		document.write("        <figure>");
 	document.write("            Ag");
 	document.write("            <figcaption>My Silver<\/figcaption>");
 	document.write("        <\/figure>       ");
-	document.write("        <figure>");
+	if(selected == 3)
+		document.write("        <figure class='nav-selected'>");
+	else
+		document.write("        <figure>");
 	document.write("            Pt");
 	document.write("            <figcaption>My Platinum<\/figcaption>");
 	document.write("        <\/figure>");

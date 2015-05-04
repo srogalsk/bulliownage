@@ -179,6 +179,12 @@ aside figure {
     aside figure:hover svg {
       fill: #77EDFF; }
 
+.nav-selected {
+  color: #77EDFF;
+  background: rgba(255, 255, 255, 0.1); }
+  .nav-selected svg {
+    fill: #77EDFF; }
+
 /* FOOTER */
 footer {
   position: fixed;
