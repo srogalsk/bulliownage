@@ -259,7 +259,8 @@ footer {
   padding: 40px 40px; }
 
 a {
-  text-decoration: none; }
+  text-decoration: none;
+  color: #E6E6E6; }
   a:visited {
     color: #E6E6E6; }
 
