@@ -741,6 +741,36 @@ select {
     margin-right: auto; }
 
   .head_text {
-    margin-left: -30px; } }
+    margin-left: -30px; }
+
+  .overview-panel {
+    width: 100%; }
+    .overview-panel .mobile-toggle {
+      display: block; }
+
+  .graph-panel {
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+    width: 100%;
+    margin: 0;
+    margin-top: 20px;
+    padding-bottom: 90px; }
+    .graph-panel .chart-legend {
+      display: block;
+      width: 100%;
+      position: relative;
+      text-align: center; }
+    .graph-panel .chart-wrap {
+      width: 100%; }
+    .graph-panel .chart-x-label {
+      width: 100%; }
+    .graph-panel .legend-left-half {
+      display: inline-block;
+      text-align: left; }
+    .graph-panel .legend-right-half {
+      display: inline-block;
+      text-align: left;
+      margin-left: 30px; } }
 
 /*# sourceMappingURL=style.css.map */

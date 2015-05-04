@@ -889,4 +889,49 @@ footer{
  	.head_text {
  		margin-left: -30px;
  	}
+
+ 	.overview-panel{
+ 		width: 100%;
+
+ 		.mobile-toggle{
+ 			display: block;
+ 		}
+ 		
+ 	}
+
+ 	.graph-panel{
+ 		visibility: hidden;
+ 		height: 0;
+ 		overflow: hidden;
+ 		width: 100%;
+ 		margin: 0;
+ 		margin-top: 20px;
+ 		padding-bottom: 90px;
+
+ 		.chart-legend{
+ 			display: block;
+ 			width: 100%;
+ 			position: relative;
+ 			text-align: center;
+ 		}
+
+ 		.chart-wrap{
+ 			width: 100%;
+ 		}
+
+ 		.chart-x-label{
+ 			width: 100%;
+ 		}
+
+ 		.legend-left-half{
+ 			display: inline-block;
+ 			text-align: left;
+ 		}
+
+ 		.legend-right-half{
+ 			display: inline-block;
+ 			text-align: left;
+ 			margin-left: 30px;
+ 		}
+ 	}
  }
