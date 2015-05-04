@@ -123,6 +123,9 @@ SASS/CSS:
     Otherwise, all of our SASS was written exactly the same as CSS. We simply
     employed the SASS to save some time and organize common themes easier. 
 
+    The SASS file is located in sass/style.scss.
+    The CSS file is located in style/style.css.
+
 
 Javascript:
 	We used a little bit a Javascript, not much, to accomplish these goals:
