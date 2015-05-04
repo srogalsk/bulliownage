@@ -472,6 +472,37 @@ footer{
 
 /* * * * * * * * * * * * * * * *
  *                             *
+ *           WIRE 3            *
+ *                             *
+ * * * * * * * * * * * * * * * */
+
+ .current_gold {
+ 	margin-top: -35px;
+ 	margin-left: 40px;
+ 	margin-bottom: 0;
+ 	table {
+ 		width: 50px;
+ 		margin-right: 100px;
+ 	}
+ 	tr > td {
+ 		padding-bottom: 5px;
+ 	}
+ 	tr > td:first-child {
+ 		text-align: right;
+ 	}
+ 	tr > td:nth-child(2) {
+ 		color: $positive-color;
+ 	}
+ }
+
+ #my_gold_value {
+ 	position: absolute;
+ 	margin-top: -7px;
+ 	font-size: 12px;
+ }
+
+/* * * * * * * * * * * * * * * *
+ *                             *
  *           WIRE 4            *
  *                             *
  * * * * * * * * * * * * * * * */
@@ -516,6 +547,24 @@ footer{
  		margin-right: auto;
  		//@include box-sizing(border-box);
  	}
+ 	 table {
+ 		width: 275px;
+ 		margin-left: auto;
+ 		margin-right: auto;
+ 	}
+ 	tr > td {
+ 		padding-bottom: 15px;
+ 	}
+
+ 	tr > td:first-child {
+ 		text-align: right;
+ 		padding-right: 15px;
+ 	}
+
+ 	tr > td:nth-child(2) {
+ 		text-align: left;
+ 		color: $main-accent;
+ 	}
  }
 
  .img_box {
@@ -537,25 +586,6 @@ footer{
  	-moz-border-radius: 100%;
  	-ms-border-radius: 100%;
  	background-color: #5D5D5D;
- }
-
- table {
- 	width: 275px;
- 	margin-left: auto;
- 	margin-right: auto;
- }
- tr > td {
- 	padding-bottom: 15px;
- }
-
- tr > td:first-child {
- 	text-align: right;
- 	padding-right: 15px;
- }
-
- tr > td:nth-child(2) {
- 	text-align: left;
- 	color: $main-accent;
  }
 
  strong {

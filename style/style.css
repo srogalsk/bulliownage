@@ -396,6 +396,30 @@ footer {
 
 /* * * * * * * * * * * * * * * *
  *                             *
+ *           WIRE 3            *
+ *                             *
+ * * * * * * * * * * * * * * * */
+.current_gold {
+  margin-top: -35px;
+  margin-left: 40px;
+  margin-bottom: 0; }
+  .current_gold table {
+    width: 50px;
+    margin-right: 100px; }
+  .current_gold tr > td {
+    padding-bottom: 5px; }
+  .current_gold tr > td:first-child {
+    text-align: right; }
+  .current_gold tr > td:nth-child(2) {
+    color: #A7FF8B; }
+
+#my_gold_value {
+  position: absolute;
+  margin-top: -7px;
+  font-size: 12px; }
+
+/* * * * * * * * * * * * * * * *
+ *                             *
  *           WIRE 4            *
  *                             *
  * * * * * * * * * * * * * * * */
@@ -434,6 +458,18 @@ footer {
     font-size: 1.3em;
     margin-left: auto;
     margin-right: auto; }
+  .coin_detail table {
+    width: 275px;
+    margin-left: auto;
+    margin-right: auto; }
+  .coin_detail tr > td {
+    padding-bottom: 15px; }
+  .coin_detail tr > td:first-child {
+    text-align: right;
+    padding-right: 15px; }
+  .coin_detail tr > td:nth-child(2) {
+    text-align: left;
+    color: #68CEDE; }
 
 .img_box {
   width: 200px;
@@ -453,22 +489,6 @@ footer {
   -moz-border-radius: 100%;
   -ms-border-radius: 100%;
   background-color: #5D5D5D; }
-
-table {
-  width: 275px;
-  margin-left: auto;
-  margin-right: auto; }
-
-tr > td {
-  padding-bottom: 15px; }
-
-tr > td:first-child {
-  text-align: right;
-  padding-right: 15px; }
-
-tr > td:nth-child(2) {
-  text-align: left;
-  color: #68CEDE; }
 
 strong {
   font-family: "monster_r";
