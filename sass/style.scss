@@ -352,10 +352,15 @@ footer{
  *           WIRE 4            *
  *                             *
  * * * * * * * * * * * * * * * */
- .coin_wrapper > h2 {
+ .coin_head_wrapper > h2 {
  	font-weight: bolder;
  	margin-top: 0;
  	margin-bottom: 25px;
+ 	margin-left: 35px;
+ }
+ .back_mobile {
+ 	display: none;
+ 	visibility: hidden;
  }
 
  .coin_main {
@@ -376,6 +381,24 @@ footer{
  	float: left;
  }
 
+ .img_box {
+ 	width: 200px;
+ 	height: 200px;
+ 	margin-left: auto;
+ 	margin-right: auto;
+ 	border: 1px dashed white;
+ }
+
+ .img_circle {
+ 	width: 160px;
+ 	height: 160px;
+ 	margin-left: auto;
+ 	margin-right: auto;
+ 	margin-top: 20px;
+ 	border-radius: 100%;
+ 	background-color: #5D5D5D;
+ }
+
  table {
  	width: 275px;
  	margin-left: auto;
@@ -392,6 +415,7 @@ footer{
 
  tr > td:nth-child(2) {
  	text-align: left;
+ 	color: $main-accent;
  }
 
  strong {
@@ -420,10 +444,39 @@ footer{
  		width: 100%;
  		text-align: center;
  	}
- }
-
- @media screen and (max-width: 695px) {
- 	.coin_main {
+ 	nav {
+ 		display: none;
+ 		visibility: hidden;
+ 	}
+ 	.coin_head_wrapper {
+	 	position: fixed;
+ 		top: 0;
+ 		left: 0;
+ 		width: 100%;
+ 		height: 60px;
+ 		line-height: 60px;
+ 		background: $nav-background;
+ 		font-size: 1.5em;
+ 		@include box-sizing(border-box);
+ 		padding-left: 0px;
+ 		text-align: center;
+ 		font-weight: 700;
+ 		color: #fafafa;
+ 		border-bottom-left-radius: $nav-border-rad;
+ 		border-bottom-right-radius: $nav-border-rad;
+	}
+	.back_desk {
+		display: none;
+		visibility: hidden;
+	}
+	.back_mobile {
+		display: inline;
+		visibility: visible;
+		position: absolute;
+		margin-top: 17px;
+		left: 10px;
+	}
+	.coin_main {
  		display: inline;
  	}
  	.coin_image {
@@ -436,5 +489,7 @@ footer{
  		margin-left: auto;
  		margin-right: auto;
  	}
- 	
+ 	.head_text {
+ 		margin-left: -30px;
+ 	}
  }
