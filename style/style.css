@@ -774,6 +774,26 @@ select {
     .graph-panel .legend-right-half {
       display: inline-block;
       text-align: left;
-      margin-left: 30px; } }
+      margin-left: 30px; }
+
+  .stack_img_col {
+    display: none;
+    visibility: hidden; }
+
+  .weight_compr span {
+    display: none;
+    visibility: hidden; }
+  .weight_compr:after {
+    content: "Weight"; }
+
+  .percent_compr span {
+    display: none;
+    visibility: hidden; }
+  .percent_compr:after {
+    content: "%"; }
+
+  .stack_ctrl {
+    display: none;
+    visibility: hidden; } }
 
 /*# sourceMappingURL=style.css.map */

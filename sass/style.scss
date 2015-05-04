@@ -937,4 +937,34 @@ footer{
  			margin-left: 30px;
  		}
  	}
+
+ 	.stack_img_col {
+ 		display: none;
+ 		visibility: hidden;
+ 	}
+
+ 	.weight_compr {
+ 		span {
+ 			display: none;
+ 			visibility: hidden;
+ 		}
+ 		&:after {
+ 			content: "Weight";
+ 		}
+ 	}
+
+ 	.percent_compr {
+ 		span {
+ 			display: none;
+ 			visibility: hidden;
+ 		}
+ 		&:after {
+ 			content: "%";
+ 		}
+ 	}
+
+ 	.stack_ctrl {
+ 		display: none;
+ 		visibility: hidden;
+ 	}
  }
