@@ -532,6 +532,14 @@ footer{
  			}
  		}
 
+ 		#current-spot{
+ 			&:hover{
+ 				color: $main-font;
+ 			}
+
+ 			cursor: default;
+ 		}
+
  		.market-item-stats{
  			@include box-sizing(border-box);
  			width: 100%;
