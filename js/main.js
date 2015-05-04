@@ -6,7 +6,7 @@ function loadTopNav(){
 	document.write("                <path class=\"path1\" d=\"M1024 384h-384l143.53-143.53c-72.53-72.526-168.96-112.47-271.53-112.47s-199 39.944-271.53 112.47c-72.526 72.53-112.47 168.96-112.47 271.53s39.944 199 112.47 271.53c72.53 72.526 168.96 112.47 271.53 112.47s199-39.944 271.528-112.472c6.056-6.054 11.86-12.292 17.456-18.668l96.32 84.282c-93.846 107.166-231.664 174.858-385.304 174.858-282.77 0-512-229.23-512-512s229.23-512 512-512c141.386 0 269.368 57.326 362.016 149.984l149.984-149.984v384z\"><\/path>");
 	document.write("            <\/symbol>");
 	document.write("        <\/svg>");
-	document.write("        COINFLIP");
+	document.write("        <a href=\"wire2.html\">COINFLIP<\/a>");
 	document.write("        <svg class=\"icon-cog\"><use xlink:href=\"#icon-cog\"><\/use>");
 	document.write("            <symbol id=\"icon-cog\" viewBox=\"0 0 1024 1024\">");
 	document.write("                <title>cog<\/title>");
@@ -26,7 +26,7 @@ function loadTopNavPersist(){
 	document.write("                <path class=\"path1\" d=\"M1024 384h-384l143.53-143.53c-72.53-72.526-168.96-112.47-271.53-112.47s-199 39.944-271.53 112.47c-72.526 72.53-112.47 168.96-112.47 271.53s39.944 199 112.47 271.53c72.53 72.526 168.96 112.47 271.53 112.47s199-39.944 271.528-112.472c6.056-6.054 11.86-12.292 17.456-18.668l96.32 84.282c-93.846 107.166-231.664 174.858-385.304 174.858-282.77 0-512-229.23-512-512s229.23-512 512-512c141.386 0 269.368 57.326 362.016 149.984l149.984-149.984v384z\"><\/path>");
 	document.write("            <\/symbol>");
 	document.write("        <\/svg>");
-	document.write("        COINFLIP");
+	document.write("        <a href=\"wire2.html\">COINFLIP<\/a>");
 	document.write("        <svg class=\"icon-cog\"><use xlink:href=\"#icon-cog\"><\/use>");
 	document.write("            <symbol id=\"icon-cog\" viewBox=\"0 0 1024 1024\">");
 	document.write("                <title>cog<\/title>");
@@ -40,6 +40,7 @@ function loadTopNavPersist(){
 
 function loadSideNav(selected){
 	document.write("    <aside>");
+	document.write("        <a href=\"wire2.html\">");
 	if(selected == 0)
 		document.write("        <figure class='nav-selected'>");
 	else
@@ -54,6 +55,8 @@ function loadSideNav(selected){
 	document.write("");
 	document.write("            <figcaption>Home<\/figcaption>");
 	document.write("        <\/figure>       ");
+	document.write("        <\/a> ");
+	document.write("        <a href=\"wire3.html\">");
 	if(selected == 1)
 		document.write("        <figure class='nav-selected'>");
 	else
@@ -61,6 +64,8 @@ function loadSideNav(selected){
 	document.write("            Au");
 	document.write("            <figcaption>My Gold<\/figcaption>");
 	document.write("        <\/figure>       ");
+	document.write("        <\/a> ");
+	document.write("        <a href=\"wire3.html\">");
 	if(selected == 2)
 		document.write("        <figure class='nav-selected'>");
 	else
@@ -68,6 +73,8 @@ function loadSideNav(selected){
 	document.write("            Ag");
 	document.write("            <figcaption>My Silver<\/figcaption>");
 	document.write("        <\/figure>       ");
+	document.write("        <\/a> ");
+	document.write("        <a href=\"wire3.html\">");
 	if(selected == 3)
 		document.write("        <figure class='nav-selected'>");
 	else
@@ -75,7 +82,7 @@ function loadSideNav(selected){
 	document.write("            Pt");
 	document.write("            <figcaption>My Platinum<\/figcaption>");
 	document.write("        <\/figure>");
-	document.write("");
+	document.write("        <\/a> ");
 	document.write("    <\/aside>");
 }
 
@@ -93,6 +100,21 @@ $(window).load(function() {
 	var path = window.location.pathname;
 	var page = path.split("/").pop();
 
+
+
+	/* * * * * * * * * * * * * *
+	 *                         *
+	 *        GENERAL          *
+	 *                         *
+	 * * * * * * * * * * * * * */
+
+	 $('.icon-spinner2').click(function(){
+	 	location.reload();	
+	 });
+
+	 $('tr').click(function(){
+	 	$(this).find('a')[0].click();
+	 });
 
 	/* * * * * * * * * * * * * *
 	 *                         *

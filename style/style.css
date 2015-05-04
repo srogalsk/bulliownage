@@ -129,6 +129,9 @@ nav {
     left: 35px; }
   nav .icon-cog {
     right: 35px; }
+  nav a {
+    text-decoration: none;
+    color: #E6E6E6; }
 
 .mobile-nav {
   position: fixed;
@@ -152,6 +155,7 @@ nav {
   z-index: 999;
   display: none; }
   .mobile-nav svg {
+    display: block;
     width: 40px;
     height: 40px;
     fill: #55B7C5;
@@ -253,6 +257,11 @@ footer {
  * * * * * * * * * * * * * * * */
 .coin_wrapper {
   padding: 40px 40px; }
+
+a {
+  text-decoration: none; }
+  a:visited {
+    color: #E6E6E6; }
 
 /* * * * * * * * * * * * * * * *
  *                             *
@@ -625,7 +634,8 @@ footer {
   float: left; }
 
 .coin_detail {
-  float: left; }
+  float: left;
+  padding-bottom: 50px; }
   .coin_detail a {
     text-decoration: none;
     color: #E6E6E6; }

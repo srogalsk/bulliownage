@@ -125,6 +125,11 @@
  	.icon-cog{
  		right: 35px;
  	}
+
+ 	a{
+ 		text-decoration: none;
+ 		color: $main-font;
+ 	}
  }
 
 
@@ -151,6 +156,7 @@
  	display: none;
 
  	svg{
+ 		display: block;
  		width: 40px;
  		height: 40px;
  		fill: $darker-accent;
@@ -273,6 +279,14 @@ footer{
  * * * * * * * * * * * * * * * */
  .coin_wrapper {
  	padding: 40px 40px;
+ }
+
+ a{
+ 	text-decoration: none;
+
+ 	&:visited{
+ 		color: $main-font;
+ 	}
  }
 
 
@@ -774,6 +788,7 @@ footer{
 
  .coin_detail {
  	float: left;
+ 	padding-bottom: 50px;
  	a {
  		text-decoration: none;
  		color: $main-font;
