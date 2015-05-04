@@ -104,7 +104,9 @@ nav {
   font-weight: 700;
   color: #fafafa;
   border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px; }
+  border-bottom-right-radius: 0px;
+  box-shadow: 0px 2px 5px #1D1D1D;
+  z-index: 999; }
 
 nav svg {
   width: 30px;
@@ -333,6 +335,30 @@ footer {
       left: 2px; }
     .overview-panel .total-value .total-label {
       font-size: 1.1em; }
+  .overview-panel .mobile-toggle {
+    display: none;
+    width: 100%;
+    height: 50px;
+    background: #272E32;
+    font-size: 0;
+    border-top: 2px solid rgba(0, 0, 0, 0.7); }
+    .overview-panel .mobile-toggle .mobile-toggle-button {
+      width: 50%;
+      height: 100%;
+      text-align: center;
+      display: inline-block;
+      cursor: pointer;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box; }
+      .overview-panel .mobile-toggle .mobile-toggle-button svg {
+        width: 40px;
+        height: 40px;
+        fill: #E6E6E6;
+        margin-top: 5px; }
+    .overview-panel .mobile-toggle .mobile-toggle-selected {
+      background: #51616D;
+      border: 1px solid rgba(255, 255, 255, 0.2); }
   .overview-panel .market-status {
     width: 100%;
     height: 20px;
@@ -383,6 +409,11 @@ footer {
   .overview-panel .neg-change {
     color: #FF6A65 !important; }
 
+.graph-panel-show {
+  visibility: visible !important;
+  height: 400px !important;
+  overflow: visible !important; }
+
 .graph-panel {
   display: inline-block;
   vertical-align: top;
@@ -419,10 +450,10 @@ footer {
     width: calc(100% - 150px);
     bottom: -25px; }
   .graph-panel .chart-legend {
+    position: absolute;
     width: 130px;
-    margin-left: 10px;
-    margin-top: 12px;
-    height: 200px; }
+    right: -5px;
+    margin-top: 12px; }
   .graph-panel .legend-item {
     margin-bottom: 5px;
     height: 20px;
