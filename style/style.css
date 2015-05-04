@@ -184,6 +184,8 @@ aside {
   width: 100px;
   background: #272E32;
   border-radius: 0px; }
+  aside a {
+    text-decoration: none; }
 
 aside figure {
   width: 100%;

@@ -187,6 +187,10 @@ aside{
 	width: 100px;
 	background: $nav-background;
 	border-radius: $nav-border-rad;
+
+	a{
+		text-decoration: none;
+	}
 }
 
 aside figure{
