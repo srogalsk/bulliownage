@@ -72,7 +72,7 @@ body {
   background: #1D1D1D;
   font-family: "monster_h", sans-serif;
   font-weight: 600;
-  color: #dadada; }
+  color: #E6E6E6; }
 
 main {
   -webkit-box-sizing: border-box;
@@ -94,7 +94,7 @@ nav {
   width: 100%;
   height: 60px;
   line-height: 60px;
-  background: #2F2F2F;
+  background: #272E32;
   font-size: 1.5em;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -102,7 +102,9 @@ nav {
   padding-left: 0px;
   text-align: center;
   font-weight: 700;
-  color: #fafafa; }
+  color: #fafafa;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px; }
 
 nav svg {
   width: 30px;
@@ -134,9 +136,11 @@ aside {
   position: fixed;
   top: 63px;
   left: 0;
-  height: 100%;
+  height: -webkit-calc(100% - 96px);
+  height: calc(100% - 96px);
   width: 100px;
-  background: #2F2F2F; }
+  background: #272E32;
+  border-radius: 0px; }
 
 aside figure {
   width: 100%;
@@ -145,7 +149,7 @@ aside figure {
   cursor: pointer;
   color: #55B7C5;
   text-align: center;
-  line-height: 100px;
+  line-height: 80px;
   font-size: 2.5em;
   position: relative;
   -webkit-transition: all 0.1s ease-out;
@@ -154,7 +158,7 @@ aside figure {
   aside figure figcaption {
     font-size: 14px;
     position: relative;
-    top: -62px;
+    top: -42px;
     font-family: "monster_h", sans-serif;
     color: #B1B1B1; }
   aside figure svg {
@@ -165,7 +169,7 @@ aside figure {
     left: 50%;
     margin-left: -25px;
     top: 50%;
-    margin-top: -25px;
+    margin-top: -37px;
     -webkit-transition: all 0.1s ease-out;
     -moz-transition: all 0.1s ease-out;
     transition: all 0.1s ease-out; }
@@ -185,14 +189,103 @@ footer {
   bottom: 0px;
   left: 0;
   color: #B1B1B1;
-  background: #2F2F2F;
+  background: #272E32;
   font-size: 0.9em;
-  border-top: 3px solid #1D1D1D; }
+  border-top: 3px solid #1D1D1D;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px; }
 
 /* * * * * * * * * * * * * * * *
  *                             *
  *           WIRE 1            *
  *                             *
  * * * * * * * * * * * * * * * */
+#w1-wrapper {
+  text-align: center;
+  padding-top: 120px; }
+  #w1-wrapper > section {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 50px;
+    width: 360px; }
+
+#w1-left {
+  height: 230px;
+  text-align: left; }
+  #w1-left h1 {
+    font-family: "monster_l", sans-serif;
+    font-size: 2em; }
+  #w1-left h3 {
+    font-size: 1.1em; }
+  #w1-left a {
+    text-decoration: none;
+    color: #E6E6E6; }
+  #w1-left span {
+    display: block;
+    width: 100%;
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+    font-size: 1.3em;
+    margin-top: 30px; }
+
+#sign-up-button {
+  background: #1C3A3F;
+  border: 1px solid #151515; }
+  #sign-up-button:hover {
+    border: 1px solid #68CEDE; }
+
+#log-in-button {
+  background: #397C86;
+  border: 1px solid #151515; }
+  #log-in-button:hover {
+    border: 1px solid #68CEDE; }
+
+#w1-right {
+  height: 450px; }
+
+#iphone {
+  height: 100%;
+  width: 230px;
+  margin: 0 auto;
+  background: #151515;
+  border-radius: 30px;
+  border: 2px solid #565656;
+  position: relative; }
+  #iphone > div {
+    position: absolute; }
+
+#iphone-camera {
+  background: #252525;
+  width: 8px;
+  height: 8px;
+  border-radius: 100%;
+  top: 21px;
+  left: 75px; }
+
+#iphone-speaker {
+  background: #252525;
+  width: 40px;
+  height: 4px;
+  border-radius: 5px;
+  left: 50%;
+  margin-left: -20px;
+  top: 23px; }
+
+#iphone-screen {
+  position: relative !important;
+  height: 350px;
+  width: 210px;
+  margin: 50px 10px;
+  background: #a1a1a1; }
+
+#iphone-home {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #252525;
+  border-radius: 100%;
+  left: 50%;
+  margin-left: -15px;
+  bottom: 7px; }
 
 /*# sourceMappingURL=style.css.map */

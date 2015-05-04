@@ -21,9 +21,10 @@
 
  /* SASS VARIABLES */
  $main-background: #1D1D1D;
- $main-font: #dadada;
+ $main-font: #E6E6E6;
 
- $nav-background: #2F2F2F;
+ //$nav-background: #2F2F2F;
+ $nav-background: #272E32;
  $seperator-color: #1D1D1D;
 
 
@@ -31,6 +32,8 @@
  $darker-accent: #55B7C5;
  $main-accent-hover: #77EDFF;
  $gray-text: #B1B1B1;
+
+ $nav-border-rad: 0px;
 
 
 
@@ -85,6 +88,8 @@
  	text-align: center;
  	font-weight: 700;
  	color: #fafafa;
+ 	border-bottom-left-radius: $nav-border-rad;
+ 	border-bottom-right-radius: $nav-border-rad;
  }
 
  nav svg{
@@ -116,9 +121,11 @@ aside{
 	position: fixed;
 	top: 63px;
 	left: 0;
-	height: 100%;
+	//height: 100%;
+	@include calc(height, "100% - 96px");
 	width: 100px;
 	background: $nav-background;
+	border-radius: $nav-border-rad;
 }
 
 aside figure{
@@ -128,7 +135,7 @@ aside figure{
 	cursor: pointer;
 	color: $darker-accent;
 	text-align: center;
-	line-height: 100px;
+	line-height: 80px;
 	font-size: 2.5em;
 	position: relative;
 	@include transition(all .1s ease-out);
@@ -137,7 +144,7 @@ aside figure{
 	figcaption{
 		font-size: 14px;
 		position: relative;
-		top: -62px;
+		top: -42px;
 		font-family: "monster_h", sans-serif;
 		color: $gray-text;
 	}
@@ -150,7 +157,7 @@ aside figure{
 		left: 50%;
 		margin-left: -25px;
 		top: 50%;
-		margin-top: -25px;
+		margin-top: -37px;
 		@include transition(all .1s ease-out);
 	}
 
@@ -180,6 +187,8 @@ footer{
 	background: $nav-background;
 	font-size: 0.9em;
 	border-top: 3px solid $main-background;
+	border-top-left-radius: $nav-border-rad;
+	border-top-right-radius: $nav-border-rad;
 }
 
 
@@ -188,6 +197,124 @@ footer{
  *           WIRE 1            *
  *                             *
  * * * * * * * * * * * * * * * */
+ #w1-wrapper{
+ 	text-align: center;
+ 	padding-top: 120px;
+
+ 	&>section{
+ 		display: inline-block;
+ 		vertical-align: middle;
+ 		//border: 1px solid rgba(255,255,255,0.3);
+ 		margin: 0 50px;
+ 		width: 360px;
+ 	}
+
+ 	
+ }
+
+ #w1-left{
+ 	height: 230px;
+ 	text-align: left;
+
+ 	h1{
+ 		font-family: "monster_l", sans-serif;
+ 		font-size: 2em;
+ 	}
+
+ 	h3{
+ 		font-size: 1.1em;
+ 	}
+
+ 	a{
+ 		text-decoration: none;
+ 		color: $main-font;
+ 	}
+
+ 	span{
+ 		display: block;
+ 		width: 100%;
+ 		height: 55px;
+ 		line-height: 55px;
+ 		text-align: center;
+ 		font-size: 1.3em;
+ 		margin-top: 30px;
+ 		//@include box-sizing(border-box);
+ 	}
+
+ }
+
+ #sign-up-button{
+ 	background: #1C3A3F;
+ 	border: 1px solid #151515;
+ 	&:hover{
+ 		border: 1px solid $main-accent;
+ 	}
+ }
+
+ #log-in-button{
+ 	background: #397C86;
+ 	border: 1px solid #151515;
+ 	&:hover{
+ 		border: 1px solid $main-accent;
+ 	}
+ }
+
+ #w1-right{
+ 	height: 450px;
+
+ }
+
+ #iphone{
+ 	height: 100%;
+ 	width: 230px;
+ 	margin: 0 auto;
+ 	background: #151515;
+ 	border-radius: 30px;
+ 	border: 2px solid #565656;
+ 	position: relative;
+
+ 	&>div{
+ 		position: absolute;
+ 	}
+ }
+
+
+ #iphone-camera{
+ 	background: #252525;
+ 	width: 8px;
+ 	height: 8px;
+ 	border-radius: 100%;
+ 	top: 21px;
+ 	left: 75px;
+ }
+
+ #iphone-speaker{
+ 	background: #252525;
+ 	width: 40px;
+ 	height: 4px;
+ 	border-radius: 5px;
+ 	left: 50%;
+ 	margin-left: -20px;
+ 	top: 23px;
+ }
+
+ #iphone-screen{
+ 	position: relative !important;
+ 	height: 350px;
+ 	width: 210px;
+ 	margin: 50px 10px;
+ 	background: #a1a1a1;
+ }
+
+ #iphone-home{
+ 	width: 30px;
+ 	height: 30px;
+ 	border: 2px solid #252525;
+ 	border-radius: 100%;
+ 	left: 50%;
+ 	margin-left: -15px;
+ 	bottom: 7px;
+ }
 
 
 
