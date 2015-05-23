@@ -213,10 +213,7 @@ $(window).load(function() {
 			    scaleShowVerticalLines: true,
 
 			    //Boolean - Whether the line is curved between points
-			    bezierCurve : true,
-
-			    //Number - Tension of the bezier curve between points
-			    bezierCurveTension : 0.4,
+			    bezierCurve : false,
 
 			    //Boolean - Whether to show a dot for each point
 			    pointDot : true,
@@ -298,10 +295,7 @@ $(window).load(function() {
 			    scaleShowVerticalLines: true,
 
 			    //Boolean - Whether the line is curved between points
-			    bezierCurve : true,
-
-			    //Number - Tension of the bezier curve between points
-			    bezierCurveTension : 0.4,
+			    bezierCurve : false,
 
 			    //Boolean - Whether to show a dot for each point
 			    pointDot : true,
