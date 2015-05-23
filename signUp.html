@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulliown</title>
+    <link rel="stylesheet" type="text/css" href="style/loginstyle.css" />
+    <style type="text/css">
+        #backButton
+        {
+            margin: 30px;
+        }
+
+        .myButton2 {
+            background-color:#44c767;
+            -moz-border-radius:12px;
+            -webkit-border-radius:12px;
+            border-radius:12px;
+            border:1px solid #7a997d;
+            display:inline-block;
+            cursor:pointer;
+            color:#ffffff;
+            font-family:Arial;
+            font-size:12px;
+            padding:21px 130px;
+            text-decoration:none;
+            text-shadow:0px 1px 0px #597854;
+        }
+        .myButton2:hover {
+            background-color:#5cbf2a;
+        }
+        .myButton2:active {
+            position:relative;
+            top:1px;
+        }
+
+    </style>
+
+</head>
+<body>
+<h1 style="background-color:#0099FF; width:100%;">&nbsp;</h1>
+<p id="backButton"><a href="index.html">&#9664; Back</a> </p>
+
+<div id="wrapper">
+    <div id="register" class="animate form">
+        <form  action="mainMenu.html" autocomplete="on">
+            <h1> Sign up </h1>
+            <p>
+                <label for="usernamesignup" class="uname" data-icon="u">Your username</label>
+                <input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="mysuperusername690" />
+            </p>
+            <p>
+                <label for="emailsignup" class="youmail" data-icon="e" > Your email</label>
+                <input id="emailsignup" name="emailsignup" required="required" type="email" placeholder="mysupermail@mail.com"/>
+            </p>
+            <p>
+                <label for="passwordsignup" class="youpasswd" data-icon="p">Your password </label>
+                <input id="passwordsignup" name="passwordsignup" required="required" type="password" placeholder="eg. X8df!90EO"/>
+            </p>
+            <p>
+                <label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Please confirm your password </label>
+                <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password" placeholder="eg. X8df!90EO"/>
+            </p>
+            <p class="signin button">
+                <input type="submit" value="Sign up"/>
+            </p>
+            <p class="change_link">
+                Already a member ?
+                <a href="login.html" class="to_register"> Go and log in </a>
+            </p>
+        </form>
+    </div>
+</div>
+
+<h1 style="background-color:#0099FF;text-align:center;font-size:small"><br />&copy; 2015 Bulliownage <br />&nbsp; </h1>
+</body>
+</html>
