@@ -100,9 +100,9 @@ function Get(yourPartialUrl){
     var Httpreq = new XMLHttpRequest(); // a new request
     Httpreq.open("GET",yourPartialUrl+d.getFullYear()+"-"+d.getMonth()+"-"+d.getDay(),false);
     Httpreq.send(null);
-    var json_obj = JSON.parse(Httpreq.responseText);
-    console.log("this is the latest data: "+json_obj.data[0][1]);   
+    var json_obj = JSON.parse(Httpreq.responseText); 
     document.getElementById("latestBid").innerHTML = json_obj.data[0][1];
+    return json_obj;
 }     
 
 
@@ -261,6 +261,7 @@ $(window).load(function() {
 			coinChart.update();
 		}
 		else if(page =="wire3.html"){
+            var json_obj = Get("https://www.quandl.com/api/v1/datasets/BUNDESBANK/BBK01_WT5511.json?trim_start=");
 			var data = {
 				labels: ["January", "February", "March", "April", "May", "June", "July"],
 				datasets: [
@@ -272,7 +273,7 @@ $(window).load(function() {
 					pointStrokeColor: pointStroke,
 					pointHighlightFill: pointHighlightFill,
 					pointHighlightStroke: pointHighlightStroke,
-					data: [700,820,700,800,730,950,900]
+					data: json_obj.data
 				},
 				{
 					label: "1oz Gold",
