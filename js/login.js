@@ -23,6 +23,7 @@ $(document).ready(function () {
             success: function(user) {
                 // Login successful!
                 console.log("Login Worked");
+                window.location.href = "wire2.html";
                 },
             error: function(user, error) {
                 // Login failed!
