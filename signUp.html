@@ -11,30 +11,8 @@
             margin: 30px;
         }
 
-        .myButton2 {
-            background-color:#44c767;
-            -moz-border-radius:12px;
-            -webkit-border-radius:12px;
-            border-radius:12px;
-            border:1px solid #7a997d;
-            display:inline-block;
-            cursor:pointer;
-            color:#ffffff;
-            font-family:Arial;
-            font-size:12px;
-            padding:21px 130px;
-            text-decoration:none;
-            text-shadow:0px 1px 0px #597854;
-        }
-        .myButton2:hover {
-            background-color:#5cbf2a;
-        }
-        .myButton2:active {
-            position:relative;
-            top:1px;
-        }
-
     </style>
+
 
 </head>
 <body>
@@ -43,7 +21,7 @@
 
 <div id="wrapper">
     <div id="register" class="animate form">
-        <form  action="mainMenu.html" autocomplete="on">
+        <form autocomplete="on" method="post">
             <h1> Sign up </h1>
             <p>
                 <label for="usernamesignup" class="uname" data-icon="u">Your username</label>
@@ -62,7 +40,7 @@
                 <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password" placeholder="eg. X8df!90EO"/>
             </p>
             <p class="signin button">
-                <input type="submit" value="Sign up"/>
+                <button type="submit" id="signup-button" value="Sign up">Sign up</button>
             </p>
             <p class="change_link">
                 Already a member ?
@@ -73,5 +51,10 @@
 </div>
 
 <h1 style="background-color:#0099FF;text-align:center;font-size:small"><br />&copy; 2015 Bulliownage <br />&nbsp; </h1>
+
+<script src="js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="//www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+<script src="js/signup.js"></script>
+
 </body>
 </html>
