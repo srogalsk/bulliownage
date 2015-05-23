@@ -14,25 +14,6 @@
     <script src="./js/main.js"></script>
     <title>My Gold - BULLIOWNAGE</title>
 
-    <script>
-        var d = new Date();
-        d.setDate(d.getDate()-30);
-        console.log(d);
-
-        function Get(yourUrl){
-            var Httpreq = new XMLHttpRequest(); // a new request
-            Httpreq.open("GET",yourUrl,false);
-            Httpreq.send(null);
-            return Httpreq.responseText;          
-        }
-
-        var json_obj = JSON.parse(Get("https://www.quandl.com/api/v1/datasets/BUNDESBANK/BBK01_WT5511.json?trim_start="+d.getFullYear()+"-"+d.getMonth()+"-"+d.getDay()));
-        console.log("this is the data: "+json_obj.data);
-
-        
-
-    </script>
-
 </head>
 
 <body>
@@ -67,7 +48,7 @@
             </div>
             <section class="overview-panel">
                 <section class="total-value">
-                    <div class="total-dollars">$18,234.10</div>
+                    <div class="total-dollars" id="lastestVal">$18,243.00</div>
                     <table class="current_gold">
                         <tr>
                             <td>Daily</td>
@@ -108,7 +89,7 @@
                     <section class="market-item-stats">
                         <table>
                             <tr>
-                                <td>1206.10</td>
+                                <td id="latestBid">1206.10</td>
                                 <td>1207.10</td>
                                 <td class="pos-change">+23.40</td>
                             </tr>
@@ -202,5 +183,23 @@
     loadFooter();
     </script>
 </body>
+
+<script type="text/javascript">
+        var d = new Date();
+        d.setDate(d.getDate()-30);
+        console.log(d);
+
+        function Get(yourUrl){
+            var Httpreq = new XMLHttpRequest(); // a new request
+            Httpreq.open("GET",yourUrl,false);
+            Httpreq.send(null);
+            return Httpreq.responseText;          
+        }
+
+        var json_obj = JSON.parse(Get("https://www.quandl.com/api/v1/datasets/BUNDESBANK/BBK01_WT5511.json?trim_start="+d.getFullYear()+"-"+d.getMonth()+"-"+d.getDay()));
+        console.log("this is the latest data: "+json_obj.data[0][1]);   
+        document.getElementById("latestBid").innerHTML = json_obj.data[0][1];     
+
+</script>
 
 </html>
