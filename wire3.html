@@ -185,7 +185,8 @@
 </body>
 
 <script type="text/javascript">
-    Get("https://www.quandl.com/api/v1/datasets/BUNDESBANK/BBK01_WT5511.json?trim_start=");
+    var json_obj = Get("https://www.quandl.com/api/v1/datasets/BUNDESBANK/BBK01_WT5511.json?trim_start=");
+    //document.getElementById("latestBid").innerHTML = json_obj.data[0][1];
 </script>
 
 </html>
