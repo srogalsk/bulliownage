@@ -13,6 +13,26 @@
     <script src="./js/Chart.js"></script>
     <script src="./js/main.js"></script>
     <title>My Gold - BULLIOWNAGE</title>
+
+    <script>
+        var d = new Date();
+        d.setDate(d.getDate()-30);
+        console.log(d);
+
+        function Get(yourUrl){
+            var Httpreq = new XMLHttpRequest(); // a new request
+            Httpreq.open("GET",yourUrl,false);
+            Httpreq.send(null);
+            return Httpreq.responseText;          
+        }
+
+        var json_obj = JSON.parse(Get("https://www.quandl.com/api/v1/datasets/BUNDESBANK/BBK01_WT5511.json?trim_start="+d.getFullYear()+"-"+d.getMonth()+"-"+d.getDay()));
+        console.log("this is the data: "+json_obj.data);
+
+        
+
+    </script>
+
 </head>
 
 <body>
