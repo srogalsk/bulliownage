@@ -185,21 +185,7 @@
 </body>
 
 <script type="text/javascript">
-        var d = new Date();
-        d.setDate(d.getDate()-30);
-        console.log(d);
-
-        function Get(yourUrl){
-            var Httpreq = new XMLHttpRequest(); // a new request
-            Httpreq.open("GET",yourUrl,false);
-            Httpreq.send(null);
-            return Httpreq.responseText;          
-        }
-
-        var json_obj = JSON.parse(Get("https://www.quandl.com/api/v1/datasets/BUNDESBANK/BBK01_WT5511.json?trim_start="+d.getFullYear()+"-"+d.getMonth()+"-"+d.getDay()));
-        console.log("this is the latest data: "+json_obj.data[0][1]);   
-        document.getElementById("latestBid").innerHTML = json_obj.data[0][1];     
-
+	Get("https://www.quandl.com/api/v1/datasets/BUNDESBANK/BBK01_WT5511.json?trim_start=");
 </script>
 
 </html>

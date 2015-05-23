@@ -94,6 +94,16 @@ function loadFooter(){
 
 }
 
+function Get(yourPartialUrl){
+    var d = new Date();
+    d.setMonth(d.getMonth()-3);
+    var Httpreq = new XMLHttpRequest(); // a new request
+    Httpreq.open("GET",yourPartialUrl+d.getFullYear()+"-"+d.getMonth()+"-"+d.getDay(),false);
+    Httpreq.send(null);
+    var json_obj = JSON.parse(Httpreq.responseText);
+    console.log("this is the latest data: "+json_obj.data[0][1]);   
+    document.getElementById("latestBid").innerHTML = json_obj.data[0][1];
+}     
 
 
 $(window).load(function() {
