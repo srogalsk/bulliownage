@@ -98,12 +98,11 @@ function Get(yourPartialUrl){
     var d = new Date();
     d.setMonth(d.getMonth()-3);
     var Httpreq = new XMLHttpRequest(); // a new request
-    Httpreq.open("GET",yourPartialUrl+d.getFullYear()+"-"+d.getMonth()+"-"+d.getDay(),true);
+    Httpreq.open("GET",yourPartialUrl + d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay(),false);
     Httpreq.send(null);
     var json_obj = JSON.parse(Httpreq.responseText); 
-
-    console.log(json_obj);
     return json_obj;
+
 }     
 
 
@@ -262,9 +261,17 @@ $(window).load(function() {
 			coinChart.update();
 		}
 		else if(page =="wire3.html"){
-            //var json_obj = Get("https://www.quandl.com/api/v1/datasets/BUNDESBANK/BBK01_WT5511.json?trim_start=");
+            var graphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&collapse=weekly&trim_start=");
+            console.log(graphData.data.length);
+            var goldData=[];
+            var labels1=[];
+            for(i=0; i < graphData.data.length; i++){
+            	goldData.push(graphData.data[i][2]);
+            	labels1.push(graphData.data[i][0]);
+
+            }
 			var data = {
-				labels: ["January", "February", "March", "April", "May", "June", "July"],
+				labels: labels1,//["January", "February", "March", "April", "May", "June", "July"],
 				datasets: [
 				{
 					label: "Gold Total",
@@ -274,7 +281,7 @@ $(window).load(function() {
 					pointStrokeColor: pointStroke,
 					pointHighlightFill: pointHighlightFill,
 					pointHighlightStroke: pointHighlightStroke,
-					data: [200, 210, 320, 30, 302, 335, 315]
+					data: goldData//[200, 210, 320, 30, 302, 335, 315]
 				},
 				{
 					label: "1oz Gold",
@@ -284,7 +291,7 @@ $(window).load(function() {
 					pointStrokeColor: pointStroke,
 					pointHighlightFill: pointHighlightFill,
 					pointHighlightStroke: pointHighlightStroke,
-					data: [100, 110, 120, 90, 102, 135, 115]
+					data: goldData//[100, 110, 120, 90, 102, 135, 115]
 				}
 				]
 			};
