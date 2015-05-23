@@ -1,6 +1,6 @@
 ===============================================================================
                              CSE134B DREAM TEAM
-                               COINFLIP - HW3
+                               BULLIOWNAGE - HW3
 ===============================================================================
 
 # # # # # # # # # # # # # # # 
@@ -160,7 +160,7 @@ Javascript:
 #        Thank you!         #
 # # # # # # # # # # # # # # #
 
-We hope you enjoyed our high-fidelity mock-up of CoinFlip, the simple 
+We hope you enjoyed our high-fidelity mock-up of BULLIOWNAGE, the simple 
 application for managing your entire coin collection! Feel free to 
 contact us with any feedback, comments, suggestions, or concerns.
 
