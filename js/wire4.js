@@ -5,6 +5,7 @@ var user = Parse.User.current();
 
 var Coin = Parse.Object.extend("Coin");
 var query = new Parse.Query(Coin);
+var coin = new Coin();
 
 query.get("MjhMMmwzZJ", {
   success: function(coin) {
