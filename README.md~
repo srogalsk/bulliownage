@@ -1,9 +1,11 @@
 ===============================================================================
+<<<<<<< HEAD
                              CSE134B DREAM TEAM
                                BULLIOWNAGE - HW3
 =======
                      CSE134B The Thomas Powell Experience
                                Bulliown - HW4
+>>>>>>> ca5e3dcb8e6e58c7c7611c6a4be729ca3df2a78f
 ===============================================================================
 
 # # # # # # # # # # # # # # # 
@@ -25,4 +27,14 @@
 # # # # # # # # # # # # # # # 
 #        Thank you!         #
 # # # # # # # # # # # # # # #
+
+<<<<<<< HEAD
+We hope you enjoyed our high-fidelity mock-up of BULLIOWNAGE, the simple 
+application for managing your entire coin collection! Feel free to 
+contact us with any feedback, comments, suggestions, or concerns.
+
+Best,
+CSE134B Dream Team
+=======
+>>>>>>> ca5e3dcb8e6e58c7c7611c6a4be729ca3df2a78f
 
