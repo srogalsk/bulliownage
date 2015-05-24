@@ -291,8 +291,8 @@ $(window).load(function() {
             for(i=0; i < graphData.data.length; i++){
                 var index = graphData.data.length - i - 1;
                 data.labels[i] = graphData.data[index][0];
-            	data.datasets[0].data[i] = graphData.data[index][2] + 50;
-                data.datasets[1].data[i] = graphData.data[index][2];
+            	data.datasets[0].data[i] = graphData.data[index][1] + 50;
+                data.datasets[1].data[i] = graphData.data[index][1];
             }
 
 			var options = {

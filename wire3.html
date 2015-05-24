@@ -51,11 +51,11 @@
                     <table class="current_gold">
                         <tr>
                             <td>Daily</td>
-                            <td>+3.5%</td>
+                            <td id="oneDayChange"></td>
                         </tr>
                         <tr>
                             <td>Overall</td>
-                            <td>+1.2%</td>
+                            <td id="overallChange"></td>
                         </tr>
                     </table> 
                     <div class="total-label" id="my_gold_value">My Gold Value</div>
@@ -116,8 +116,8 @@
                         </section>
                     </div>    
                 </section>
-                <div class="chart-y-label">PRICE</div>
-                <div class="chart-x-label">TIME</div>
+                <div class="chart-y-label">PRICE (Dollars)</div>
+                <div class="chart-x-label">Day (Weekly)</div>
                 <section class="chart-wrap">
                     <canvas id="total-chart"></canvas>
                 </section>
@@ -184,21 +184,35 @@
 </body>
 
     <script>
-    //     var d = new Date();
-    //     d.setDate(d.getDate()-30);
-    //     console.log(d);
+        // Adds data to page
+        // var json_obj=Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&collapse=weekly&trim_start=");
+        // document.getElementById("bidVal").innerHTML = json_obj.data[0][1];
 
-    //     function Get(yourUrl){
-    //         var Httpreq = new XMLHttpRequest(); // a new request
-    //         Httpreq.open("GET",yourUrl,false);
-    //         Httpreq.send(null);
-    //         return Httpreq.responseText;          
-    //     }
+        var json_obj_daily=Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=");
+        // Collect Critical Data points
+        var recentVal=json_obj_daily.data[0][1];
+        var recentVal2=json_obj_daily.data[1][1];
+        var datalen=json_obj_daily.data.length;
+        var oldestVal=json_obj_daily.data[datalen-1][1];
 
-    //     var json_obj = JSON.parse(Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&transformation=diff&trim_start="+d.getFullYear()+"-"+d.getMonth()+"-"+d.getDay()));
-    //     console.log("this is the data: "+json_obj.data);
-    var json_obj=Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&collapse=weekly&trim_start=");
-    document.getElementById("bidVal").innerHTML = json_obj.data[0][1];
+        // Calculate the 1D percentage change 
+        var oneDayChange=(100*((recentVal-recentVal2)/recentVal2));
+        // Round two digits
+        oneDayChange=Number(Math.round(oneDayChange+'e'+2)+'e-'+2);
+
+        // Calculate the overall change over the graph's timespan
+        var overallChange=(100*((recentVal-oldestVal)/oldestVal));
+        // Round two digits
+        overallChange=Number(Math.round(overallChange+'e'+2)+'e-'+2);
+        
+        // Calculate sign extension and add to html
+        var sign1, sign2;
+        sign1 = (oneDayChange < 0 ? "" : "+");
+        sign2 = (overallChange < 0 ? "" : "+");
+        document.getElementById("oneDayChange").innerHTML = sign1+oneDayChange+"%";
+        document.getElementById("overallChange").innerHTML = sign2+overallChange+"%";
+
+
     </script>
 
 </html>
