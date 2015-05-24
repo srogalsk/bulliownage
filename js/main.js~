@@ -262,8 +262,17 @@ $(window).load(function() {
 		}
 		else if(page =="wire3.html"){
             var graphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&collapse=weekly&trim_start=");
+/*
+            console.log(graphData.data.length);
+            var goldData=[];
+            var labels1=[];
+            for(i=0; i < graphData.data.length; i++){
+            	goldData.push(graphData.data[i][2]);
+            	labels1.push(graphData.data[i][0]);
+            }
+*/
 			var data = {
-				labels: []
+				labels: [],
 				datasets: [
 				{
 					label: "Gold Total",
