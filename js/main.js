@@ -137,10 +137,18 @@ $(window).load(function() {
  		var pointStroke = "rgba(255,255,255,0.6)";
  		var pointHighlightFill = "#fff";
  		var pointHighlightStroke = "#fff";
+ 		var goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&collapse=weekly&trim_start=");
+ 		var goldDataset = [];
+ 		var goldLabelset = [];
+ 		// Grab each data point
+        for(i = Number(goldGraphData.data.length-1); i >= 0; i--){
+        	goldLabelset.push(goldGraphData.data[i][0]);
+        	goldDataset.push(goldGraphData.data[i][1]);
+        }
 
  		if(page == "wire2.html") {
  			var data = {
- 				labels: ["January", "February", "March", "April", "May", "June", "July"],
+ 				labels: goldLabelset,
  				datasets: [
  				{
  					label: "Gold Total",
@@ -150,7 +158,7 @@ $(window).load(function() {
  					pointStrokeColor: pointStroke,
  					pointHighlightFill: pointHighlightFill,
  					pointHighlightStroke: pointHighlightStroke,
- 					data: [700,820,700,800,730,950,900]
+ 					data: []
  				},
  				{
  					label: "Platinum Total",
@@ -160,7 +168,7 @@ $(window).load(function() {
  					pointStrokeColor: pointStroke,
  					pointHighlightFill: pointHighlightFill,
  					pointHighlightStroke: pointHighlightStroke,
- 					data: [467, 555, 490, 550, 555, 560, 660]
+ 					data: []
  				},
  				{
  					label: "Silver Total",
@@ -170,37 +178,37 @@ $(window).load(function() {
  					pointStrokeColor: pointStroke,
  					pointHighlightFill: pointHighlightFill,
  					pointHighlightStroke: pointHighlightStroke,
- 					data: [200, 350, 300, 389, 330, 400, 488]
+ 					data: []
  				},
  				{
- 					label: "1oz Gold",
+ 					label: "1t oz Gold",
  					fillColor: "rgba(104, 206, 222, 0.05)",
  					strokeColor: "#9FFF98",
  					pointColor: "#9FFF98",
  					pointStrokeColor: pointStroke,
  					pointHighlightFill: pointHighlightFill,
  					pointHighlightStroke: pointHighlightStroke,
- 					data: [100, 110, 120, 90, 102, 135, 115]
+ 					data: goldDataset
  				},
  				{
- 					label: "1oz Platinum",
+ 					label: "1t oz Platinum",
  					fillColor: "rgba(104, 206, 222, 0.05)",
  					strokeColor: "#BBF5FF",
  					pointColor: "#BBF5FF",
  					pointStrokeColor: pointStroke,
  					pointHighlightFill: pointHighlightFill,
  					pointHighlightStroke: pointHighlightStroke,
- 					data: [56, 78, 67, 68, 73, 80, 76]
+ 					data: []
  				},
  				{
- 					label: "1oz Silver",
+ 					label: "1t oz Silver",
  					fillColor: "rgba(104, 206, 222, 0.05)",
  					strokeColor: "#C29FFF",
  					pointColor: "#C29FFF",
  					pointStrokeColor: pointStroke,
  					pointHighlightFill: pointHighlightFill,
  					pointHighlightStroke: pointHighlightStroke,
- 					data: [20, 22, 20, 32, 35, 50, 40]
+ 					data: []
  				},
  				]
  			};
@@ -261,9 +269,8 @@ $(window).load(function() {
 			coinChart.update();
 		}
 		else if(page =="wire3.html"){
-            var graphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&collapse=weekly&trim_start=");
 			var data = {
-				labels: [],
+				labels: goldLabelset,
 				datasets: [
 				{
 					label: "Gold Total",
@@ -276,24 +283,17 @@ $(window).load(function() {
 					data: []
 				},
 				{
-					label: "1oz Gold",
+					label: "1t oz Gold",
 					fillColor: "rgba(104, 206, 222, 0.05)",
 					strokeColor: "#9FFF98",
 					pointColor: "#9FFF98",
 					pointStrokeColor: pointStroke,
 					pointHighlightFill: pointHighlightFill,
 					pointHighlightStroke: pointHighlightStroke,
-					data: []
+					data: goldDataset
 				}
 				]
 			};
-
-            for(i=0; i < graphData.data.length; i++){
-                var index = graphData.data.length - i - 1;
-                data.labels[i] = graphData.data[index][0];
-            	data.datasets[0].data[i] = graphData.data[index][1] + 50;
-                data.datasets[1].data[i] = graphData.data[index][1];
-            }
 
 			var options = {
 
