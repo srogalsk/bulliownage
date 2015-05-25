@@ -123,9 +123,9 @@ $(window).load(function() {
 	 	location.reload();	
 	 });
 
-	 $('tr').click(function(){
-	 	$(this).find('a')[0].click();
-	 });
+	 //$('tr').click(function(){
+	 	//$(this).find('a')[0].click();
+	 //});
 
 	/* * * * * * * * * * * * * *
 	 *                         *

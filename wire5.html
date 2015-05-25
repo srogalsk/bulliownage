@@ -15,7 +15,7 @@
     <title>New Item - BULLIOWNAGE</title>
 </head>
 
-<body>
+<body onload="changeList()">
     <script type="text/javascript">
     loadTopNav();
     </script>
@@ -59,7 +59,7 @@
                         <tr>
                             <td>Metal</td>
                             <td>
-                                <select>
+                                <select onchange="changeList()" id="category">
                                     <option value="gold">Gold</option>
                                     <option value="silver">Silver</option>
                                     <option value="platinum">Platinum</option>
@@ -69,7 +69,7 @@
                         <tr>
                             <td>Type</td>
                             <td>
-                                <select>
+                                <select id="type">
                                     <option selected value="us_eagle">US Eagle</option>
                                 </select>
                             </td>
@@ -133,5 +133,54 @@
     loadFooter();
     </script>
 </body>
+
+<script type="text/javascript">
+    var goldArr = [["US Gold Eagle", "pee", "doodle"], ["val1","val2","val3"]];
+    var silverArr = [["US Silver Eagle", "pee", "doodle"], ["val1","val2","val3"]];
+    var platArr = [["US Platinum Eagle", "pee", "doodle"], ["val1","val2","val3"]];
+
+    function emptyList( box ) {
+        // Set each option to null thus removing it
+        while ( box.options.length ) box.options[0] = null;
+    }
+
+    function fillList( box, arr ) {
+    // arr[0] holds the display text
+    // arr[1] are the values
+
+    for ( i = 0; i < arr[0].length; i++ ) {
+
+            // Create a new drop down option with the
+            // display text and value from arr
+            option = new Option( arr[0][i], arr[1][i] );
+
+            // Add to the end of the existing options
+            box.options[box.length] = option;
+        }
+        // Preselect option 0
+        box.selectedIndex=0;
+    }
+
+    changeList = function () {
+        var category = document.getElementById("category");
+        var newlist;
+        switch(category.value){
+            case "gold":
+                newlist=goldArr;
+                break;
+            case "silver":
+                newlist=silverArr;
+                break;
+            case "platinum":
+                newlist=platArr;
+                break;
+            default:
+                newlist=goldArr;
+                break;
+        } 
+        emptyList(document.getElementById("type"));
+        fillList(document.getElementById("type"),newlist);
+    }
+</script>
 
 </html>
