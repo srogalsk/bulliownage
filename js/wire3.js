@@ -5,18 +5,20 @@ var user = Parse.User.current();
 
 var Coin = Parse.Object.extend("Coin");
 var query = new Parse.Query(Coin);
-query.equalTo("owner", user.getObjectID());
+query.equalTo("owner", user.id);
 query.equalTo("metal", "Gold");
-var coin = new Coin();
+var coins = new Coin();
 
 query.find({
-  success: function(results) {
-    alert("Successfully retrieved " + results.length + " coins");
+  success: function(coins) {
+    alert("Successfully retrieved " + coins.length + " coins");
     // Do something with the returned Parse.Object values
-    for (var i = 0; i < results.length; i++) {
-      var object = results[i];
+    for (var i = 0; i < coins.length; i++) {
+      var coin = coins[i];
       /* TODO: get
       */
+      var name = coin.get("name");
+      console.log(name);
     }
   },
   error: function(error) {
