@@ -32,7 +32,7 @@ query.get("MjhMMmwzZJ", {
     var year = purchasedAt.getFullYear();
     $("#displaypurchasedate").text(date + " " + month + " " + year);
     $("#displayquantity").text(quantity);
-    $("#displaypremium").text(premium);
+    $("#displaypremium").text(premium.toFixed(2));
     $("#displayweightperunit").text(grams);
     $("#displaypercent").text(percent);
 
@@ -41,21 +41,16 @@ query.get("MjhMMmwzZJ", {
     var ozt = Math.round((goldperunit/(31.1034768))*10000)/10000;
     var totalozt = Math.round((ozt*quantity)*10000)/10000;
 
-    $("#displayozt").text(ozt);
-    $("#displaytotalozt").text(totalozt);
-    $("#displaygoldperunit").text(goldperunit);
+    $("#displayozt").text(ozt.toPrecision(3));
+    $("#displaytotalozt").text(totalozt.toPrecision(3));
+    $("#displaygoldperunit").text(goldperunit.toPrecision(4));
 
     /* TODO: unit price = ozt*spot price + premium
     var unitprice = ozt*
-    var totalprice = Math.round((unitprice*quantity)*100)/100;
+    var totalprice = unitprice*quantity.toFixed(2);
     $("#displayunitprice").text(unitprice);
     $("#displaytotalprice").text(totalprice);
     */
-
-
-
-    $("#display")
-
 
   },
   error: function(object, error) {
