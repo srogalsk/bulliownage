@@ -96,13 +96,12 @@ function loadFooter(){
 
 function Get(yourPartialUrl){
     var d = new Date();
-    d.setMonth(d.getMonth()-3);
+    d.setMonth(d.getMonth() - 1);
     var Httpreq = new XMLHttpRequest(); // a new request
-    Httpreq.open("GET",yourPartialUrl + d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + (d.getDay() + 1),false);
+    Httpreq.open("GET",yourPartialUrl + d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + (d.getDate() + 1),false);
     Httpreq.send(null);
     var json_obj = JSON.parse(Httpreq.responseText); 
     return json_obj;
-
 }     
 
 
@@ -137,13 +136,15 @@ $(window).load(function() {
  		var pointStroke = "rgba(255,255,255,0.6)";
  		var pointHighlightFill = "#fff";
  		var pointHighlightStroke = "#fff";
- 		var goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&collapse=weekly&trim_start=");
+// 		var goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&collapse=weekly&trim_start=");
+var goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=");
  		var goldDataset = [];
  		var goldLabelset = [];
+
  		// Grab each data point
         for(i = Number(goldGraphData.data.length-1); i >= 0; i--){
-        	goldLabelset.push(goldGraphData.data[i][0]);
-        	goldDataset.push(goldGraphData.data[i][1]);
+          	goldLabelset.push(goldGraphData.data[i][0]);
+            	goldDataset.push(goldGraphData.data[i][1]);
         }
 
  		if(page == "wire2.html") {

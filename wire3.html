@@ -218,14 +218,15 @@
         var min=json_obj_daily.data[0][1];
 
         // Get market high and low values
-        for (i=0; i < 31; i++){
+        for (i=0; i < json_obj_daily.data.length; i++){
             if (json_obj_daily.data[i][1] > max){
-                max = json_obj_daily.data[i][1]
+                max = json_obj_daily.data[i][1];
             }
             if (json_obj_daily.data[i][1] < min){
-                min = json_obj_daily.data[i][1]
+                min = json_obj_daily.data[i][1];
             }
         }
+
         document.getElementById("highVal").innerHTML = max;
         document.getElementById("lowVal").innerHTML = min;
     </script>
