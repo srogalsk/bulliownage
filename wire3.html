@@ -51,11 +51,11 @@
                     <table class="current_gold">
                         <tr>
                             <td>Daily</td>
-                            <td id="oneDayChange"></td>
+                            <td  class="pos-change" id="oneDayChange"></td>
                         </tr>
                         <tr>
                             <td>Overall</td>
-                            <td id="overallChange"></td>
+                            <td class="pos-change" id="overallChange"></td>
                         </tr>
                     </table> 
                     <div class="total-label" id="my_gold_value">My Gold Value</div>
@@ -88,13 +88,13 @@
                     <section class="market-item-stats">
                         <table>
                             <tr>
-                                <td id="highVal"></td>
-                                <td id="lowVal"></td>
+                                <td id="bidVal"></td>
+                                <td id="askVal"></td>
                                 <td class="pos-change" id="changeAmount"></td>
                             </tr>
                             <tr>
-                                <td>Monthly High</td>
-                                <td>Montly Low</td>
+                                <td>Bid</td>
+                                <td>Ask</td>
                                 <td>Daily Change</td>
                             </tr>
                         </table>
@@ -205,30 +205,41 @@
         var sign1, sign2;
         sign1 = (oneDayChange < 0 ? "" : "+");
         sign2 = (overallChange < 0 ? "" : "+");
+        document.getElementById("oneDayChange").className = (oneDayChange < 0 ? "neg-change" : "pos-change");
         document.getElementById("oneDayChange").innerHTML = sign1+oneDayChange+"%";
+        document.getElementById("overallChange").className = (overallChange < 0 ? "neg-change" : "pos-change");
         document.getElementById("overallChange").innerHTML = sign2+overallChange+"%";
 
         // get Change data
         var change = json_obj_daily.data[0][1] - json_obj_daily.data[1][1];
         change = Number(Math.round(change+'e'+2)+'e-'+2);
         var sign3 = (change < 0 ? "" : "+");
+        document.getElementById("changeAmount").className = (changeAmount < 0 ? "neg-change" : "pos-change");
         document.getElementById("changeAmount").innerHTML=sign3 + change;
-
-        var max=json_obj_daily.data[0][1];
-        var min=json_obj_daily.data[0][1];
-
-        // Get market high and low values
-        for (i=0; i < json_obj_daily.data.length; i++){
-            if (json_obj_daily.data[i][1] > max){
-                max = json_obj_daily.data[i][1];
-            }
-            if (json_obj_daily.data[i][1] < min){
-                min = json_obj_daily.data[i][1];
-            }
+    </script>
+    <script>
+    // Fill bid and asking prices
+        function getData() {
+            return $.ajax({
+                type: "GET",
+                dataType: 'text',
+                url: "https://cse134b.herokuapp.com/jm",
+                crossDomain : true,
+                xhrFields: {
+                    withCredentials: false
+                }
+            });
         }
-
-        document.getElementById("highVal").innerHTML = max;
-        document.getElementById("lowVal").innerHTML = min;
+        function handleData( csvdata ) {
+            var bidAskVals = [];
+            var jsonAB = eval(csvdata);
+            // 0 for gold, 1 for silver, 2 for plat
+            document.getElementById("bidVal").innerHTML = jsonAB[0].bid;
+            document.getElementById("askVal").innerHTML = jsonAB[0].ask;
+            return bidAskVals;
+            
+        }
+        getData().done(handleData);
     </script>
 
 </html>

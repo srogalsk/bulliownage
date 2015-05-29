@@ -105,6 +105,7 @@ function Get(yourPartialUrl){
 }     
 
 
+
 $(window).load(function() {
 
 	var path = window.location.pathname;
