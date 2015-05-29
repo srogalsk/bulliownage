@@ -98,7 +98,7 @@ function Get(yourPartialUrl){
     var d = new Date();
     d.setMonth(d.getMonth()-3);
     var Httpreq = new XMLHttpRequest(); // a new request
-    Httpreq.open("GET",yourPartialUrl + d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay(),false);
+    Httpreq.open("GET",yourPartialUrl + d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + (d.getDay() + 1),false);
     Httpreq.send(null);
     var json_obj = JSON.parse(Httpreq.responseText); 
     return json_obj;
