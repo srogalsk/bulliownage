@@ -21,6 +21,8 @@ query.get("MjhMMmwzZJ", {
     var purchasedAt = coin.get("purchasedAt");
     var quantity = coin.get("quantity");
     var premium = coin.get("premium");
+    var percent = coin.get("percent");
+    var grams = coin.get("grams"); //weight per unit
 
     $("#displaymetal").text(metal);
     $("#displayname").text(name);
@@ -30,7 +32,25 @@ query.get("MjhMMmwzZJ", {
     var year = purchasedAt.getFullYear();
     $("#displaypurchasedate").text(date + " " + month + " " + year);
     $("#displayquantity").text(quantity);
-    $("#displaypremium").text(premium);
+    $("#displaypremium").text(premium.toFixed(2));
+    $("#displayweightperunit").text(grams);
+    $("#displaypercent").text(percent);
+
+    var goldperunit = Math.round((grams*percent)*10000)/10000;
+    var totalgold = Math.round((goldperunit*quantity)*10000)/10000;
+    var ozt = Math.round((goldperunit/(31.1034768))*10000)/10000;
+    var totalozt = Math.round((ozt*quantity)*10000)/10000;
+
+    $("#displayozt").text(ozt.toPrecision(3));
+    $("#displaytotalozt").text(totalozt.toPrecision(3));
+    $("#displaygoldperunit").text(goldperunit.toPrecision(4));
+
+    /* TODO: unit price = ozt*spot price + premium
+    var unitprice = ozt*
+    var totalprice = unitprice*quantity.toFixed(2);
+    $("#displayunitprice").text(unitprice);
+    $("#displaytotalprice").text(totalprice);
+    */
 
   },
   error: function(object, error) {
