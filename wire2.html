@@ -25,7 +25,7 @@
         <section class="coin_wrapper">
             <section class="overview-panel">
                 <section class="total-value">
-                    <div class="total-dollars">$24,249.23</div>
+                    <div class="total-dollars" id="total-dollars"></div>
                     <div class="total-change pos-change">+3.5%</div><br/>
                     <div class="total-label">My Total Coin Value</div>
                 </section>
@@ -301,4 +301,53 @@
         }
         getData().done(handleData);
     </script>
+    <script type="text/javascript" src="js/parse-1.4.2.min.js"></script>
+    <script>
+        Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
+    "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
+
+    var user = Parse.User.current();
+
+    var Coin = Parse.Object.extend("Coin");
+    var query = new Parse.Query(Coin);
+    query.equalTo("owner", user.id);
+    var coins = new Coin();
+    var totalVal = 0;
+
+    query.find({
+      success: function(coins) {
+        // Do something with the returned Parse.Object values
+        for (var i = 0; i < coins.length; i++) {
+          var coin = coins[i];
+          var name = coin.get("name");
+          var type = coin.get("metal");
+          var quantity = coin.get("quantity");
+          var weight = coin.get("grams");
+          var percent = coin.get("percent");
+          var recentVal = 1;
+          switch(type){
+            case "Gold": 
+                recentVal = json_obj_daily.data[0][1];
+                break;
+            case "Silver":
+                recentVal = silver_json_obj_daily.data[0][1];
+                break;
+            case "Platinum":
+                recentVal = plat_json_obj_daily.data[0][1];
+                break;
+            default:
+                recentVal = json_obj_daily.data[0][1]; 
+          }
+          var price = recentVal * quantity * weight;
+          totalVal += Number(Math.round(price+'e'+2)+'e-'+2);
+          document.getElementById("total-dollars").innerHTML = "$ "+ Number(Math.round(totalVal+'e'+2)+'e-'+2)
+        }
+      },
+      error: function(error) {
+        alert("Error: " + error.code + " " + error.message);
+      }
+
+    });
+    </script>
+
 </html>

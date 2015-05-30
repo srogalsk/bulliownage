@@ -121,7 +121,7 @@ query.find({
       var price = recentVal * quantity * weight;
       cell5.innerHTML = Number(Math.round(price+'e'+2)+'e-'+2);
       totalVal += Number(Math.round(price+'e'+2)+'e-'+2);
-      document.getElementById("total-dollars").innerHTML = "$ "+totalVal;
+      document.getElementById("total-dollars").innerHTML = "$ "+ Number(Math.round(totalVal+'e'+2)+'e-'+2);
       //console.log(name);
     }
   },

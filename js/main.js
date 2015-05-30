@@ -112,6 +112,39 @@ function Get(yourPartialUrl, months){
     return json_obj;
 }     
 
+function CalculateTotal(){
+Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
+    "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
+
+var user = Parse.User.current();
+
+var Coin = Parse.Object.extend("Coin");
+var query = new Parse.Query(Coin);
+query.equalTo("owner", user.id);
+var coins = new Coin();
+var totalVal = 0;
+
+query.find({
+  success: function(coins) {
+    // Do something with the returned Parse.Object values
+    for (var i = 0; i < coins.length; i++) {
+      var name = coin.get("name");
+      var quantity = coin.get("quantity");
+      var weight = coin.get("grams");
+      var percent = coin.get("percent");
+
+      var price = recentVal * quantity * weight;
+      totalVal += Number(Math.round(price+'e'+2)+'e-'+2);
+      document.getElementById("total-dollars").innerHTML = "$ "+totalVal;
+    }
+  },
+  error: function(error) {
+    alert("Error: " + error.code + " " + error.message);
+  }
+
+});
+}
+
 
 
 $(window).load(function() {
@@ -147,7 +180,6 @@ $(window).load(function() {
  		var pointHighlightStroke = "#fff";
 
  		if(page == "wire2.html") {
-
  		// 	Get Gold Graph Data
 			var goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
 	 		var goldDataset = [];
