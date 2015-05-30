@@ -1,21 +1,17 @@
 Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
     "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
 
-function loadData(id) {
-    alert("ID = " + id);
-    window.location.assign("wire4.html");
-    window.onload = populate(id);
-}
+    var q_string = window.location.search;
+    if (q_string.substring(0, 1) == '?') {
+        q_string = q_string.substring(1);
+      }
 
-function populate(id) {
-    alert("Populating Now, the ID is: " + id );
     var user = Parse.User.current();
-
     var Coin = Parse.Object.extend("Coin");
     var query = new Parse.Query(Coin);
     var coin = new Coin();
 
-    query.get(id, {
+    query.get(q_string, {
         success: function (coin) {
             // The object was retrieved successfully.
             console.log("query success");
@@ -67,4 +63,3 @@ function populate(id) {
             // error is a Parse.Error with an error code and message.
         }
     });
-}
