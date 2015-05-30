@@ -4,8 +4,6 @@ Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
 var user = Parse.User.current();
 var table = document.getElementById("gold_table");
 
-alert(table);
-
 var Coin = Parse.Object.extend("Coin");
 var query = new Parse.Query(Coin);
 query.equalTo("owner", user.id);
