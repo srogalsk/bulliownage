@@ -80,8 +80,6 @@ Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
 var user = Parse.User.current();
 var table = document.getElementById("gold_table");
 
-console.log(table);
-
 var Coin = Parse.Object.extend("Coin");
 var query = new Parse.Query(Coin);
 query.equalTo("owner", user.id);
@@ -91,7 +89,7 @@ var totalVal = 0;
 
 query.find({
   success: function(coins) {
-    console.log("Successfully retrieved " + coins.length + " coins");
+    alert("Successfully retrieved " + coins.length + " coins");
     // Do something with the returned Parse.Object values
     for (var i = 0; i < coins.length; i++) {
       var coin = coins[i];
@@ -104,7 +102,6 @@ query.find({
       var row = table.insertRow(i+1);
       row.setAttribute("id", coin.id);
       row.setAttribute("class", "clickable");
-      row.setAttribute("onclick", "loadData()");
       var cell0 = row.insertCell(0);
       cell0.setAttribute("class", "stack_img_col");
       cell0.innerHTML = "<div class='coin_mini'></div>"
