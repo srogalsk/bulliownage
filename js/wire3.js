@@ -98,6 +98,8 @@ query.find({
       var quantity = coin.get("quantity");
       var weight = coin.get("grams");
       var percent = coin.get("percent");
+      var premium = coin.get("premium");
+
 
       var row = table.insertRow(i+1);
       row.setAttribute("id", coin.id);
@@ -105,7 +107,7 @@ query.find({
       row.setAttribute("onClick", "loadData(\"" + coin.id + "\")");
       var cell0 = row.insertCell(0);
       cell0.setAttribute("class", "stack_img_col");
-      cell0.innerHTML = "<div class='coin_mini'></div>"
+      cell0.innerHTML = "<div class='coin_mini'></div>";
       var cell1 = row.insertCell(1);
       cell1.innerHTML = name;
       var cell2 = row.insertCell(2);
@@ -116,10 +118,9 @@ query.find({
       cell4.innerHTML = percent;
       var cell5 = row.insertCell(5);
 
-      /* TODO: calculate total value
-      right now 1000 is just a placeholder
-      */
-      var price = recentVal * quantity * weight;
+      var goldperunit = Math.round((weight * percent) * 10000) / 10000;
+      var ozt = Math.round((goldperunit / (31.1034768)) * 10000) / 10000;
+      var price = ((ozt*recentVal) + premium)* quantity;
       cell5.innerHTML = Number(Math.round(price+'e'+2)+'e-'+2);
       totalVal += Number(Math.round(price+'e'+2)+'e-'+2);
       document.getElementById("total-dollars").innerHTML = "$ "+ Number(Math.round(totalVal+'e'+2)+'e-'+2);
@@ -139,6 +140,5 @@ function loadData(id) {
     alert("ID = " + id);
     window.location.assign("wire4.html" + "?" + id);
 }
-
 
 
