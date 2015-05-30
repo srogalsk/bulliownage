@@ -149,26 +149,26 @@ $(window).load(function() {
  		if(page == "wire2.html") {
 
  		// 	Get Gold Graph Data
-			var goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",2);
+			var goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",1);
 	 		var goldDataset = [];
 	 		var goldLabelset = [];
-	        for(i = 20; i >= 0; i--){
+	        for(i = goldGraphData.data.length - 1; i >= 0; i--){
 	          	goldLabelset.push(goldGraphData.data[i][0]);
 	            	goldDataset.push(goldGraphData.data[i][1]);
 	        }
 	    // Get Silver Graph Data
-	        var silverGraphData = Get("https://www.quandl.com/api/v1/datasets/OFDP/SILVER_5.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",2);
+	        var silverGraphData = Get("https://www.quandl.com/api/v1/datasets/OFDP/SILVER_5.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",1);
 	 		var silverDataset = [];
 	 		var silverLabelset = [];
-	        for(i = 20; i >= 0; i--){
+	        for(i = silverGraphData.data.length - 1; i >= 0; i--){
 	          	silverLabelset.push(silverGraphData.data[i][0]);
 	            	silverDataset.push(silverGraphData.data[i][1]*50);
 	        }
 	    // Get Plat Graph Data
-	        var platGraphData = Get("https://www.quandl.com/api/v1/datasets/LPPM/PLAT.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",2);
+	        var platGraphData = Get("https://www.quandl.com/api/v1/datasets/LPPM/PLAT.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",1);
 	 		var platDataset = [];
 	 		var platLabelset = [];
-	        for(i = Number(20); i >= 0; i--){
+	        for(i = platGraphData.data.length - 1; i >= 0; i--){
 	          	platLabelset.push(platGraphData.data[i][0]);
 	            	platDataset.push(platGraphData.data[i][1]);
 	        }
