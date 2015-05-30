@@ -384,21 +384,13 @@ $(window).load(function() {
 			var coinChart = new Chart(ctx).Line(data,options);
 			coinChart.update();
 		} else if(page =="wire5.html"){
- 		// 	Get Gold Graph Data
-			var goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",2);
-	 		var goldDataset = [];
-	 		var goldLabelset = [];
-	        for(i = 20; i >= 0; i--){
-	          	goldLabelset.push(goldGraphData.data[i][0]);
-	            	goldDataset.push(goldGraphData.data[i][1]);
-	        }
-			table = document.addEventListener("keyup",
-				function() {
-					var unitPrice = goldGraphData.data[0][1] * document.getElementById("weight").innerHTML +
-							Number(document.getElementById("premium").value);
-					var total = (unitPrice * document.getElementById("quantity").value).toFixed(2);
-					document.getElementById("total").innerHTML = (isNaN(total) || total < 0)? "Invalid quantity or premium entered" : total;
-				});
+			function calc() {
+				var price = document.getElementById("price").innerHTML + Number(document.getElementById("premium").value);
+				var total = (price * document.getElementById("quantity").value).toFixed(2);
+				document.getElementById("total").innerHTML = (isNaN(total) || total < 0)? "Invalid quantity or premium entered" : total;
+			}
+			calc();
+			table = document.addEventListener("keyup", calc);
 		}
 	};
 
