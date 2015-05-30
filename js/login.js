@@ -7,7 +7,7 @@ Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
 
 $(document).ready(function () {
 
-    $('#login-button').on('click', function () {
+    $('#login-button').on('click', function (event) {
 
         event.preventDefault();
 

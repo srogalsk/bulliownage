@@ -19,38 +19,27 @@ function saveToStack() {
     var Coin = Parse.Object.extend("Coin");
     var coin = new Coin();
 
-/*
-    coin.set("metal", document.getElementById());
-    coin.set("name", document);
-    coin.set("purchasedAt", document);
-    coin.set("quantity", document);
-*/
     var select = document.getElementById("category");
     coin.set("metal", select.options[select.selectedIndex].text);
     coin.set("name", document.getElementById("type").value);
-//    coin.set("purchasedAt", document.getElementById("purchase_date").value);
+    coin.set("purchasedAt", new Date(document.getElementById("purchase_date").value));
     coin.set("quantity", Number(document.getElementById("quantity").value));
     coin.set("premium", Number(document.getElementById("premium").value));
     coin.set("percent", Number(document.getElementById("percent").innerHTML));
     coin.set("grams", Number(document.getElementById("grams").innerHTML));
     coin.set("owner", user.id);
+    coin.set("unit", Number(document.getElementById("price").value));
 
-    console.log(coin.get("metal"));
-    console.log(coin.get("name"));
-    console.log(coin.get("purchasedAt"));
-    console.log(coin.get("quantity"));
-    console.log(coin.get("premium"));
-    console.log(coin.get("percent"));
-    console.log(coin.get("grams"));
-    console.log(coin.get("owner"));
+    alert("bullion");
 
     if (calc()) {
         coin.save(null, {
             success: function(coin) {
-                console.log('New object created with objectId: ' + coin.id);
+                window.location = "wire3.html";
+                alert("Bullion added successfully");
             },
             error: function(coin, error) {
-                console.log('Failed to create new object, with error code: ' + error.message);
+                alert("Invalid bullion information");
             }
         });
     } else {

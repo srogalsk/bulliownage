@@ -112,6 +112,39 @@ function Get(yourPartialUrl, months){
     return json_obj;
 }     
 
+function CalculateTotal(){
+Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
+    "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
+
+var user = Parse.User.current();
+
+var Coin = Parse.Object.extend("Coin");
+var query = new Parse.Query(Coin);
+query.equalTo("owner", user.id);
+var coins = new Coin();
+var totalVal = 0;
+
+query.find({
+  success: function(coins) {
+    // Do something with the returned Parse.Object values
+    for (var i = 0; i < coins.length; i++) {
+      var name = coin.get("name");
+      var quantity = coin.get("quantity");
+      var weight = coin.get("grams");
+      var percent = coin.get("percent");
+
+      var price = recentVal * quantity * weight;
+      totalVal += Number(Math.round(price+'e'+2)+'e-'+2);
+      document.getElementById("total-dollars").innerHTML = "$ "+totalVal;
+    }
+  },
+  error: function(error) {
+    alert("Error: " + error.code + " " + error.message);
+  }
+
+});
+}
+
 
 
 $(window).load(function() {
@@ -147,28 +180,27 @@ $(window).load(function() {
  		var pointHighlightStroke = "#fff";
 
  		if(page == "wire2.html") {
-
  		// 	Get Gold Graph Data
-			var goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",1);
+			var goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
 	 		var goldDataset = [];
 	 		var goldLabelset = [];
-	        for(i = goldGraphData.data.length - 1; i >= 0; i--){
+	        for(i = 31; i >= 0; i--){
 	          	goldLabelset.push(goldGraphData.data[i][0]);
 	            	goldDataset.push(goldGraphData.data[i][1]);
 	        }
 	    // Get Silver Graph Data
-	        var silverGraphData = Get("https://www.quandl.com/api/v1/datasets/OFDP/SILVER_5.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",1);
+	        var silverGraphData = Get("https://www.quandl.com/api/v1/datasets/OFDP/SILVER_5.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
 	 		var silverDataset = [];
 	 		var silverLabelset = [];
-	        for(i = silverGraphData.data.length - 1; i >= 0; i--){
+	        for(i = 31; i >= 0; i--){
 	          	silverLabelset.push(silverGraphData.data[i][0]);
 	            	silverDataset.push(silverGraphData.data[i][1]*50);
 	        }
 	    // Get Plat Graph Data
-	        var platGraphData = Get("https://www.quandl.com/api/v1/datasets/LPPM/PLAT.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",1);
+	        var platGraphData = Get("https://www.quandl.com/api/v1/datasets/LPPM/PLAT.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
 	 		var platDataset = [];
 	 		var platLabelset = [];
-	        for(i = platGraphData.data.length - 1; i >= 0; i--){
+	        for(i = 31; i >= 0; i--){
 	          	platLabelset.push(platGraphData.data[i][0]);
 	            	platDataset.push(platGraphData.data[i][1]);
 	        }
@@ -296,10 +328,10 @@ $(window).load(function() {
 		}
 		else if(page =="wire3.html"){
 			// 	Get Gold Graph Data
-			var goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",1);
+			var goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
 	 		var goldDataset = [];
 	 		var goldLabelset = [];
-	        for(i = Number(goldGraphData.data.length-1); i >= 0; i--){
+	        for(i = 31; i >= 0; i--){
 	          	goldLabelset.push(goldGraphData.data[i][0]);
 	            goldDataset.push(goldGraphData.data[i][1]);
 	        }
