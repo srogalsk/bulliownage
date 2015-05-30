@@ -338,9 +338,14 @@
             default:
                 recentVal = json_obj_daily.data[0][1]; 
           }
-          var price = recentVal * quantity * weight;
-          totalVal += Number(Math.round(price+'e'+2)+'e-'+2);
-          document.getElementById("total-dollars").innerHTML = "$ "+ Number(Math.round(totalVal+'e'+2)+'e-'+2)
+          
+        var premium = coin.get("premium");
+        var goldperunit = Math.round((weight * percent) * 10000) / 10000;
+        var ozt = Math.round((goldperunit / (31.1034768)) * 10000) / 10000;
+        var price = ((ozt*recentVal) + premium)* quantity;
+        totalVal += Number(Math.round(price+'e'+2)+'e-'+2);
+        document.getElementById("total-dollars").innerHTML = "$ "+ Number(Math.round(totalVal+'e'+2)+'e-'+2)
+        
         }
       },
       error: function(error) {
