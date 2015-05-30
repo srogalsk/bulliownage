@@ -129,7 +129,7 @@
                         <section class="label-and-search">
                             <h3>My Gold</h3>
                             <div class="stack_ctrl">
-                                <input type="search" placeholder="Search"/>
+                                <input type="search" placeholder="Search" id="search"/>
                                 <a href="wire5.html">
                                     <svg enable-background="new 0 0 24 24" height="24px" id="Layer_1" version="1.1" viewBox="0 0 24 24" width="24px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                         <path clip-rule="evenodd" d="M22.5,14H14v8.5c0,0.276-0.224,0.5-0.5,0.5h-4C9.224,23,9,22.776,9,22.5V14H0.5  C0.224,14,0,13.776,0,13.5v-4C0,9.224,0.224,9,0.5,9H9V0.5C9,0.224,9.224,0,9.5,0h4C13.776,0,14,0.224,14,0.5V9h8.5  C22.776,9,23,9.224,23,9.5v4C23,13.776,22.776,14,22.5,14z" fill-rule="evenodd" fill="white" />
@@ -148,32 +148,6 @@
                             <th>Value</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td class="stack_img_col"><div class="coin_mini"></div></td>
-                            <td><a href="wire4.html"></a>US Eagle</td>
-                            <td>1</td>
-                            <td>1.244</td>
-                            <td>.917</td>
-                            <td>1199.10</td>
-                        </tr>
-                        <tr>
-                            <td class="stack_img_col"><div class="coin_mini"></div></td>
-                            <td><a href="wire4.html"></a>US Eagle</td>
-                            <td>5</td>
-                            <td>1.244</td>
-                            <td>.917</td>
-                            <td>5995.50</td>
-                        </tr>
-                        <tr>
-                            <td class="stack_img_col"><div class="coin_mini"></div></td>
-                            <td><a href="wire4.html"></a>US Eagle</td>
-                            <td>5</td>
-                            <td>1.244</td>
-                            <td>.917</td>
-                            <td>5995.50</td>
-                        </tr>
-                    </tbody>
                 </table>
             </section>
         </section>
@@ -184,6 +158,7 @@
 </body>
 
     <script>
+    // Populate Data
         var json_obj_daily=Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",1);
         // Collect Critical Data points
         var recentVal=json_obj_daily.data[0][1];
@@ -205,17 +180,20 @@
         var sign1, sign2;
         sign1 = (oneDayChange < 0 ? "" : "+");
         sign2 = (overallChange < 0 ? "" : "+");
-        document.getElementById("oneDayChange").className = (oneDayChange < 0 ? "neg-change" : "pos-change");
-        document.getElementById("oneDayChange").innerHTML = sign1+oneDayChange+"%";
-        document.getElementById("overallChange").className = (overallChange < 0 ? "neg-change" : "pos-change");
-        document.getElementById("overallChange").innerHTML = sign2+overallChange+"%";
+        var ODC = document.getElementById("oneDayChange");
+        ODC.className = (oneDayChange < 0 ? "neg-change" : "pos-change");
+        ODC.innerHTML = sign1+oneDayChange+"%";
+        var OC = document.getElementById("overallChange");
+        OC.className = (overallChange < 0 ? "neg-change" : "pos-change");
+        OC.innerHTML = sign2+overallChange+"%";
 
         // get Change data
         var change = json_obj_daily.data[0][1] - json_obj_daily.data[1][1];
         change = Number(Math.round(change+'e'+2)+'e-'+2);
         var sign3 = (change < 0 ? "" : "+");
-        document.getElementById("changeAmount").className = (changeAmount < 0 ? "neg-change" : "pos-change");
-        document.getElementById("changeAmount").innerHTML=sign3 + change;
+        var CA = document.getElementById("changeAmount");
+        CA.className = (changeAmount < 0 ? "neg-change" : "pos-change");
+        CA.innerHTML=sign3 + change;
     </script>
     <script>
     // Fill bid and asking prices
@@ -240,6 +218,22 @@
             
         }
         getData().done(handleData);
+
+    // Search Bar Functionality
+        $('#search').keyup(function() {
+            var table = document.getElementById("gold_table");
+            var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+            for (var i = 1 ; i < table.rows.length; i++){
+                var coin = table.rows[i].firstChild.nextSibling.innerHTML.toLowerCase();
+                if (i > 0 && coin.includes(val)){
+                    //console.log(val);
+                    table.rows[i].style.display = "";
+                }
+                else {
+                    table.rows[i].style.display = "none";
+                }
+            }
+        });
     </script>
 
     <script type="text/javascript" src="js/parse-1.4.2.min.js"></script>

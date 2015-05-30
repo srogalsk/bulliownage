@@ -230,48 +230,48 @@
 
     </script>
     <script>
-    // Get Market Status
-    var today = new Date();
-    var tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    tomorrow.setHours(9,30,0,0);
-    var dayDiff = 0;
-    while(tomorrow.getDay() == 6 || tomorrow.getDay() == 0){
+        // Get Market Status
+        var today = new Date();
+        var tomorrow = new Date();
         tomorrow.setDate(tomorrow.getDate() + 1);
-        dayDiff += 1;
-    }
-    // Can use this to set different market times
-    var opentime = new Date();
-    opentime.setHours(9,30,0,0);
-    var closetime = new Date();
-    closetime.setHours(16,30,0,0);
-
-    if (today > opentime && today < closetime && today.getDay() !=0 && today.getDay() != 6){
-        var hourleft = closetime.getHours() - today.getHours();
-        var minleft = closetime.getMinutes() - today.getMinutes();
-        document.getElementById("marketStatus").innerHTML = "Market is OPEN";
-        document.getElementById("closeTime").innerHTML = "Closes in " + hourleft +"h " + minleft + "min";
-        
-    }
-    else{
-        console.log(today);
-        console.log(tomorrow);
-        var hourleft = 0;
-        if (dayDiff > 0){
-            hourleft = 24 - today.getHours();
-            hourleft = hourleft + dayDiff*24;
-            hourleft += 9;
-        }  
-        else{
-            hourleft = 9 - today.getHours();
-        } 
-        var minleft = tomorrow.getMinutes() - today.getMinutes();
-        if (minleft < 0){
-            minleft = 30 + (60 - today.getMinutes());
+        tomorrow.setHours(9,30,0,0);
+        var dayDiff = 0;
+        while(tomorrow.getDay() == 6 || tomorrow.getDay() == 0){
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            dayDiff += 1;
         }
-        document.getElementById("marketStatus").innerHTML = "Market is CLOSED";
-        document.getElementById("closeTime").innerHTML = "Opens in " + hourleft +"h " + minleft + "min";
-    }
+        // Can use this to set different market times
+        var opentime = new Date();
+        opentime.setHours(9,30,0,0);
+        var closetime = new Date();
+        closetime.setHours(16,30,0,0);
+
+        if (today > opentime && today < closetime && today.getDay() !=0 && today.getDay() != 6){
+            var hourleft = closetime.getHours() - today.getHours();
+            var minleft = closetime.getMinutes() - today.getMinutes();
+            document.getElementById("marketStatus").innerHTML = "Market is OPEN";
+            document.getElementById("closeTime").innerHTML = "Closes in " + hourleft +"h " + minleft + "min";
+            
+        }
+        else{
+            console.log(today);
+            console.log(tomorrow);
+            var hourleft = 0;
+            if (dayDiff > 0){
+                hourleft = 24 - today.getHours();
+                hourleft = hourleft + dayDiff*24;
+                hourleft += 9;
+            }  
+            else{
+                hourleft = 9 - today.getHours();
+            } 
+            var minleft = tomorrow.getMinutes() - today.getMinutes();
+            if (minleft < 0){
+                minleft = 30 + (60 - today.getMinutes());
+            }
+            document.getElementById("marketStatus").innerHTML = "Market is CLOSED";
+            document.getElementById("closeTime").innerHTML = "Opens in " + hourleft +"h " + minleft + "min";
+        }
 
 
 

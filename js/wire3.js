@@ -44,7 +44,7 @@ query.find({
       cell5.innerHTML = "1000";
 
 
-      console.log(name);
+      //console.log(name);
     }
   },
   error: function(error) {
