@@ -385,8 +385,10 @@ $(window).load(function() {
 			coinChart.update();
 		} else if(page =="wire5.html"){
 			function calc() {
-				var price = document.getElementById("price").innerHTML + Number(document.getElementById("premium").value);
-				var total = (price * document.getElementById("quantity").value).toFixed(2);
+				var price = Number($("#price").val()) + Number($("#premium").val());
+				var total = $("#quantity").val() * price;
+				//var price = document.getElementById("price").value + Number(document.getElementById("premium").value);
+				//var total = (price * document.getElementById("quantity").value).toFixed(2);
 				document.getElementById("total").innerHTML = (isNaN(total) || total < 0)? "Invalid quantity or premium entered" : total;
 			}
 			calc();
