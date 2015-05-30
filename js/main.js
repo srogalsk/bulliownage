@@ -211,7 +211,7 @@ $(window).load(function() {
 	 		var goldLabelset = [];
 	        for(i = 31; i >= 0; i--){
 	          	goldLabelset.push(goldGraphData.data[i][0]);
-	            	goldDataset.push(goldGraphData.data[i][1]);
+                goldDataset.push(Number(Math.round(goldGraphData.data[i][1]+'e'+2)+'e-'+2));
 	        }
 	    // Get Silver Graph Data
 	        var silverGraphData = Get("https://www.quandl.com/api/v1/datasets/OFDP/SILVER_5.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
@@ -219,15 +219,15 @@ $(window).load(function() {
 	 		var silverLabelset = [];
 	        for(i = 31; i >= 0; i--){
 	          	silverLabelset.push(silverGraphData.data[i][0]);
-	            	silverDataset.push(silverGraphData.data[i][1]*50);
+                silverDataset.push(Number(Math.round((silverGraphData.data[i][1]*50)+'e'+2)+'e-'+2));
 	        }
 	    // Get Plat Graph Data
 	        var platGraphData = Get("https://www.quandl.com/api/v1/datasets/LPPM/PLAT.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
 	 		var platDataset = [];
 	 		var platLabelset = [];
 	        for(i = 31; i >= 0; i--){
-	          	platLabelset.push(platGraphData.data[i][0]);
-	            	platDataset.push(platGraphData.data[i][1]);
+	            	platLabelset.push(platGraphData.data[i][0]);
+                platDataset.push(Number(Math.round(platGraphData.data[i][1]+'e'+2)+'e-'+2));
 	        }
 
  			var data = {
@@ -440,16 +440,6 @@ $(window).load(function() {
 			var ctx = document.getElementById("total-chart").getContext("2d");
 			var coinChart = new Chart(ctx).Line(data,options);
 			coinChart.update();
-		} else if(page =="wire5.html"){
-			function calc() {
-				var price = Number($("#price").val()) + Number($("#premium").val());
-				var total = $("#quantity").val() * price;
-				//var price = document.getElementById("price").value + Number(document.getElementById("premium").value);
-				//var total = (price * document.getElementById("quantity").value).toFixed(2);
-				document.getElementById("total").innerHTML = (isNaN(total) || total < 0)? "Invalid quantity or premium entered" : total;
-			}
-			calc();
-			table = document.addEventListener("keyup", calc);
 		}
 	};
 

@@ -104,6 +104,7 @@ query.find({
       var row = table.insertRow(i+1);
       row.setAttribute("id", coin.id);
       row.setAttribute("class", "clickable");
+      row.setAttribute("onClick", "loadData(id)");
       var cell0 = row.insertCell(0);
       cell0.setAttribute("class", "stack_img_col");
       cell0.innerHTML = "<div class='coin_mini'></div>";

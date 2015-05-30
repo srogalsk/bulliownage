@@ -70,14 +70,14 @@
                             <td>Type</td>
                             <td>
                                 <select id="type">
-                                    <option selected value="us_eagle">US Eagle</option>
+                                    <option value="us_eagle">US Eagle</option>
                                 </select>
                             </td>
                         </tr>
                         <tr>
                             <td>Purchase Date</td>
                             <td>
-                                <input type="date" name="purchase_date" value="04 March 2015" />
+                                <input type="date" id="purchase_date" />
                             </td>
                         </tr>
                         <tr>
@@ -100,11 +100,11 @@
                         </tr>
                         <tr>
                             <td>Gold %</td>
-                            <td>0.999</td>
+                            <td id="percent">0.999</td>
                         </tr>
                         <tr>
                             <td>Weight/unit (g)</td>
-                            <td>1.244</td>
+                            <td id="grams">1.244</td>
                         </tr>
                         <tr>
                             <td>Gold g/u</td>
@@ -123,21 +123,22 @@
                             <td><strong id="total">0.00</strong></td>
                         </tr>
                     </table>
-                    <a href="wire3.html"><span id="save">Save to My Stack</span></a>
+                    <a><span id="save" onclick="saveToStack()">Save to My Stack</span></a>
                     <a href="wire3.html"><span id="cancel">Cancel</span></a>
                 </section>
             </div>
         </section>
     </section>
-    <script type="text/javascript">
-    loadFooter();
-    </script>
+
+    <script type="text/javascript">loadFooter();</script>
+    <script type="text/javascript" src="js/parse-1.4.2.min.js"></script>
+    <script src="./js/wire5.js"></script>
 </body>
 
 <script type="text/javascript">
-    var goldArr = [["US Gold Eagle", "pee", "doodle"], ["val1","val2","val3"]];
-    var silverArr = [["US Silver Eagle", "pee", "doodle"], ["val1","val2","val3"]];
-    var platArr = [["US Platinum Eagle", "pee", "doodle"], ["val1","val2","val3"]];
+    var goldArr = [["US Gold Eagle", "pee", "doodle"], ["US Gold Eagle", "pee", "doodle"]];
+    var silverArr = [["US Silver Eagle", "pee", "doodle"], ["US Gold Eagle", "pee", "doodle"]];
+    var platArr = [["US Platinum Eagle", "pee", "doodle"], ["US Gold Eagle", "pee", "doodle"]];
 
     function emptyList( box ) {
         // Set each option to null thus removing it

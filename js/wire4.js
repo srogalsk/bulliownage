@@ -1,16 +1,13 @@
 Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
     "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
 
-var path = window.location.pathname;
-var page = path.split("/").pop();
+function loadData(id) {
+    alert("ID = " + id);
+    window.location.assign("wire4.html");
+    window.onload = populate(id);
+}
 
-if(page == "wire4.html")
-    loadData();
-
-function loadData() {
-    id = ($(".clickable").attr("id"));
-    alert("ID is: " + ($(".clickable").attr("id")));
-
+function populate(id) {
     alert("Populating Now, the ID is: " + id );
     var user = Parse.User.current();
 
