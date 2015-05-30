@@ -1,21 +1,23 @@
 Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
     "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
 
-var user = Parse.User.current();
+var path = window.location.pathname;
+var page = path.split("/").pop();
 
-var Coin = Parse.Object.extend("Coin");
-var query = new Parse.Query(Coin);
-var coin = new Coin();
+if(page == "wire4.html")
+    loadData();
 
+function loadData() {
+    id = ($(".clickable").attr("id"));
+    alert("ID is: " + ($(".clickable").attr("id")));
 
-$('.clickable').click(function () {
+    alert("Populating Now, the ID is: " + id );
+    var user = Parse.User.current();
 
-    window.location.assign("../wire4.html");
-    window.onload = loadData($(this).id);
-});
+    var Coin = Parse.Object.extend("Coin");
+    var query = new Parse.Query(Coin);
+    var coin = new Coin();
 
-
-function loadDate(id) {
     query.get(id, {
         success: function (coin) {
             // The object was retrieved successfully.
@@ -32,6 +34,7 @@ function loadDate(id) {
             var premium = coin.get("premium");
             var percent = coin.get("percent");
             var grams = coin.get("grams"); //weight per unit
+
 
             $("#displaymetal").text(metal);
             $("#displayname").text(name);
