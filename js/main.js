@@ -98,7 +98,15 @@ function Get(yourPartialUrl, months){
     var d = new Date();
     d.setMonth(d.getMonth() - months);
     var Httpreq = new XMLHttpRequest(); // a new request
-    Httpreq.open("GET",yourPartialUrl + d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + (d.getDate() + 1),false);
+	var date = d.getMonth() + 1;
+	if(date < 10)
+	{
+		Httpreq.open("GET",yourPartialUrl + d.getFullYear() + "-" + ("0" + Number(date)) + "-" + (d.getDate()),false);
+	}
+	else
+	{
+		Httpreq.open("GET",yourPartialUrl + d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + (d.getDate()),false);
+	}
     Httpreq.send(null);
     var json_obj = JSON.parse(Httpreq.responseText); 
     return json_obj;
@@ -227,7 +235,7 @@ $(window).load(function() {
  					pointHighlightFill: pointHighlightFill,
  					pointHighlightStroke: pointHighlightStroke,
  					data: silverDataset
- 				},
+ 				}
  				]
  			};
 
@@ -277,7 +285,7 @@ $(window).load(function() {
 
 			    responsive: true,
 
-			    maintainAspectRatio: false,
+			    maintainAspectRatio: false
 
 
 			};
@@ -367,7 +375,7 @@ $(window).load(function() {
 
 			    responsive: true,
 
-			    maintainAspectRatio: false,
+			    maintainAspectRatio: false
 
 
 			};
