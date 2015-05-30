@@ -350,6 +350,14 @@ $(window).load(function() {
 			var ctx = document.getElementById("total-chart").getContext("2d");
 			var coinChart = new Chart(ctx).Line(data,options);
 			coinChart.update();
+		} else if(page =="wire5.html"){
+			table = document.addEventListener("keyup",
+				function() {
+					var unitPrice = goldGraphData.data[0][1] * document.getElementById("weight").innerHTML +
+							Number(document.getElementById("premium").value);
+					console.log(unitPrice);
+					document.getElementById("total").innerHTML = (unitPrice * document.getElementById("quantity").value).toFixed(2);
+				});
 		}
 	};
 
