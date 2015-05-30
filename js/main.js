@@ -94,15 +94,16 @@ function loadFooter(){
 
 }
 
-function Get(yourPartialUrl){
+function Get(yourPartialUrl, months){
     var d = new Date();
-    d.setMonth(d.getMonth() - 1);
+    d.setMonth(d.getMonth() - months);
     var Httpreq = new XMLHttpRequest(); // a new request
     Httpreq.open("GET",yourPartialUrl + d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + (d.getDate() + 1),false);
     Httpreq.send(null);
     var json_obj = JSON.parse(Httpreq.responseText); 
     return json_obj;
 }     
+
 
 
 $(window).load(function() {
@@ -136,18 +137,34 @@ $(window).load(function() {
  		var pointStroke = "rgba(255,255,255,0.6)";
  		var pointHighlightFill = "#fff";
  		var pointHighlightStroke = "#fff";
-		// 		var goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&collapse=weekly&trim_start=");
-		var goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=");
- 		var goldDataset = [];
- 		var goldLabelset = [];
-
- 		// Grab each data point
-        for(i = Number(goldGraphData.data.length-1); i >= 0; i--){
-          	goldLabelset.push(goldGraphData.data[i][0]);
-            	goldDataset.push(goldGraphData.data[i][1]);
-        }
 
  		if(page == "wire2.html") {
+
+ 		// 	Get Gold Graph Data
+			var goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",2);
+	 		var goldDataset = [];
+	 		var goldLabelset = [];
+	        for(i = 20; i >= 0; i--){
+	          	goldLabelset.push(goldGraphData.data[i][0]);
+	            	goldDataset.push(goldGraphData.data[i][1]);
+	        }
+	    // Get Silver Graph Data
+	        var silverGraphData = Get("https://www.quandl.com/api/v1/datasets/OFDP/SILVER_5.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",2);
+	 		var silverDataset = [];
+	 		var silverLabelset = [];
+	        for(i = 20; i >= 0; i--){
+	          	silverLabelset.push(silverGraphData.data[i][0]);
+	            	silverDataset.push(silverGraphData.data[i][1]*50);
+	        }
+	    // Get Plat Graph Data
+	        var platGraphData = Get("https://www.quandl.com/api/v1/datasets/LPPM/PLAT.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",2);
+	 		var platDataset = [];
+	 		var platLabelset = [];
+	        for(i = Number(20); i >= 0; i--){
+	          	platLabelset.push(platGraphData.data[i][0]);
+	            	platDataset.push(platGraphData.data[i][1]);
+	        }
+
  			var data = {
  				labels: goldLabelset,
  				datasets: [
@@ -182,7 +199,7 @@ $(window).load(function() {
  					data: []
  				},
  				{
- 					label: "1t oz Gold",
+ 					label: "1oz t Gold",
  					fillColor: "rgba(104, 206, 222, 0.05)",
  					strokeColor: "#9FFF98",
  					pointColor: "#9FFF98",
@@ -192,24 +209,24 @@ $(window).load(function() {
  					data: goldDataset
  				},
  				{
- 					label: "1t oz Platinum",
+ 					label: "1oz t Platinum",
  					fillColor: "rgba(104, 206, 222, 0.05)",
  					strokeColor: "#BBF5FF",
  					pointColor: "#BBF5FF",
  					pointStrokeColor: pointStroke,
  					pointHighlightFill: pointHighlightFill,
  					pointHighlightStroke: pointHighlightStroke,
- 					data: []
+ 					data: platDataset
  				},
  				{
- 					label: "1t oz Silver",
+ 					label: "50oz t Silver",
  					fillColor: "rgba(104, 206, 222, 0.05)",
  					strokeColor: "#C29FFF",
  					pointColor: "#C29FFF",
  					pointStrokeColor: pointStroke,
  					pointHighlightFill: pointHighlightFill,
  					pointHighlightStroke: pointHighlightStroke,
- 					data: []
+ 					data: silverDataset
  				},
  				]
  			};
@@ -270,6 +287,14 @@ $(window).load(function() {
 			coinChart.update();
 		}
 		else if(page =="wire3.html"){
+			// 	Get Gold Graph Data
+			var goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",1);
+	 		var goldDataset = [];
+	 		var goldLabelset = [];
+	        for(i = Number(goldGraphData.data.length-1); i >= 0; i--){
+	          	goldLabelset.push(goldGraphData.data[i][0]);
+	            goldDataset.push(goldGraphData.data[i][1]);
+	        }
 			var data = {
 				labels: goldLabelset,
 				datasets: [
@@ -284,7 +309,7 @@ $(window).load(function() {
 					data: []
 				},
 				{
-					label: "1t oz Gold",
+					label: "1oz t Gold",
 					fillColor: "rgba(104, 206, 222, 0.05)",
 					strokeColor: "#9FFF98",
 					pointColor: "#9FFF98",

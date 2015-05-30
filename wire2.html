@@ -50,8 +50,8 @@
                     </div>
                 </section>
                 <section class="market-status">
-                    <div class="market-open">Market is open</div>
-                    <div class="market-time">closes in 3h 36min</div>
+                    <div class="market-open" id="marketStatus">Market is open</div>
+                    <div class="market-time" id="closeTime">closes in 3h 36min</div>
                 </section>
                 <section class="market-list">
 
@@ -70,13 +70,13 @@
                     <section class="market-item-stats">
                         <table>
                             <tr>
-                                <td id="goldHighVal"></td>
-                                <td id="goldLowVal"></td>
+                                <td id="goldBidVal"></td>
+                                <td id="goldAskVal"></td>
                                 <td class="pos-change" id="goldChange"></td>
                             </tr>                    
                             <tr>
-                                <td>High</td>
-                                <td>Low</td>
+                                <td>Bid</td>
+                                <td>Ask</td>
                                 <td>Change</td>
                             </tr>
                         </table>
@@ -98,9 +98,9 @@
                     <section class="market-item-stats">
                         <table>
                             <tr>
-                                <td>16.10</td>
-                                <td>16.50</td>
-                                <td class="neg-change">-0.36</td>
+                                <td id="silverBidVal"></td>
+                                <td id="silverAskVal"></td>
+                                <td class="pos-change" id="silverChange"></td>
                             </tr>                    
                             <tr>
                                 <td>Bid</td>
@@ -124,9 +124,9 @@
                     <section class="market-item-stats">
                         <table>
                             <tr>
-                                <td>1206.10</td>
-                                <td>1207.10</td>
-                                <td class="pos-change">+23.40</td>
+                                <td id="platBidVal"></td>
+                                <td id="platAskVal"></td>
+                                <td class="pos-change" id="platChange"></td>
                             </tr>                    
                             <tr>
                                 <td>Bid</td>
@@ -157,15 +157,15 @@
                     <div class="legend-right-half">      
                         <section class="legend-item">
                             <div class="legend-item-color" id="legend-4"></div>
-                            1t oz Gold
+                            1oz t Gold
                         </section>            
                         <section class="legend-item">
                             <div class="legend-item-color" id="legend-5"></div>
-                            1t oz Platinum
+                            1oz t Platinum
                         </section>            
                         <section class="legend-item">
                             <div class="legend-item-color" id="legend-6"></div>
-                            1t oz Silver
+                            50oz t Silver
                         </section>
                     </div>    
                 </section>
@@ -184,33 +184,75 @@
 </body>
 
 <script>
-        var json_obj_daily=Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=");
-        // Collect Critical Data points
-        var recentVal=json_obj_daily.data[0][1];
-        var recentVal2=json_obj_daily.data[1][1];
-        var datalen=json_obj_daily.data.length;
-        var oldestVal=json_obj_daily.data[datalen-1][1];
+    // Get and populate Gold Data
+        var json_obj_daily=Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=", 1);
 
         // get Change data
-        var change = json_obj_daily.data[0][1] - json_obj_daily.data[1][1];
-        change = Number(Math.round(change+'e'+2)+'e-'+2);
-        var sign3 = (change < 0 ? "" : "+");
-        document.getElementById("goldChange").innerHTML=sign3 + change;
-
-        var max=json_obj_daily.data[0][1];
-        var min=json_obj_daily.data[0][1];
-
-        // Get market high and low values
-        for (i=0; i < json_obj_daily.data.length; i++){
-            if (json_obj_daily.data[i][1] > max){
-                max = json_obj_daily.data[i][1]
-            }
-            if (json_obj_daily.data[i][1] < min){
-                min = json_obj_daily.data[i][1]
-            }
+        var goldChange = json_obj_daily.data[0][1] - json_obj_daily.data[1][1];
+        goldChange = Number(Math.round(goldChange+'e'+2)+'e-'+2);
+        if(goldChange >= 0){ 
+            sign = "+";
         }
-        document.getElementById("goldHighVal").innerHTML = max;
-        document.getElementById("goldLowVal").innerHTML = min;
-    </script>
+        else{
+            sign = "";
+            document.getElementById("goldChange").className = "neg-change";
+        }
+        document.getElementById("goldChange").innerHTML=sign + goldChange;
 
+    // Get and populate Silver Data
+        var silver_json_obj_daily=Get("https://www.quandl.com/api/v1/datasets/OFDP/SILVER_5.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=", 1);
+
+        // get Change data
+        var silverChange = silver_json_obj_daily.data[0][1] - silver_json_obj_daily.data[1][1];
+        silverChange = Number(Math.round(silverChange+'e'+2)+'e-'+2);
+        if(silverChange >= 0){ 
+            sign = "+";
+        }
+        else{
+            sign = "";
+            document.getElementById("silverChange").className = "neg-change";
+        }
+        document.getElementById("silverChange").innerHTML=sign + silverChange;
+
+    // Get and populate Plat Data
+        var plat_json_obj_daily=Get("https://www.quandl.com/api/v1/datasets/LPPM/PLAT.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",1 );
+
+        var platChange = plat_json_obj_daily.data[0][1] - plat_json_obj_daily.data[1][1];
+        platChange = Number(Math.round(platChange+'e'+2)+'e-'+2);
+        if(platChange >= 0){ 
+            sign = "+";
+        }
+        else{
+            sign = "";
+            document.getElementById("platChange").className = "neg-change";
+        }
+        document.getElementById("platChange").innerHTML=sign + platChange;
+
+    </script>
+    <script>
+    // Fill bid and asking prices
+        function getData() {
+            return $.ajax({
+                type: "GET",
+                dataType: 'text',
+                url: "https://cse134b.herokuapp.com/jm",
+                crossDomain : true,
+                xhrFields: {
+                    withCredentials: false
+                }
+            });
+        }
+        function handleData( csvdata ) {
+            var bidAskVals = [];
+            var jsonAB = eval(csvdata);
+            // 0 for gold, 1 for silver, 2 for plat
+            document.getElementById("goldBidVal").innerHTML = jsonAB[0].bid;
+            document.getElementById("goldAskVal").innerHTML = jsonAB[0].ask;
+            document.getElementById("silverBidVal").innerHTML = jsonAB[1].bid;
+            document.getElementById("silverAskVal").innerHTML = jsonAB[1].ask;
+            document.getElementById("platBidVal").innerHTML = jsonAB[2].bid;
+            document.getElementById("platAskVal").innerHTML = jsonAB[2].ask;  
+        }
+        getData().done(handleData);
+    </script>
 </html>
