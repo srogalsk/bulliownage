@@ -383,14 +383,6 @@ $(window).load(function() {
 			var ctx = document.getElementById("total-chart").getContext("2d");
 			var coinChart = new Chart(ctx).Line(data,options);
 			coinChart.update();
-		} else if(page =="wire5.html"){
-			function calc() {
-				var price = document.getElementById("price").innerHTML + Number(document.getElementById("premium").value);
-				var total = (price * document.getElementById("quantity").value).toFixed(2);
-				document.getElementById("total").innerHTML = (isNaN(total) || total < 0)? "Invalid quantity or premium entered" : total;
-			}
-			calc();
-			table = document.addEventListener("keyup", calc);
 		}
 	};
 
