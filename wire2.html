@@ -50,8 +50,8 @@
                     </div>
                 </section>
                 <section class="market-status">
-                    <div class="market-open" id="marketStatus">Market is open</div>
-                    <div class="market-time" id="closeTime">closes in 3h 36min</div>
+                    <div class="market-open" id="marketStatus"></div>
+                    <div class="market-time" id="closeTime"></div>
                 </section>
                 <section class="market-list">
 
@@ -230,6 +230,41 @@
 
     </script>
     <script>
+    // Get Market Status
+    var today = new Date();
+    var tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(9,30,0,0);
+
+    var dayDiff = 0;
+    while(tomorrow.getDay() == 6 || tomorrow.getDay() == 0){
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        dayDiff += 1;
+    }
+    // Can use this to set different market times
+    var opentime = new Date();
+    opentime.setHours(9,30,0,0);
+    var closetime = new Date();
+    closetime.setHours(16,30,0,0);
+
+    if (today > opentime && today < closetime){
+        var hourleft = closetime.getHours() - today.getHours();
+        var minleft = closetime.getMinutes() - today.getMinutes();
+        document.getElementById("marketStatus").innerHTML = "Market is OPENED";
+        document.getElementById("closeTime").innerHTML = "Closes in " + hourleft +"h " + minleft + "min";
+        
+    }
+    else{
+        var hourleft = today.getHours() - tomorrow.getHours();
+        var minleft = tomorrow.getMinutes() - today.getMinutes();
+        hourleft = hourleft + dayDiff*24;
+        document.getElementById("marketStatus").innerHTML = "Market is CLOSED";
+        document.getElementById("closeTime").innerHTML = "Opens in " + hourleft +"h " + minleft + "min";
+    }
+
+
+
+
     // Fill bid and asking prices
         function getData() {
             return $.ajax({
