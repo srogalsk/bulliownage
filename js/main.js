@@ -388,8 +388,8 @@ $(window).load(function() {
 				function() {
 					var unitPrice = goldGraphData.data[0][1] * document.getElementById("weight").innerHTML +
 							Number(document.getElementById("premium").value);
-					console.log(unitPrice);
-					document.getElementById("total").innerHTML = (unitPrice * document.getElementById("quantity").value).toFixed(2);
+					var total = (unitPrice * document.getElementById("quantity").value).toFixed(2);
+					document.getElementById("total").innerHTML = (isNaN(total) || total < 0)? "Invalid quantity or premium entered" : total;
 				});
 		}
 	};
