@@ -184,7 +184,7 @@
 </body>
 
     <script>
-        var json_obj_daily=Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=");
+        var json_obj_daily=Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",1);
         // Collect Critical Data points
         var recentVal=json_obj_daily.data[0][1];
         var recentVal2=json_obj_daily.data[1][1];

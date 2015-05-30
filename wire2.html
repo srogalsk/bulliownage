@@ -50,8 +50,8 @@
                     </div>
                 </section>
                 <section class="market-status">
-                    <div class="market-open">Market is open</div>
-                    <div class="market-time">closes in 3h 36min</div>
+                    <div class="market-open" id="marketStatus">Market is open</div>
+                    <div class="market-time" id="closeTime">closes in 3h 36min</div>
                 </section>
                 <section class="market-list">
 
@@ -157,15 +157,15 @@
                     <div class="legend-right-half">      
                         <section class="legend-item">
                             <div class="legend-item-color" id="legend-4"></div>
-                            1t oz Gold
+                            1oz t Gold
                         </section>            
                         <section class="legend-item">
                             <div class="legend-item-color" id="legend-5"></div>
-                            1t oz Platinum
+                            1oz t Platinum
                         </section>            
                         <section class="legend-item">
                             <div class="legend-item-color" id="legend-6"></div>
-                            1t oz Silver
+                            50oz t Silver
                         </section>
                     </div>    
                 </section>
@@ -185,7 +185,7 @@
 
 <script>
     // Get and populate Gold Data
-        var json_obj_daily=Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=");
+        var json_obj_daily=Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=", 1);
 
         // get Change data
         var goldChange = json_obj_daily.data[0][1] - json_obj_daily.data[1][1];
@@ -200,7 +200,7 @@
         document.getElementById("goldChange").innerHTML=sign + goldChange;
 
     // Get and populate Silver Data
-        var silver_json_obj_daily=Get("https://www.quandl.com/api/v1/datasets/OFDP/SILVER_5.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=");
+        var silver_json_obj_daily=Get("https://www.quandl.com/api/v1/datasets/OFDP/SILVER_5.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=", 1);
 
         // get Change data
         var silverChange = silver_json_obj_daily.data[0][1] - silver_json_obj_daily.data[1][1];
@@ -215,7 +215,7 @@
         document.getElementById("silverChange").innerHTML=sign + silverChange;
 
     // Get and populate Plat Data
-        var plat_json_obj_daily=Get("https://www.quandl.com/api/v1/datasets/LPPM/PLAT.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=");
+        var plat_json_obj_daily=Get("https://www.quandl.com/api/v1/datasets/LPPM/PLAT.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",1 );
 
         var platChange = plat_json_obj_daily.data[0][1] - plat_json_obj_daily.data[1][1];
         platChange = Number(Math.round(platChange+'e'+2)+'e-'+2);
@@ -251,9 +251,7 @@
             document.getElementById("silverBidVal").innerHTML = jsonAB[1].bid;
             document.getElementById("silverAskVal").innerHTML = jsonAB[1].ask;
             document.getElementById("platBidVal").innerHTML = jsonAB[2].bid;
-            document.getElementById("platAskVal").innerHTML = jsonAB[2].ask;
-            return bidAskVals;
-            
+            document.getElementById("platAskVal").innerHTML = jsonAB[2].ask;  
         }
         getData().done(handleData);
     </script>
