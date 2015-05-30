@@ -25,8 +25,6 @@
 
 ToDo
 Refresh and Settings button should do something
-Fix the lists in My Gold/Silver/Platinum
-Search bar should do something
 Dropdown should filter our results based on the type of metal selected
 	For example: if metal is gold, then Type should only show Gold bullion
 Image button needs to either have default pictures or be able to add pics by user
