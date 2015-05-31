@@ -112,9 +112,23 @@ function Get(yourPartialUrl, months){
     Httpreq.send(null);
     var json_obj = JSON.parse(Httpreq.responseText); 
     return json_obj;
-}     
+}    
 
-function parseData(recentVal){
+function parseArrayUpdate(historyArr){
+	Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
+    "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
+
+	var user = Parse.User.current();
+	user.unset("goldHistory");
+	user.save();
+	for (var i = 1; i < historyArr.length ; i++){
+		user.add("goldHistory", historyArr[i]);
+	}
+	user.save();
+} 
+
+
+function parseData(recentVal, callback, metaltype){
 	Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
     "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
 
@@ -124,42 +138,52 @@ function parseData(recentVal){
 	var Coin = Parse.Object.extend("Coin");
 	var query = new Parse.Query(Coin);
 	query.equalTo("owner", user.id);
-	query.equalTo("metal", "Gold");
+	query.equalTo("metal", metaltype);
 	var coins = new Coin();
 	var totalVal = 0;
-	var Ghistory = [];
+	
 
 	query.find({
-  	success: function(coins) {
-    // Do something with the returned Parse.Object values
-    for (var i = 0; i < coins.length; i++) {
-      var coin = coins[i];
+	  	success: function(coins) {
+	    // Do something with the returned Parse.Object values
+	    for (var i = 0; i < coins.length; i++) {
+	      var coin = coins[i];
 
-      var name = coin.get("name");
-      var quantity = coin.get("quantity");
-      var weight = coin.get("grams");
-      var percent = coin.get("percent");
-      var premium = coin.get("premium");
+	      var name = coin.get("name");
+	      var quantity = coin.get("quantity");
+	      var weight = coin.get("grams");
+	      var percent = coin.get("percent");
+	      var premium = coin.get("premium");
 
-      var goldperunit = Math.round((weight * percent) * 10000) / 10000;
-      var ozt = Math.round((goldperunit / (31.1034768)) * 10000) / 10000;
-      var price = ((ozt*recentVal) + premium)* quantity;
-      totalVal += Number(Math.round(price+'e'+2)+'e-'+2);
-    }
+	      var goldperunit = Math.round((weight * percent) * 10000) / 10000;
+	      var ozt = Math.round((goldperunit / (31.1034768)) * 10000) / 10000;
+	      var price = ((ozt*recentVal) + premium)* quantity;
+	      totalVal += Number(Math.round(price+'e'+2)+'e-'+2);
+	    }
 
-    Ghistory = user.get("goldHistory");
-    Ghistory.push(totalVal);
-    console.log(Ghistory);
-  },
-  error: function(error) {
-    alert("Error: " + error.code + " " + error.message);
-  }
+	    var historyArr = [];
 
-});
-	console.log(Ghistory);
-	return Ghistory;
-
+	    if(metaltype == "Gold"){
+	    	historyArr = user.get("goldHistory");
+	    }
+	    else if(metaltype == "Silver"){
+	    	historyArr = user.get("silverHistory");
+	    }
+	    else {
+	    	historyArr = user.get("platHistory");
+	    }
+	    
+	    historyArr.push(totalVal);
+	    callback(historyArr);
+	  },
+	  error: function(error) {
+	    alert("Error: " + error.code + " " + error.message);
+	  }
+	});
 }
+
+
+
 
 $(window).load(function() {
 
@@ -192,8 +216,13 @@ $(window).load(function() {
  		var pointStroke = "rgba(255,255,255,0.6)";
  		var pointHighlightFill = "#fff";
  		var pointHighlightStroke = "#fff";
+ 		var goldHistory = [];
+ 		var silverHistory = [];
+ 		var platHistory = [];
 
  		if(page == "wire2.html") {
+ 			var ctxGold = document.getElementById("total-chart").getContext("2d");
+
  		// 	Get Gold Graph Data
 			var goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
 	 		var goldDataset = [];
@@ -202,6 +231,18 @@ $(window).load(function() {
 	          	goldLabelset.push(goldGraphData.data[i][0]);
                 goldDataset.push(Number(Math.round(goldGraphData.data[i][1]+'e'+2)+'e-'+2));
 	        }
+
+	        
+			function callback(historyUpdate){
+				goldHistory = historyUpdate;
+				data.datasets[0].data = goldHistory;
+				//var coinChartGold =  new Chart(ctxGold).Line(data,options);
+				//coinChartGold.update();
+				parseArrayUpdate(goldHistory);
+			}
+	 		parseData(goldGraphData.data[0][1], callback, "Gold");
+
+
 	    // Get Silver Graph Data
 	        var silverGraphData = Get("https://www.quandl.com/api/v1/datasets/OFDP/SILVER_5.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
 	 		var silverDataset = [];
@@ -210,6 +251,15 @@ $(window).load(function() {
 	          	silverLabelset.push(silverGraphData.data[i][0]);
                 silverDataset.push(Number(Math.round((silverGraphData.data[i][1]*50)+'e'+2)+'e-'+2));
 	        }
+
+	        function callback1(historyUpdate){
+				silverHistory = historyUpdate;
+				data.datasets[2].data = silverHistory;
+				//var coinChartGold =  new Chart(ctxGold).Line(data,options);
+				//coinChartGold.update();
+				parseArrayUpdate(silverHistory);
+			}
+	        parseData(silverGraphData.data[0][1], callback1, "Silver");
 	    // Get Plat Graph Data
 	        var platGraphData = Get("https://www.quandl.com/api/v1/datasets/LPPM/PLAT.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
 	 		var platDataset = [];
@@ -218,6 +268,15 @@ $(window).load(function() {
 	            	platLabelset.push(platGraphData.data[i][0]);
                 platDataset.push(Number(Math.round(platGraphData.data[i][1]+'e'+2)+'e-'+2));
 	        }
+
+	        function callback2(historyUpdate){
+				platHistory = historyUpdate;
+				data.datasets[1].data = platHistory;
+				var coinChartGold =  new Chart(ctxGold).Line(data,options);
+				coinChartGold.update();
+				parseArrayUpdate(platHistory);
+			}
+	        parseData(platGraphData.data[0][1], callback2, "Platinum");
 
  			var data = {
  				labels: goldLabelset,
@@ -312,7 +371,7 @@ $(window).load(function() {
 			    pointDotRadius : 4,
 
 			    //Number - Pixel width of point dot stroke
-			    pointDotStrokeWidth : 1,
+			    pointDotStrokeWidth : 2,
 
 			    //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
 			    pointHitDetectionRadius : 20,
@@ -336,19 +395,28 @@ $(window).load(function() {
 
 			};
 
-			var ctx = document.getElementById("total-chart").getContext("2d");
-			var coinChart = new Chart(ctx).Line(data,options);
-			coinChart.update();
+			//var coinChart = new Chart(ctx).Line(data,options);
+			//coinChart.update();
 		}
 		else if(page =="wire3.html"){
+
+			var ctxGold = document.getElementById("total-chart").getContext("2d");
+			function callback(goldHistoryUpdate){
+				goldHistory = goldHistoryUpdate;
+				data.datasets[0].data = goldHistory;
+				var coinChartGold =  new Chart(ctxGold).Line(data,options);
+				coinChartGold.update();
+				parseArrayUpdate(goldHistory);
+			}
+
 			// 	Get Gold Graph Data
+			var goldHistory = [];
+
 			var goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
 	 		var goldDataset = [];
 	 		var goldLabelset = [];
 
-	 		var goldHistory = parseData(goldGraphData.data[0][1]);
-			console.log(goldHistory);
-			console.log(goldHistory.length);
+	 		parseData(goldGraphData.data[0][1], callback, "Gold");
 
 	        for(i = 31; i >= 0; i--){
 	          	goldLabelset.push(goldGraphData.data[i][0]);
@@ -379,6 +447,7 @@ $(window).load(function() {
 				}
 				]
 			};
+
 
 			var options = {
 
@@ -431,9 +500,8 @@ $(window).load(function() {
 
 			};
 
-			var ctx = document.getElementById("total-chart").getContext("2d");
-			var coinChart = new Chart(ctx).Line(data,options);
-			coinChart.update();
+			//var coinChartGold = new Chart(ctxGold).Line(data,options);
+			//coinChartGold.update();
 		}
 	};
 

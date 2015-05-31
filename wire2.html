@@ -254,8 +254,7 @@
             
         }
         else{
-            console.log(today);
-            console.log(tomorrow);
+            console.log(dayDiff);
             var hourleft = 0;
             if (dayDiff > 0){
                 hourleft = 24 - today.getHours();
@@ -263,7 +262,7 @@
                 hourleft += 9;
             }  
             else{
-                hourleft = 9 - today.getHours();
+                hourleft = 24 + 9 - today.getHours();
             } 
             var minleft = tomorrow.getMinutes() - today.getMinutes();
             if (minleft < 0){
