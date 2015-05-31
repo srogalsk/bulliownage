@@ -110,9 +110,22 @@ function Get(yourPartialUrl, months){
     Httpreq.send(null);
     var json_obj = JSON.parse(Httpreq.responseText); 
     return json_obj;
-}     
+}    
 
-function parseData(recentVal){
+function parseArrayUpdate(historyArr){
+	Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
+    "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
+
+	var user = Parse.User.current();
+	user.unset("goldHistory");
+	user.save();
+	console.log(historyArr);
+	user.add("goldHistory", historyArr);
+	user.save();
+} 
+
+
+function parseData(recentVal, callback){
 	Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
     "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
 
@@ -125,39 +138,37 @@ function parseData(recentVal){
 	query.equalTo("metal", "Gold");
 	var coins = new Coin();
 	var totalVal = 0;
-	var Ghistory = [];
+	
 
 	query.find({
-  	success: function(coins) {
-    // Do something with the returned Parse.Object values
-    for (var i = 0; i < coins.length; i++) {
-      var coin = coins[i];
+	  	success: function(coins) {
+	    // Do something with the returned Parse.Object values
+	    for (var i = 0; i < coins.length; i++) {
+	      var coin = coins[i];
 
-      var name = coin.get("name");
-      var quantity = coin.get("quantity");
-      var weight = coin.get("grams");
-      var percent = coin.get("percent");
-      var premium = coin.get("premium");
+	      var name = coin.get("name");
+	      var quantity = coin.get("quantity");
+	      var weight = coin.get("grams");
+	      var percent = coin.get("percent");
+	      var premium = coin.get("premium");
 
-      var goldperunit = Math.round((weight * percent) * 10000) / 10000;
-      var ozt = Math.round((goldperunit / (31.1034768)) * 10000) / 10000;
-      var price = ((ozt*recentVal) + premium)* quantity;
-      totalVal += Number(Math.round(price+'e'+2)+'e-'+2);
-    }
+	      var goldperunit = Math.round((weight * percent) * 10000) / 10000;
+	      var ozt = Math.round((goldperunit / (31.1034768)) * 10000) / 10000;
+	      var price = ((ozt*recentVal) + premium)* quantity;
+	      totalVal += Number(Math.round(price+'e'+2)+'e-'+2);
+	    }
 
-    Ghistory = user.get("goldHistory");
-    Ghistory.push(totalVal);
-    console.log(Ghistory);
-  },
-  error: function(error) {
-    alert("Error: " + error.code + " " + error.message);
-  }
-
-});
-	console.log(Ghistory);
-	return Ghistory;
+	    goldHistory = user.get("goldHistory");
+	    goldHistory.push(totalVal);
+	    callback(goldHistory);
+	  },
+	  error: function(error) {
+	    alert("Error: " + error.code + " " + error.message);
+	  }
+	});
 
 }
+
 
 $(window).load(function() {
 
@@ -339,14 +350,25 @@ $(window).load(function() {
 			coinChart.update();
 		}
 		else if(page =="wire3.html"){
+
+			function callback(goldHistoryUpdate){
+				console.log("CALLBACK");
+				console.log(goldHistoryUpdate);
+				goldHistory = goldHistoryUpdate;
+				data.datasets[0].data = goldHistory;
+				var coinChartGold = new Chart(ctxGold).Line(data,options);
+				coinChartGold.update();
+				parseArrayUpdate(goldHistory);
+			}
+
 			// 	Get Gold Graph Data
+			var goldHistory = [];
+
 			var goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
 	 		var goldDataset = [];
 	 		var goldLabelset = [];
 
-	 		var goldHistory = parseData(goldGraphData.data[0][1]);
-			console.log(goldHistory);
-			console.log(goldHistory.length);
+	 		parseData(goldGraphData.data[0][1], callback);
 
 	        for(i = 31; i >= 0; i--){
 	          	goldLabelset.push(goldGraphData.data[i][0]);
@@ -429,9 +451,9 @@ $(window).load(function() {
 
 			};
 
-			var ctx = document.getElementById("total-chart").getContext("2d");
-			var coinChart = new Chart(ctx).Line(data,options);
-			coinChart.update();
+			var ctxGold = document.getElementById("total-chart").getContext("2d");
+			var coinChartGold = new Chart(ctxGold).Line(data,options);
+			coinChartGold.update();
 		}
 	};
 

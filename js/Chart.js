@@ -1316,3 +1316,205 @@
         }
     })
 }.call(this);
+ Chart.types.Line.extend({
+        // Passing in a name registers this chart in the Chart namespace in the same way
+        name: "MissingLine",
+        initialize: function(data) {
+            var helpers = Chart.helpers;
+            //Declare the extension of the default point, to cater for the options passed in to the constructor
+            this.PointClass = Chart.Point.extend({
+                strokeWidth: this.options.pointDotStrokeWidth,
+                radius: this.options.pointDotRadius,
+                display: this.options.pointDot,
+                hitDetectionRadius: this.options.pointHitDetectionRadius,
+                ctx: this.chart.ctx,
+                inRange: function(mouseX) {
+                    return (Math.pow(mouseX - this.x, 2) < Math.pow(this.radius + this.hitDetectionRadius, 2));
+                }
+            });
+
+            this.datasets = [];
+
+            //Set up tooltip events on the chart
+            if (this.options.showTooltips) {
+                helpers.bindEvents(this, this.options.tooltipEvents, function(evt) {
+                    var activePoints = (evt.type !== 'mouseout') ? this.getPointsAtEvent(evt) : [];
+                    this.eachPoints(function(point) {
+                        point.restore(['fillColor', 'strokeColor']);
+                    });
+                    helpers.each(activePoints, function(activePoint) {
+                        activePoint.fillColor = activePoint.highlightFill;
+                        activePoint.strokeColor = activePoint.highlightStroke;
+                    });
+                    this.showTooltip(activePoints);
+                });
+            }
+
+            //Iterate through each of the datasets, and build this into a property of the chart
+            helpers.each(data.datasets, function(dataset) {
+
+                var datasetObject = {
+                    label: dataset.label || null,
+                    fillColor: dataset.fillColor,
+                    strokeColor: dataset.strokeColor,
+                    pointColor: dataset.pointColor,
+                    pointStrokeColor: dataset.pointStrokeColor,
+                    points: []
+                };
+
+                this.datasets.push(datasetObject);
+
+
+                helpers.each(dataset.data, function(dataPoint, index) {
+                    /**
+                     *
+                     * Check for datapoints that are null
+                     */
+                    if (helpers.isNumber(dataPoint) || dataPoint === null) {
+                        //Add a new point for each piece of data, passing any required data to draw.
+                        datasetObject.points.push(new this.PointClass({
+                            /**
+                             * add ignore field so we can skip them later
+                             *
+                             */
+                            ignore: dataPoint === null,
+                            value: dataPoint,
+                            label: data.labels[index],
+                            datasetLabel: dataset.label,
+                            strokeColor: dataset.pointStrokeColor,
+                            fillColor: dataset.pointColor,
+                            highlightFill: dataset.pointHighlightFill || dataset.pointColor,
+                            highlightStroke: dataset.pointHighlightStroke || dataset.pointStrokeColor
+                        }));
+                    }
+                }, this);
+
+                this.buildScale(data.labels);
+
+
+                this.eachPoints(function(point, index) {
+                    helpers.extend(point, {
+                        x: this.scale.calculateX(index),
+                        y: this.scale.endPoint
+                    });
+                    point.save();
+                }, this);
+
+            }, this);
+
+
+            this.render();
+        },
+
+        draw: function(ease) {
+            var helpers = Chart.helpers;
+            var easingDecimal = ease || 1;
+            this.clear();
+
+            var ctx = this.chart.ctx;
+
+            this.scale.draw(easingDecimal);
+
+
+            helpers.each(this.datasets, function(dataset) {
+
+                //Transition each point first so that the line and point drawing isn't out of sync
+                //We can use this extra loop to calculate the control points of this dataset also in this loop
+
+                helpers.each(dataset.points, function(point, index) {
+                    point.transition({
+                        y: this.scale.calculateY(point.value),
+                        x: this.scale.calculateX(index)
+                    }, easingDecimal);
+
+                }, this);
+
+
+                // Control points need to be calculated in a seperate loop, because we need to know the current x/y of the point
+                // This would cause issues when there is no animation, because the y of the next point would be 0, so beziers would be skewed
+                if (this.options.bezierCurve) {
+                    helpers.each(dataset.points, function(point, index) {
+                        //If we're at the start or end, we don't have a previous/next point
+                        //By setting the tension to 0 here, the curve will transition to straight at the end
+                        if (index === 0) {
+                            point.controlPoints = helpers.splineCurve(point, point, dataset.points[index + 1], 0);
+                        } else if (index >= dataset.points.length - 1) {
+                            point.controlPoints = helpers.splineCurve(dataset.points[index - 1], point, point, 0);
+                        } else {
+                            point.controlPoints = helpers.splineCurve(dataset.points[index - 1], point, dataset.points[index + 1], this.options.bezierCurveTension);
+                        }
+                    }, this);
+                }
+
+
+                //Draw the line between all the points
+                ctx.lineWidth = this.options.datasetStrokeWidth;
+                ctx.strokeStyle = dataset.strokeColor;
+
+
+                var penDown = false;
+                var start = null
+
+                helpers.each(dataset.points, function(point, index) {
+
+                    /**
+                     * no longer draw if the last point was ignore (as we don;t have anything to draw from)
+                     * or if this point is ignore
+                     * or if it's the first
+                     */
+                    if (!point.ignore && !penDown) {
+                        ctx.beginPath();
+                        penDown = true;
+                        start = point;
+                    }
+                    if (index > 0 && !dataset.points[index - 1].ignore && !point.ignore) {
+                        if (this.options.bezierCurve) {
+                            ctx.bezierCurveTo(
+                                dataset.points[index - 1].controlPoints.outer.x,
+                                dataset.points[index - 1].controlPoints.outer.y,
+                                point.controlPoints.inner.x,
+                                point.controlPoints.inner.y,
+                                point.x,
+                                point.y
+                            );
+                        } else {
+                            ctx.lineTo(point.x, point.y);
+                        }
+
+                    } else if (index === 0 || dataset.points[index - 1].ignore) {
+                        ctx.moveTo(point.x, point.y);
+                    }
+
+                    if (((dataset.points.length > index + 1 && dataset.points[index + 1].ignore) ||
+                        dataset.points.length == index + 1) && !point.ignore) {
+                        ctx.stroke();
+
+                        if (this.options.datasetFill) {
+                            ctx.lineTo(point.x, this.scale.endPoint);
+                            ctx.lineTo(start.x, this.scale.endPoint);
+                            ctx.fillStyle = dataset.fillColor;
+                            ctx.closePath();
+                            if (point.x != start.x) {
+                                ctx.fill();
+                            }
+                        }
+                        penDown = false;
+                    }
+
+                }, this);
+
+
+                //Now draw the points over the line
+                //A little inefficient double looping, but better than the line
+                //lagging behind the point positions
+                helpers.each(dataset.points, function(point) {
+                    /**
+                     * don't draw the dot if we are ignoring
+                     */
+                    if (!point.ignore)
+                        point.draw();
+                });
+
+            }, this);
+        }
+    });
