@@ -136,7 +136,6 @@ query.find({
 //$(".clickable").click(loadData((this.attr(id))));
 
 function loadData(id) {
-    alert("ID = " + id);
     window.location.assign("wire4.html" + "?" + id);
 }
 
