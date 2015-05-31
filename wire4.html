@@ -36,19 +36,6 @@
                 </a>
                 ITEM DETAIL
             </div>
-            <div class="coin_main">
-                <a href="wire3.html">
-                    <div class="breadcrumb">
-                        <svg class="icon icon-play-arrow-rev">
-                            <symbol id="icon-play-arrow" viewBox="0 0 1024 1024">
-                                <title>play-arrow</title>
-                                <path class="path1" d="M682.667 213.333v597.333l-469.333-298.667z"></path>
-                            </symbol>
-                            <use xlink:href="#icon-play-arrow"></use>
-                        </svg>
-                        Item Detail
-                    </div>
-                </a>
                 <section class="coin_image">
                     <div class="img_box">
                         <div class="img_circle"></div>
@@ -66,45 +53,47 @@
                         </tr>
                         <tr>
                             <td>Purchase Date</td>
-                            <td id="displaypurchasedate"></td>
+			                <td><input id="editpurchasedate" type="date"/></td>
                         </tr>
                         <tr>
                             <td>Qty.</td>
-                            <td id="displayquantity"></td>
+                            <td><input id="editquantity"/></td>
                         </tr>
                         <tr>
                             <td>Premium</td>
-                            <td id="displaypremium"></td>
+                            <td><input id="editpremium"/></td>
                         </tr>
-                        <tr>
+<!--                        <tr>
                             <td>Unit Price</td>
                             <td id="displayunitprice"></td>
-                        </tr>
+                        </tr>-->
                         <tr>
                             <td>Gold %</td>
                             <td id="displaypercent"></td>
                         </tr>
                         <tr>
                             <td>Weight/unit (g)</td>
-                            <td id="displayweightperunit">1.244</td>
+                            <td id="displayweightperunit"></td>
                         </tr>
                         <tr>
                             <td>Gold g/u</td>
-                            <td id="displaygoldperunit">1.244</td>
+                            <td id="displaygoldperunit"></td>
                         </tr>
                         <tr>
                             <td>Gold ozt/u</td>
-                            <td id="displayozt">0.0400</td>
+                            <td id="displayozt"></td>
                         </tr>
                         <tr>
                             <td>Total au (ozt)</td>
-                            <td id="displaytotalozt">0.0400</td>
+                            <td id="displaytotalozt"></td>
                         </tr>
-                        <tr>
+<!--                        <tr>
                             <td><strong>TOTAL</strong></td>
-                            <td id="displaytotalprice"><strong>1199.10</strong></td>
-                        </tr>
+                            <td id="totalprice"><strong></strong></td>
+                        </tr>-->
                     </table>
+                    <a><span id="save" onclick="updateToStack()">Save to My Stack</span></a>
+                    <a href="wire3.html"><span id="cancel">Cancel</span></a>
                 </section>
             </div>
         </section>
