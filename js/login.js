@@ -19,11 +19,14 @@ $(document).ready(function () {
         console.log("Password is: " + password);
 
 
+
+
         Parse.User.logIn(username, password, {
             success: function(user) {
                 // Login successful!
                 console.log("Login Worked");
                 window.location.href = "wire2.html";
+
                 },
             error: function(user, error) {
                 // Login failed!
