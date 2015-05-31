@@ -159,17 +159,21 @@ function parseData(recentVal, callback, metaltype){
 	      var ozt = Math.round((goldperunit / (31.1034768)) * 10000) / 10000;
 	      var price = ((ozt*recentVal) + premium)* quantity;
 	      totalVal += Number(Math.round(price+'e'+2)+'e-'+2);
+
 	    }
 
 	    var historyArr = [];
 
 	    if(metaltype == "Gold"){
+	    	console.log("using gold");
 	    	historyArr = user.get("goldHistory");
 	    }
 	    else if(metaltype == "Silver"){
+	    	console.log("using silver");
 	    	historyArr = user.get("silverHistory");
 	    }
 	    else {
+	    	console.log("using plat");
 	    	historyArr = user.get("platHistory");
 	    }
 	    
@@ -183,6 +187,34 @@ function parseData(recentVal, callback, metaltype){
 }
 
 
+function timeCheck()
+{
+	Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
+		"nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
+
+	var user = Parse.User.current();
+
+	var time = user.get("time");
+	var d = new Date();
+	var currTime = d.getTime();
+	console.log("The current time is: " + currTime);
+	console.log("The old time is: " + time);
+	console.log("Their difference is: " + (currTime - time));
+	console.log("Is their difference greater than 24 hours: " + ((currTime-time) >= 86400000));
+
+	if((currTime - time) >= 86400000)
+	{
+		user.set("time", currTime);
+		user.save();
+		console.log("The time has been updated")
+		return true;
+	}
+	else
+	{
+		console.log("No need to update time right now");
+		return false;
+	}
+}
 
 
 $(window).load(function() {
@@ -207,36 +239,6 @@ $(window).load(function() {
 	 //});
 
 
-	function timeCheck()
-	{
-		Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
-			"nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
-
-		var user = Parse.User.current();
-
-		var time = user.get("time");
-		var d = new Date();
-		var currTime = d.getTime();
-		console.log("The current time is: " + currTime);
-		console.log("The old time is: " + time);
-		console.log("Their difference is: " + (currTime - time));
-		console.log("Is their difference greater than 24 hours: " + ((currTime-time) >= 86400000));
-
-		if((currTime - time) >= 86400000)
-		{
-			user.set("time", currTime);
-			user.save();
-			console.log("The time has been updated")
-			return true;
-		}
-		else
-		{
-			console.log("No need to update time right now");
-			return false;
-		}
-	}
-
-
 
 	/* * * * * * * * * * * * * *
 	 *                         *
@@ -248,11 +250,11 @@ $(window).load(function() {
  		var pointStroke = "rgba(255,255,255,0.6)";
  		var pointHighlightFill = "#fff";
  		var pointHighlightStroke = "#fff";
- 		var goldHistory = [];
- 		var silverHistory = [];
- 		var platHistory = [];
 
  		if(page == "wire2.html") {
+ 			var goldHistory = [];
+	 		var silverHistory = [];
+	 		var platHistory = [];
  			var ctxGold = document.getElementById("total-chart").getContext("2d");
 
  		// 	Get Gold Graph Data
@@ -270,7 +272,9 @@ $(window).load(function() {
 				data.datasets[0].data = goldHistory;
 				//var coinChartGold =  new Chart(ctxGold).Line(data,options);
 				//coinChartGold.update();
-				parseArrayUpdate(goldHistory);
+				if(timeCheck()){
+					parseArrayUpdate(goldHistory);
+				}
 			}
 	 		parseData(goldGraphData.data[0][1], callback, "Gold");
 
@@ -289,7 +293,9 @@ $(window).load(function() {
 				data.datasets[2].data = silverHistory;
 				//var coinChartGold =  new Chart(ctxGold).Line(data,options);
 				//coinChartGold.update();
-				parseArrayUpdate(silverHistory);
+				if(timeCheck()){
+					parseArrayUpdate(silverHistory);
+				}
 			}
 	        parseData(silverGraphData.data[0][1], callback1, "Silver");
 	    // Get Plat Graph Data
@@ -306,7 +312,9 @@ $(window).load(function() {
 				data.datasets[1].data = platHistory;
 				var coinChartGold =  new Chart(ctxGold).Line(data,options);
 				coinChartGold.update();
-				parseArrayUpdate(platHistory);
+				if(timeCheck()){
+					parseArrayUpdate(platHistory);
+				}
 			}
 	        parseData(platGraphData.data[0][1], callback2, "Platinum");
 
@@ -434,11 +442,14 @@ $(window).load(function() {
 
 			var ctxGold = document.getElementById("total-chart").getContext("2d");
 			function callback(goldHistoryUpdate){
+				console.log(goldHistoryUpdate);
 				goldHistory = goldHistoryUpdate;
 				data.datasets[0].data = goldHistory;
 				var coinChartGold =  new Chart(ctxGold).Line(data,options);
 				coinChartGold.update();
-				parseArrayUpdate(goldHistory);
+				if(timeCheck()){
+					parseArrayUpdate(goldHistory);
+				}
 			}
 
 			// 	Get Gold Graph Data
