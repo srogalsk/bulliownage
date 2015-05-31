@@ -49,30 +49,51 @@ changeList = function () {
     fillList(document.getElementById("type"),newlist);
 }
 
+function invalid() {
+	var quantity = Number(document.getElementById("quantity").value);
+    var premium = Number(document.getElementById("premium").value);
+    	var percent = Number(document.getElementById("percent").innerHTML);
+    var unitgrams = Number(document.getElementById("unitgrams").innerHTML);
+    var unitgoldgrams = percent * unitgrams;
+    var unitgoldozt = Number(0.0321507466 * unitgoldgrams);
+    var totalgoldozt = unitgoldozt * quantity;
+    document.getElementById("ozt").innerHTML = unitgoldozt.toFixed(2);
+    document.getElementById("grams").innerHTML = unitgoldgrams.toFixed(2);
+    var invalid = isNaN(quantity) || quantity < 1 || isNaN(premium) || premium < 0;
+    document.getElementById("total").innerHTML = invalid? "N/A" : totalgoldozt.toFixed(2);
+    return invalid;
+}
+
 function saveToStack() {
 
-    var user = Parse.User.current();
-    var Coin = Parse.Object.extend("Coin");
-    var coin = new Coin();
+    if (!invalid()) {
+        var user = Parse.User.current();
+        var Coin = Parse.Object.extend("Coin");
+        var coin = new Coin();
 
-    var select = document.getElementById("category");
-    coin.set("metal", select.options[select.selectedIndex].text);
-    coin.set("name", document.getElementById("type").value);
-    coin.set("purchasedAt", new Date(document.getElementById("purchase_date").value));
-    coin.set("quantity", Number(document.getElementById("quantity").value));
-    coin.set("premium", Number(document.getElementById("premium").value));
-    coin.set("percent", Number(document.getElementById("percent").innerHTML));
-    coin.set("grams", Number(document.getElementById("grams").innerHTML));
-    coin.set("owner", user.id);
+        var select = document.getElementById("category");
+        coin.set("metal", select.options[select.selectedIndex].text);
+        coin.set("name", document.getElementById("type").value);
+        coin.set("purchasedAt", new Date(document.getElementById("purchase_date").value));
+        coin.set("quantity", Number(document.getElementById("quantity").value));
+        coin.set("premium", Number(document.getElementById("premium").value));
+        coin.set("percent", Number(document.getElementById("percent").innerHTML));
+        coin.set("grams", Number(document.getElementById("grams").innerHTML));
+        coin.set("owner", user.id);
 
-    coin.save(null, {
-        success: function(coin) {
-            window.location = "wire3.html";
-            alert("Bullion Added Successfully!");
-        },
-        error: function(coin, error) {
-            alert("Invalid Bullion Information");
-        }
-    });
-
+        coin.save(null, {
+            success: function(coin) {
+                window.location = "wire3.html";
+                alert("Bullion added successfully");
+            },
+            error: function(coin, error) {
+                alert("Invalid information");
+            }
+        });
+    } else {
+        alert("Invalid information");
+    }
 }
+
+invalid();
+table = document.addEventListener("keyup", invalid);

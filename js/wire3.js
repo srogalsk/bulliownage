@@ -103,19 +103,23 @@ query.find({
       var row = table.insertRow(i+1);
       row.setAttribute("id", coin.id);
       row.setAttribute("class", "clickable");
-      row.setAttribute("onClick", "loadData(\"" + coin.id + "\")");
       var cell0 = row.insertCell(0);
       cell0.setAttribute("class", "stack_img_col");
       cell0.innerHTML = "<div class='coin_mini'></div>";
       var cell1 = row.insertCell(1);
+      cell1.setAttribute("onClick", "loadData(\"" + coin.id + "\")");
       cell1.innerHTML = name;
       var cell2 = row.insertCell(2);
+      cell2.setAttribute("onClick", "loadData(\"" + coin.id + "\")");
       cell2.innerHTML = quantity;
       var cell3 = row.insertCell(3);
+      cell3.setAttribute("onClick", "loadData(\"" + coin.id + "\")");
       cell3.innerHTML = weight;
       var cell4 = row.insertCell(4);
+      cell4.setAttribute("onClick", "loadData(\"" + coin.id + "\")");
       cell4.innerHTML = percent;
       var cell5 = row.insertCell(5);
+      cell5.setAttribute("onClick", "loadData(\"" + coin.id + "\")");
 
       var goldperunit = Math.round((weight * percent) * 10000) / 10000;
       var ozt = Math.round((goldperunit / (31.1034768)) * 10000) / 10000;
@@ -124,7 +128,41 @@ query.find({
       totalVal += Number(Math.round(price+'e'+2)+'e-'+2);
       document.getElementById("total-dollars").innerHTML = "$ "+ Number(Math.round(totalVal+'e'+2)+'e-'+2);
       //console.log(name);
+      var cell6 = row.insertCell(6);
+      cell6.setAttribute("class", "trashcol");
+      var child1 = document.createElement("span");
+      child1 = cell6.appendChild(child1);
+      child1.setAttribute("class", "trash");
+      var child2 = document.createElement("img");
+      child2 = child1.appendChild(child2);
+      child2.setAttribute("class", "trashicon");
+      child2.setAttribute("src", "assets/trashcan.png");
+      child2.setAttribute("height", "20px");
+      child2.setAttribute("width", "20px");
+      child2.setAttribute("onClick", "deleteCoin(\"" + coin.id + "\")");
+
+      var sure = document.createElement("span");
+      sure = child1.appendChild(sure);
+      sure.style.display = "none";
+      sure.setAttribute("class", "sure");
+      sure.innerHTML="Are you sure?";
+
+      var br_child = document.createElement("br");
+      br_child=sure.appendChild(br_child);
+
+      var yes_child = document.createElement("span");
+      yes_child=sure.appendChild(yes_child);
+      yes_child.setAttribute("class", "yes");
+      yes_child.innerHTML = "yes ";
+
+
+      var no_child = document.createElement("span");
+      yes_child=sure.appendChild(no_child);
+      yes_child.setAttribute("class", "no");
+      yes_child.innerHTML = " no";
+
     }
+
   },
   error: function(error) {
     alert("Error: " + error.code + " " + error.message);
@@ -133,10 +171,21 @@ query.find({
 });
 
 /* LOADING NEW PAGE */
-//$(".clickable").click(loadData((this.attr(id))));
 
 function loadData(id) {
     window.location.assign("wire4.html" + "?" + id);
 }
 
+
+$("#gold_table").on("click", ".no", function () {
+    var x = this.parentNode;
+    x.style.display="none";
+    x.parentNode.childNodes[0].style.display="inline";
+
+});
+
+$("#gold_table").on("click", ".yes", function () {
+    var x = this.parentNode.parentNode.parentNode.parentNode;
+    $("#" + x.id).fadeOut();
+});
 
