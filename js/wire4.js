@@ -9,10 +9,10 @@ function invalid() {
     var unitgoldgrams = percent * unitgrams;
     var unitgoldozt = Number(0.0321507466 * unitgoldgrams);
     var totalgoldozt = unitgoldozt * quantity;
+    document.getElementById("displayozt").innerHTML = unitgoldozt.toFixed(2);
+    document.getElementById("displaygoldperunit").innerHTML = unitgoldgrams.toFixed(2);
     var invalid = isNaN(quantity) || quantity < 1 || isNaN(premium) || premium < 0;
-    document.getElementById("displaygoldperunit").innerHTML = invalid? "N/A" : unitgoldgrams;
-    document.getElementById("displayozt").innerHTML = invalid? "N/A" : unitgoldozt;
-    document.getElementById("displaytotalozt").innerHTML = invalid? "N/A" : totalgoldozt;
+    document.getElementById("displaytotalozt").innerHTML = invalid? "N/A" : totalgoldozt.toFixed(2);
     return invalid;
 }
 
