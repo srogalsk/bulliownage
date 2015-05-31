@@ -206,6 +206,38 @@ $(window).load(function() {
 	 	//$(this).find('a')[0].click();
 	 //});
 
+
+	function timeCheck()
+	{
+		Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
+			"nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
+
+		var user = Parse.User.current();
+
+		var time = user.get("time");
+		var d = new Date();
+		var currTime = d.getTime();
+		console.log("The current time is: " + currTime);
+		console.log("The old time is: " + time);
+		console.log("Their difference is: " + (currTime - time));
+		console.log("Is their difference greater than 24 hours: " + ((currTime-time) >= 86400000));
+
+		if((currTime - time) >= 86400000)
+		{
+			user.set("time", currTime);
+			user.save();
+			console.log("The time has been updated")
+			return true;
+		}
+		else
+		{
+			console.log("No need to update time right now");
+			return false;
+		}
+	}
+
+
+
 	/* * * * * * * * * * * * * *
 	 *                         *
 	 *        GRAPHING         *
