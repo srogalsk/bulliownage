@@ -26,6 +26,7 @@ $(document).ready(function () {
                 console.log("Sign up worked");
 
                 var currUser = Parse.User.current();
+                var d = new Date();
 
                 for(var i = 0; i<31; i++)
                 {
@@ -33,6 +34,8 @@ $(document).ready(function () {
                     currUser.add("silverHistory", null);
                     currUser.add("platHistory", null);
                 }
+
+                currUser.set("time", 9001);
 
                 currUser.save(null, {
                     success: function(currUser)
@@ -45,7 +48,8 @@ $(document).ready(function () {
                     }
                 });
 
-                //Create a new personalized private group
+                window.location.href = "wire2.html";
+
             },
             error: function (user, error) {
                 // Display error message
