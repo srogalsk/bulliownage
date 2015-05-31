@@ -89,7 +89,6 @@ var totalVal = 0;
 
 query.find({
   success: function(coins) {
-    alert("Successfully retrieved " + coins.length + " coins");
     // Do something with the returned Parse.Object values
     for (var i = 0; i < coins.length; i++) {
       var coin = coins[i];

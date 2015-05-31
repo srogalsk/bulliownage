@@ -112,64 +112,51 @@ function Get(yourPartialUrl, months){
     return json_obj;
 }     
 
-function parseData(){
+function parseData(recentVal){
 	Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
     "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
 
 	var user = Parse.User.current();
-	var goldHist = user.get("goldHistory");
-	console.log(goldHist);
+	var table = document.getElementById("gold_table");
 
-// 	var Coin = Parse.Object.extend("Coin");
-// 	var query = new Parse.Query(Coin);
-// 	query.equalTo("owner", user.id);
-// 	query.equalTo("metal", "Gold");
-// 	var coins = new Coin();
-// 	var totalVal = 0;
+	var Coin = Parse.Object.extend("Coin");
+	var query = new Parse.Query(Coin);
+	query.equalTo("owner", user.id);
+	query.equalTo("metal", "Gold");
+	var coins = new Coin();
+	var totalVal = 0;
+	var Ghistory = [];
 
-// 	query.find({
-//   success: function(coins) {
-//     alert("Successfully retrieved " + coins.length + " coins");
-//     // Do something with the returned Parse.Object values
-//     for (var i = 0; i < coins.length; i++) {
-//       var coin = coins[i];
+	query.find({
+  	success: function(coins) {
+    // Do something with the returned Parse.Object values
+    for (var i = 0; i < coins.length; i++) {
+      var coin = coins[i];
 
-//       var name = coin.get("name");
-//       var quantity = coin.get("quantity");
-//       var weight = coin.get("grams");
-//       var percent = coin.get("percent");
+      var name = coin.get("name");
+      var quantity = coin.get("quantity");
+      var weight = coin.get("grams");
+      var percent = coin.get("percent");
+      var premium = coin.get("premium");
 
-//       var row = table.insertRow(i+1);
-//       row.setAttribute("id", coin.id);
-//       row.setAttribute("class", "clickable");
-//       var cell0 = row.insertCell(0);
-//       cell0.setAttribute("class", "stack_img_col");
-//       cell0.innerHTML = "<div class='coin_mini'></div>"
-//       var cell1 = row.insertCell(1);
-//       cell1.innerHTML = name;
-//       var cell2 = row.insertCell(2);
-//       cell2.innerHTML = quantity;
-//       var cell3 = row.insertCell(3);
-//       cell3.innerHTML = weight;
-//       var cell4 = row.insertCell(4);
-//       cell4.innerHTML = percent;
-//       var cell5 = row.insertCell(5);
+      var goldperunit = Math.round((weight * percent) * 10000) / 10000;
+      var ozt = Math.round((goldperunit / (31.1034768)) * 10000) / 10000;
+      var price = ((ozt*recentVal) + premium)* quantity;
+      totalVal += Number(Math.round(price+'e'+2)+'e-'+2);
+    }
 
-//       /* TODO: calculate total value
-//       right now 1000 is just a placeholder
-//       */
-//       var price = recentVal * quantity * weight;
-//       cell5.innerHTML = Number(Math.round(price+'e'+2)+'e-'+2);
-//       totalVal += Number(Math.round(price+'e'+2)+'e-'+2);
-//       document.getElementById("total-dollars").innerHTML = "$ "+ Number(Math.round(totalVal+'e'+2)+'e-'+2);
-//       //console.log(name);
-//     }
-//   },
-//   error: function(error) {
-//     alert("Error: " + error.code + " " + error.message);
-//   }
+    Ghistory = user.get("goldHistory");
+    Ghistory.push(totalVal);
+    console.log(Ghistory);
+  },
+  error: function(error) {
+    alert("Error: " + error.code + " " + error.message);
+  }
 
-// });
+});
+	console.log(Ghistory);
+	return Ghistory;
+
 }
 
 $(window).load(function() {
@@ -356,6 +343,11 @@ $(window).load(function() {
 			var goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
 	 		var goldDataset = [];
 	 		var goldLabelset = [];
+
+	 		var goldHistory = parseData(goldGraphData.data[0][1]);
+			console.log(goldHistory);
+			console.log(goldHistory.length);
+
 	        for(i = 31; i >= 0; i--){
 	          	goldLabelset.push(goldGraphData.data[i][0]);
 	            goldDataset.push(goldGraphData.data[i][1]);
@@ -371,7 +363,7 @@ $(window).load(function() {
 					pointStrokeColor: pointStroke,
 					pointHighlightFill: pointHighlightFill,
 					pointHighlightStroke: pointHighlightStroke,
-					data: []
+					data: goldHistory
 				},
 				{
 					label: "1oz t Gold",
