@@ -68,10 +68,10 @@ function saveToStack() {
     coin.save(null, {
         success: function(coin) {
             window.location = "wire3.html";
-            alert("Bullion added successfully");
+            alert("Bullion Added Successfully!");
         },
         error: function(coin, error) {
-            alert("Invalid bullion information");
+            alert("Invalid Bullion Information");
         }
     });
 

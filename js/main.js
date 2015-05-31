@@ -117,11 +117,11 @@ function Get(yourPartialUrl, months){
 function parseArrayUpdate(historyArr){
 	Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
     "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
-
 	var user = Parse.User.current();
 	user.unset("goldHistory");
 	user.save();
-	for (var i = 1; i < historyArr.length ; i++){
+	console.log(historyArr.length);
+	for (var i = 0; i < 31; i++){
 		user.add("goldHistory", historyArr[i]);
 	}
 	user.save();
@@ -165,20 +165,23 @@ function parseData(recentVal, callback, metaltype){
 	    var historyArr = [];
 
 	    if(metaltype == "Gold"){
-	    	console.log("using gold");
 	    	historyArr = user.get("goldHistory");
 	    }
 	    else if(metaltype == "Silver"){
-	    	console.log("using silver");
 	    	historyArr = user.get("silverHistory");
 	    }
 	    else {
-	    	console.log("using plat");
 	    	historyArr = user.get("platHistory");
 	    }
 	    
-	    historyArr.push(totalVal);
-	    callback(historyArr);
+	    try{
+	    	historyArr.push(totalVal);
+	    	console.log(historyArr);
+	    	callback(historyArr);
+		}
+		catch(err){
+			return;
+		}
 	  },
 	  error: function(error) {
 	    alert("Error: " + error.code + " " + error.message);
@@ -197,21 +200,21 @@ function timeCheck()
 	var time = user.get("time");
 	var d = new Date();
 	var currTime = d.getTime();
-	console.log("The current time is: " + currTime);
-	console.log("The old time is: " + time);
-	console.log("Their difference is: " + (currTime - time));
-	console.log("Is their difference greater than 24 hours: " + ((currTime-time) >= 86400000));
+	//console.log("The current time is: " + currTime);
+	//console.log("The old time is: " + time);
+	//console.log("Their difference is: " + (currTime - time));
+	//console.log("Is their difference greater than 24 hours: " + ((currTime-time) >= 86400000));
 
-	if((currTime - time) >= 86400000)
+	if((currTime - time) >= 20000) //86400000
 	{
 		user.set("time", currTime);
 		user.save();
-		console.log("The time has been updated")
+		//console.log("The time has been updated")
 		return true;
 	}
 	else
 	{
-		console.log("No need to update time right now");
+		//console.log("No need to update time right now");
 		return false;
 	}
 }
@@ -261,15 +264,16 @@ $(window).load(function() {
 			var goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
 	 		var goldDataset = [];
 	 		var goldLabelset = [];
-	        for(i = 31; i >= 0; i--){
+	        for(var i = 30; i >= 0; i--){
 	          	goldLabelset.push(goldGraphData.data[i][0]);
                 goldDataset.push(Number(Math.round(goldGraphData.data[i][1]+'e'+2)+'e-'+2));
 	        }
 
 	        
 			function callback(historyUpdate){
+				historyUpdate.shift();
 				goldHistory = historyUpdate;
-				data.datasets[0].data = goldHistory;
+				datasetsta.datasets[0].data = goldHistory;
 				//var coinChartGold =  new Chart(ctxGold).Line(data,options);
 				//coinChartGold.update();
 				if(timeCheck()){
@@ -283,12 +287,13 @@ $(window).load(function() {
 	        var silverGraphData = Get("https://www.quandl.com/api/v1/datasets/OFDP/SILVER_5.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
 	 		var silverDataset = [];
 	 		var silverLabelset = [];
-	        for(i = 31; i >= 0; i--){
+	        for(var i = 30; i >= 0; i--){
 	          	silverLabelset.push(silverGraphData.data[i][0]);
                 silverDataset.push(Number(Math.round((silverGraphData.data[i][1]*50)+'e'+2)+'e-'+2));
 	        }
 
 	        function callback1(historyUpdate){
+	        	historyUpdate.shift();
 				silverHistory = historyUpdate;
 				data.datasets[2].data = silverHistory;
 				//var coinChartGold =  new Chart(ctxGold).Line(data,options);
@@ -302,12 +307,13 @@ $(window).load(function() {
 	        var platGraphData = Get("https://www.quandl.com/api/v1/datasets/LPPM/PLAT.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
 	 		var platDataset = [];
 	 		var platLabelset = [];
-	        for(i = 31; i >= 0; i--){
+	        for(var i = 30; i >= 0; i--){
 	            	platLabelset.push(platGraphData.data[i][0]);
                 platDataset.push(Number(Math.round(platGraphData.data[i][1]+'e'+2)+'e-'+2));
 	        }
 
 	        function callback2(historyUpdate){
+	        	historyUpdate.shift();
 				platHistory = historyUpdate;
 				data.datasets[1].data = platHistory;
 				var coinChartGold =  new Chart(ctxGold).Line(data,options);
@@ -315,6 +321,24 @@ $(window).load(function() {
 				if(timeCheck()){
 					parseArrayUpdate(platHistory);
 				}
+				var sum = data.datasets[0].data[30];// + data.datasets[1].data[30] + data.datasets[2].data[30];
+				var prevsum = data.datasets[0].data[29];// + data.datasets[1].data[29] + data.datasets[2].data[29];
+				var percentchange = 0;
+				//console.log(sum);
+				//console.log(prevsum);
+
+				if (sum == prevsum || isNaN(sum) || isNaN(prevsum) || Number(prevsum) == 0){
+					percentchange = 0;
+				}
+				else{
+					percentchange = ((sum - prevsum) / prevsum) * 100;
+				}
+				var sign = "";
+				sign = (percentchange < 0 ? "" : "+");
+				document.getElementById("percentChange").innerHTML = sign + Number(Math.round(percentchange+'e'+2)+'e-'+2) + "%";
+
+				var CA = document.getElementById("percentChange");
+				CA.className = (percentchange < 0 ? "total-change neg-change" : "total-change pos-change");
 			}
 	        parseData(platGraphData.data[0][1], callback2, "Platinum");
 
@@ -448,20 +472,23 @@ $(window).load(function() {
 	 		var goldLabelset = [];
 
 	 		function callback(goldHistoryUpdate){
+	 			goldHistoryUpdate.shift();
 				goldHistory = goldHistoryUpdate;
 				data.datasets[0].data = goldHistory;
 				var coinChartGold =  new Chart(ctxGold).Line(data,options);
 				coinChartGold.update();
+
 				if(timeCheck()){
 					parseArrayUpdate(goldHistory);
 				}
 			}
 	 		parseData(goldGraphData.data[0][1], callback, "Gold");
 
-	        for(i = 31; i >= 0; i--){
+	        for(var i = 30; i >= 0; i--){
 	          	goldLabelset.push(goldGraphData.data[i][0]);
 	            goldDataset.push(goldGraphData.data[i][1]);
 	        }
+
 			var data = {
 				labels: goldLabelset,
 				datasets: [
