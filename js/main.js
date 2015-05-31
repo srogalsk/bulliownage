@@ -98,15 +98,17 @@ function Get(yourPartialUrl, months){
     var d = new Date();
     d.setMonth(d.getMonth() - months);
     var Httpreq = new XMLHttpRequest(); // a new request
-	var date = d.getMonth() + 1;
+	var month = d.getMonth() + 1;
+	var date = d.getDate();
+	if(month < 10)
+	{
+		month = "0" + Number(month);
+	}
 	if(date < 10)
 	{
-		Httpreq.open("GET",yourPartialUrl + d.getFullYear() + "-" + ("0" + Number(date)) + "-" + (d.getDate()),false);
+		date = "0" + Number(date);
 	}
-	else
-	{
-		Httpreq.open("GET",yourPartialUrl + d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + (d.getDate()),false);
-	}
+	Httpreq.open("GET",yourPartialUrl + d.getFullYear() + "-" + (month) + "-" + (date),false);
     Httpreq.send(null);
     var json_obj = JSON.parse(Httpreq.responseText); 
     return json_obj;

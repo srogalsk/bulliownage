@@ -31,13 +31,13 @@ Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
 
             $("#displaymetal").text(metal);
             $("#displayname").text(name);
-            console.log(purchasedAt);
             var date = purchasedAt.getDate();
-            var month = months[purchasedAt.getMonth()];
+            var month = purchasedAt.getMonth();
             var year = purchasedAt.getFullYear();
-            $("#displaypurchasedate").text(date + " " + month + " " + year);
-            $("#displayquantity").text(quantity);
-            $("#displaypremium").text(premium.toFixed(2));
+	        console.log(year + "-" + month + "-" + date);
+            $("#editpurchasedate").val(year + "-" + month + "-" + date);
+            $("#editquantity").text(quantity);
+            $("#editpremium").text(premium.toFixed(2));
             $("#displayweightperunit").text(grams);
             $("#displaypercent").text(percent);
 
