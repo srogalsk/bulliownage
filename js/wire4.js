@@ -1,7 +1,6 @@
 Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
     "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
 
-
 function invalid() {
 	var quantity = Number(document.getElementById("editquantity").value);
     var premium = Number(document.getElementById("editpremium").value);
