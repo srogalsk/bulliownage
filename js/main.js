@@ -120,7 +120,9 @@ function parseArrayUpdate(historyArr){
 	user.unset("goldHistory");
 	user.save();
 	console.log(historyArr);
-	user.add("goldHistory", historyArr);
+	for (var i = 1; i < historyArr.length ; i++){
+		user.add("goldHistory", historyArr[i]);
+	}
 	user.save();
 } 
 
@@ -351,13 +353,15 @@ $(window).load(function() {
 		}
 		else if(page =="wire3.html"){
 
+			var ctxGold = document.getElementById("total-chart").getContext("2d");
 			function callback(goldHistoryUpdate){
 				console.log("CALLBACK");
 				console.log(goldHistoryUpdate);
 				goldHistory = goldHistoryUpdate;
 				data.datasets[0].data = goldHistory;
-				var coinChartGold = new Chart(ctxGold).Line(data,options);
+				var coinChartGold =  new Chart(ctxGold).Line(data,options);
 				coinChartGold.update();
+				
 				parseArrayUpdate(goldHistory);
 			}
 
@@ -451,9 +455,8 @@ $(window).load(function() {
 
 			};
 
-			var ctxGold = document.getElementById("total-chart").getContext("2d");
-			var coinChartGold = new Chart(ctxGold).Line(data,options);
-			coinChartGold.update();
+			//var coinChartGold = new Chart(ctxGold).Line(data,options);
+			//coinChartGold.update();
 		}
 	};
 
