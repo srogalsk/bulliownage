@@ -439,10 +439,15 @@ $(window).load(function() {
 			//coinChart.update();
 		}
 		else if(page =="wire3.html"){
-
+			var goldHistory = [];
 			var ctxGold = document.getElementById("total-chart").getContext("2d");
-			function callback(goldHistoryUpdate){
-				console.log(goldHistoryUpdate);
+
+			// 	Get Gold Graph Data
+			var goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
+	 		var goldDataset = [];
+	 		var goldLabelset = [];
+
+	 		function callback(goldHistoryUpdate){
 				goldHistory = goldHistoryUpdate;
 				data.datasets[0].data = goldHistory;
 				var coinChartGold =  new Chart(ctxGold).Line(data,options);
@@ -451,14 +456,6 @@ $(window).load(function() {
 					parseArrayUpdate(goldHistory);
 				}
 			}
-
-			// 	Get Gold Graph Data
-			var goldHistory = [];
-
-			var goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
-	 		var goldDataset = [];
-	 		var goldLabelset = [];
-
 	 		parseData(goldGraphData.data[0][1], callback, "Gold");
 
 	        for(i = 31; i >= 0; i--){
@@ -522,13 +519,13 @@ $(window).load(function() {
 			    pointDotStrokeWidth : 1,
 
 			    //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
-			    pointHitDetectionRadius : 20,
+			    pointHitDetectionRadius : 5,
 
 			    //Boolean - Whether to show a stroke for datasets
 			    datasetStroke : true,
 
 			    //Number - Pixel width of dataset stroke
-			    datasetStrokeWidth : 2,
+			    datasetStrokeWidth : 1,
 
 			    //Boolean - Whether to fill the dataset with a colour
 			    datasetFill : true,
