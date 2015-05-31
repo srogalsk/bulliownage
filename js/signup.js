@@ -20,12 +20,31 @@ $(document).ready(function () {
         user.set("email", email);
         user.set("password", pass);
 
-
-
         user.signUp(null, {
             success: function (user) {
                 // Sign up successful!
                 console.log("Sign up worked");
+
+                var currUser = Parse.User.current();
+
+                for(var i = 0; i<31; i++)
+                {
+                    currUser.add("goldHistory", null);
+                    currUser.add("silverHistory", null);
+                    currUser.add("platHistory", null);
+                }
+
+                currUser.save(null, {
+                    success: function(currUser)
+                    {
+                        console.log("array saved successfully");
+                    },
+                    error: function(error, currUser)
+                    {
+                        console.log("Error, array not saved successfully, " + error);
+                    }
+                });
+
                 //Create a new personalized private group
             },
             error: function (user, error) {
