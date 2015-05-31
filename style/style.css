@@ -767,9 +767,15 @@ a:visited {
     padding-bottom: 10px;
 }
 
+
 .my_stack table tbody > tr:hover {
     background-color: rgba(255, 255, 255, 0.1);
     cursor: pointer;
+}
+
+.my_stack table tbody > tr:hover td.trashcol {
+    background-color:#1D1D1D;
+    cursor: auto;
 }
 
 .my_stack table caption {
@@ -1091,3 +1097,23 @@ select {
         visibility: hidden;
     }
 }
+
+
+    span.trash {
+    display:none;
+    }
+
+    .clickable:hover span.trash {
+        display:block;
+    }
+
+    .yes:hover {
+    color: #ADD8E6;
+    cursor: pointer;
+
+    }
+
+    .no:hover {
+    color: #ADD8E6;
+    cursor: pointer;
+    }
