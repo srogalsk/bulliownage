@@ -117,12 +117,26 @@ query.get(q_string, {
 	$("#unitgrams").text(metal + " g/u");
         $("#displaygoldperunit").text(goldperunit.toPrecision(4));
 
-        /* TODO: unit price = ozt*spot price + premium
-         var unitprice = ozt*
-         var totalprice = unitprice*quantity.toFixed(2);
-         $("#displayunitprice").text(unitprice);
-         $("#displaytotalprice").text(totalprice);
-         */
+        var spot_price;
+        var json_obj_daily;
+        if(metal == "Gold") {
+            json_obj_daily = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",1);
+        }
+        else if(name == "Silver") {
+            json_obj_daily = Get("https://www.quandl.com/api/v1/datasets/OFDP/SILVER_5.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",1);
+        }
+        else {
+            json_obj_daily = Get("https://www.quandl.com/api/v1/datasets/LPPM/PLAT.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",1);
+        }
+
+        spot_price=json_obj_daily.data[0][1];
+
+
+         var unitprice = ozt*spot_price + premium;
+         var totalprice = unitprice*quantity;
+         $("#displayunitprice").text(unitprice.toFixed(2));
+         $("#displaytotalprice").text(totalprice.toFixed(2));
+
 
         invalid();
         table = document.addEventListener("keyup", invalid);
