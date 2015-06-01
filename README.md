@@ -66,6 +66,7 @@ Overall: We split the tasks into two categories.
 
 - Clicking the browser's refresh or backbutton can lead to issues with the login session and will clear the session.
 
+- ChartJS has an issue in Ubuntu's built in Firefox (Mozilla Firefox for Ubuntu canonical - 1.0 v38.0) where the graphs on the home page will not animate and will just suddenly appear. The other wires work fine.
 
 # # # # # # # # # # # # # # # 
 #     Validation Issues     #
