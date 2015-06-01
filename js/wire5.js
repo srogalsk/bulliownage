@@ -362,23 +362,24 @@ changeList = function () {
             type = "gold";
             break;
     }
+
+    emptyList(document.getElementById("type"));
+    fillList(document.getElementById("type"), newlist);
+
+    var name = $("#type option:selected").text();
+
+    var img = "images/" + name + ".jpg";
+    $(".coin_img")[0].setAttribute("src", img);
+
     metal = $("#category option:selected").text()
     $("#metalpercent").text(metal + " %");
     $("#metalozt").text(metal + " ozt/u");
     $("#metalgrams").text(metal + " g/u");
-    emptyList(document.getElementById("type"));
-    fillList(document.getElementById("type"), newlist);
 }
 
 changeValue = function()
 {
     var arr;
-
-    var name = $("#type option:selected").text();
-
-    var img = "images/" + name + ".jpg";
-    console.log(img);
-    $(".coin_img")[0].setAttribute("src", img);
 
     if(type == "gold") {
         arr = goldArr;
@@ -465,3 +466,4 @@ changeValue();
 invalid();
 table = document.addEventListener("keyup", invalid);
 table = document.addEventListener("onchange", changeValue);
+table = document.addEventListener("onchange", changeList);
