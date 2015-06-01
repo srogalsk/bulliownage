@@ -1,5 +1,5 @@
 function changePage() {
-    window.location.assign("settings.html");
+    window.location = ("settings.html");
 }
 
 function loadTopNav(){

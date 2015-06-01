@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en">
+
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="description" content="bullion management site, rare coins, gold, silver, platinum">
@@ -9,64 +10,70 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <script src="./js/jquery-1.11.2.min.js"></script>
-    <script src="./js/Chart.js"></script>
+    <script src="./js/velocity.min.js"></script>
     <script src="./js/main.js"></script>
-    <title>My Gold - BULLIOWNAGE</title>
-    <link rel="stylesheet" type="text/css" href="style/loginstyle.css" />
-    <style type="text/css">
-        #backButton
-        {
-        margin: 30px;
-        }
-    </style>
+    <title>Account Management</title>
 </head>
 
 <body>
-<nav>
-    BULLIOWNAGE
-</nav>
-<div class="mobile-nav">
-    BULLIOWNAGE
-</div>
+    <script type="text/javascript">
+    loadTopNav();
+    </script>
+    <script type="text/javascript">
+    loadSideNav();
+    </script>
+    <section class="main-section">
+        <section class="coin_wrapper">
+            <div class="mobile-nav">
+                <a href="wire3.html">
+                    <svg class="icon icon-keyboard-arrow-left">
+                        <symbol id="icon-keyboard-arrow-left" viewBox="0 0 1024 1024">
+                            <title>keyboard-arrow-left</title>
+                            <path class="path1" d="M657.707 696.96l-195.627-195.627 195.627-195.627-60.373-60.373-256 256 256 256z"></path>
+                        </symbol>
+                        <use xlink:href="#icon-keyboard-arrow-left"></use>
+                    </svg>
+                </a>
+                ITEM DETAIL
+            </div>
+            <div>
 
-<p id="backButton"><a href="index.html">&#9664; Back</a> </p>
+                <section id="buttonspan" style="position:fixed; top:50%; left:50%; margin-top:-300px; margin-left: -130px;" class="coin_detail">
 
-<div id="wrapper">
-    <div id="register" class="animate form">
-        <form autocomplete="on" method="post">
-            <h1> Sign up </h1>
-            <p>
-                <label for="usernamesignup" class="uname" data-icon="u">Your username</label>
-                <input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="mysuperusername690" />
-            </p>
-            <p>
-                <label for="emailsignup" class="youmail" data-icon="e" > Your email</label>
-                <input id="emailsignup" name="emailsignup" required="required" type="email" placeholder="mysupermail@mail.com"/>
-            </p>
-            <p>
-                <label for="passwordsignup" class="youpasswd" data-icon="p">Your password </label>
-                <input id="passwordsignup" name="passwordsignup" required="required" type="password" placeholder="eg. X8df!90EO"/>
-            </p>
-            <p>
-                <label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Please confirm your password </label>
-                <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password" placeholder="eg. X8df!90EO"/>
-            </p>
-            <p class="signin button">
-                <input type="submit" id="signup-button" value="Sign up">
-            </p>
-            <p class="change_link">
-                Already a member ?
-                <a href="login.html" class="to_register"> Go and log in </a>
-            </p>
-        </form>
-    </div>
-</div>
+                    <a><span id="save" onclick="logout()">Logout</span></a>
 
-<script type="text/javascript">loadFooter();</script>
+                    <a><span id="cancel" onclick="changePassword()">Change Password</span></a>
 
-<script src="js/jquery-1.11.2.min.js"></script>
-<script src="js/parse-1.4.2.min.js"></script>
-<script src="js/signup.js"></script>
+                    <a><span style="background-color: red;" id="remove" onclick="removeFromStack()">Delete Account</span></a>
+                </section>
+            </div>
+        </section>
+    </section>
+    <script type="text/javascript">
+    loadFooter();
+    </script>
+
+    <script type="text/javascript" src="js/parse-1.4.2.min.js"></script>
+    <script type="text/javascript">
+        function logout(){
+            Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
+    "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
+            Parse.User.logOut();
+            window.location = "index.html";
+        }
+        
+        function changePassword(){
+            var button1 = document.getElementById("save");
+            var button2 = document.getElementById("cancel");
+            var button3 = document.getElementById("remove");
+            button1.style.display="none";
+            button3.style.display="none";
+
+        }
+
+
+    </script>
 
 </body>
+
 </html>

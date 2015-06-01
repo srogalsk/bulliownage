@@ -1,10 +1,9 @@
-
 // Get and populate Gold Data
-    var json_obj_daily=Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=", 1);
+    var json_obj_daily = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=", 1);
 
     // get Change data
     var goldChange = json_obj_daily.data[0][1] - json_obj_daily.data[1][1];
-    goldChange = Number(Math.round(goldChange+'e'+2)+'e-'+2);
+    goldChange = Number(Math.round(goldChange + 'e' +2) + 'e-' +2);
     if(goldChange >= 0){ 
         sign = "+";
     }
@@ -12,14 +11,14 @@
         sign = "";
         document.getElementById("goldChange").className = "neg-change";
     }
-    document.getElementById("goldChange").innerHTML=sign + goldChange;
+    document.getElementById("goldChange").innerHTML = sign + goldChange;
 
 // Get and populate Silver Data
     var silver_json_obj_daily=Get("https://www.quandl.com/api/v1/datasets/OFDP/SILVER_5.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=", 1);
 
     // get Change data
     var silverChange = silver_json_obj_daily.data[0][1] - silver_json_obj_daily.data[1][1];
-    silverChange = Number(Math.round(silverChange+'e'+2)+'e-'+2);
+    silverChange = Number(Math.round(silverChange + 'e' + 2) + 'e-' + 2);
     if(silverChange >= 0){ 
         sign = "+";
     }
@@ -27,13 +26,13 @@
         sign = "";
         document.getElementById("silverChange").className = "neg-change";
     }
-    document.getElementById("silverChange").innerHTML=sign + silverChange;
+    document.getElementById("silverChange").innerHTML = sign + silverChange;
 
 // Get and populate Plat Data
-    var plat_json_obj_daily=Get("https://www.quandl.com/api/v1/datasets/LPPM/PLAT.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",1 );
+    var plat_json_obj_daily = Get("https://www.quandl.com/api/v1/datasets/LPPM/PLAT.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",1 );
 
     var platChange = plat_json_obj_daily.data[0][1] - plat_json_obj_daily.data[1][1];
-    platChange = Number(Math.round(platChange+'e'+2)+'e-'+2);
+    platChange = Number(Math.round(platChange + 'e' + 2) + 'e-' + 2);
     if(platChange >= 0){ 
         sign = "+";
     }
@@ -41,7 +40,7 @@
         sign = "";
         document.getElementById("platChange").className = "neg-change";
     }
-    document.getElementById("platChange").innerHTML=sign + platChange;
+    document.getElementById("platChange").innerHTML = sign + platChange;
 
 
 
@@ -73,7 +72,7 @@
         var hourleft = 0;
         if (dayDiff > 0){
             hourleft = 24 - today.getHours();
-            hourleft = hourleft + dayDiff*24;
+            hourleft = hourleft + dayDiff * 24;
             hourleft += 9;
         }  
         else{
@@ -84,7 +83,7 @@
             minleft = 30 + (60 - today.getMinutes());
         }
         document.getElementById("marketStatus").innerHTML = "Market is CLOSED";
-        document.getElementById("closeTime").innerHTML = "Opens in " + hourleft +"h " + minleft + "min";
+        document.getElementById("closeTime").innerHTML = "Opens in " + hourleft + "h " + minleft + "min";
     }
 
 // Fill bid and asking prices
