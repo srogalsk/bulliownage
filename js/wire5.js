@@ -360,6 +360,10 @@ changeList = function () {
             type = "gold";
             break;
     }
+    metal = $("#category option:selected").text()
+    $("#metalpercent").text(metal + " %");
+    $("#metalozt").text(metal + " ozt/u");
+    $("#metalgrams").text(metal + " g/u");
     emptyList(document.getElementById("type"));
     fillList(document.getElementById("type"), newlist);
 }
@@ -392,10 +396,8 @@ changeValue = function()
         // display text and value from arr
         var coin_obj = arr[1][i];
         if(name == coin_obj.name) {
-            var grams = (coin_obj.weight / 0.032151).toString();
-            var total = ((coin_obj.weight) * $("#quantity").val());
-            document.getElementById("percent").innerHTML = coin_obj.percent.toFixed(2);
-            document.getElementById("ozt").innerHTML = coin_obj.weight.toFixed(2);
+            document.getElementById("percent").innerHTML = coin_obj.percent.toFixed(4);
+            document.getElementById("ozt").innerHTML = coin_obj.weight.toFixed(4);
             invalid();
             break;
         }
@@ -409,7 +411,7 @@ function invalid() {
 	var percent = Number(document.getElementById("percent").innerHTML);
     var unitgoldozt = Number(document.getElementById("ozt").innerHTML);
     var unitgrams = unitgoldozt / 0.032151;
-    var unitgoldgrams = percent * unitgrams / 100;
+    var unitgoldgrams = percent * unitgrams;
     var totalgoldozt = $("#ozt").text() * quantity;
     var invalid = isNaN(quantity) || quantity < 1 || isNaN(premium) || premium < 0;
     document.getElementById("unitgrams").innerHTML = invalid? "N/A" : unitgrams.toFixed(2);

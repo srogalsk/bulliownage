@@ -6,13 +6,13 @@ function invalid() {
     var premium = Number(document.getElementById("editpremium").value);
     	var percent = Number(document.getElementById("displaypercent").innerHTML);
     var unitgrams = Number(document.getElementById("displayweightperunit").innerHTML);
-    var unitgoldgrams = percent * unitgrams;
+    var unitgoldgrams = percent * unitgrams / 100;
     var unitgoldozt = Number(0.0321507466 * unitgoldgrams);
     var totalgoldozt = unitgoldozt * quantity;
-    document.getElementById("displayozt").innerHTML = unitgoldozt.toFixed(2);
-    document.getElementById("displaygoldperunit").innerHTML = unitgoldgrams.toFixed(2);
+    document.getElementById("displayozt").innerHTML = unitgoldozt.toFixed(4);
+    document.getElementById("displaygoldperunit").innerHTML = unitgoldgrams.toFixed(4);
     var invalid = isNaN(quantity) || quantity < 1 || isNaN(premium) || premium < 0;
-    document.getElementById("displaytotalozt").innerHTML = invalid? "N/A" : totalgoldozt.toFixed(2);
+    document.getElementById("displaytotalozt").innerHTML = invalid? "N/A" : totalgoldozt.toFixed(4);
     return invalid;
 }
 
@@ -103,6 +103,7 @@ query.get(q_string, {
         $("#editquantity").val(quantity);
         $("#editpremium").val(premium.toFixed(2));
         $("#displayweightperunit").text(grams);
+	$("#metalpercent").text(metal + " %");
         $("#displaypercent").text(percent);
 
         var goldperunit = Math.round((grams * percent) * 10000) / 10000;
@@ -110,8 +111,10 @@ query.get(q_string, {
         var ozt = Math.round((goldperunit / (31.1034768)) * 10000) / 10000;
         var totalozt = Math.round((ozt * quantity) * 10000) / 10000;
 
+	$("#metalozt").text(metal + " ozt/u");
         $("#displayozt").text(ozt.toPrecision(3));
         $("#displaytotalozt").text(totalozt.toPrecision(3));
+	$("#unitgrams").text(metal + " g/u");
         $("#displaygoldperunit").text(goldperunit.toPrecision(4));
 
         /* TODO: unit price = ozt*spot price + premium
@@ -130,7 +133,9 @@ query.get(q_string, {
     }
 });
 
+var metal = $("#displaymetal").innerHTML;
 
+console.log(metal);
 
 
 
