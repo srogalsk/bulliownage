@@ -112,7 +112,13 @@ query.find({
       row.setAttribute("class", "clickable");
       var cell0 = row.insertCell(0);
       cell0.setAttribute("class", "stack_img_col");
-      cell0.innerHTML = "<div class='coin_mini'></div>";
+      var div_child = document.createElement("div");
+      div_child = cell0.appendChild(div_child);
+      div_child.setAttribute("class", "coin_mini");
+      var img_child = document.createElement("img");
+      img_child = div_child.appendChild(img_child);
+      img_child.setAttribute("src", "images/" + name + ".jpg");
+      img_child.setAttribute("class", "img_thumb");
       var cell1 = row.insertCell(1);
       cell1.setAttribute("onClick", "loadData(\"" + coin.id + "\")");
       cell1.innerHTML = name;
