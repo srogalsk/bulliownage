@@ -75,7 +75,7 @@ function loadSideNav(selected){
 	document.write("            <figcaption>My Silver<\/figcaption>");
 	document.write("        <\/figure>       ");
 	document.write("        <\/a> ");
-	document.write("        <a href=\"wire3.html\">");
+	document.write("        <a href=\"wire3c.html\">");
 	if(selected == 3)
 		document.write("        <figure class='nav-selected'>");
 	else

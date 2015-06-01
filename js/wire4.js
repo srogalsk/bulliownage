@@ -70,7 +70,7 @@ query.get(q_string, {
 	$(".coin_img")[0].setAttribute("src", img);
         $("#displaymetal").text(metal);
         $("#displayname").text(name);
-        var date = purchasedAt.getDate();
+        var date = purchasedAt.getDate() + 1;
         var month = purchasedAt.getMonth() + 1;
         var year = purchasedAt.getFullYear();
         	if(month < 10)
