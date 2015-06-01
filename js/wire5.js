@@ -405,6 +405,14 @@ changeValue = function()
             break;
         }
     }
+
+    var img = "images/" + name + ".jpg";
+    $(".coin_img")[0].setAttribute("src", img);
+
+    metal = $("#category option:selected").text()
+    $("#metalpercent").text(metal + " %");
+    $("#metalozt").text(metal + " ozt/u");
+    $("#metalgrams").text(metal + " g/u");
 }
 
 
