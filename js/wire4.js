@@ -74,7 +74,6 @@ var coin = new Coin();
 query.get(q_string, {
     success: function (coin) {
         // The object was retrieved successfully.
-        console.log("query success");
 
         var metal = coin.get("metal");
         var name = coin.get("name");
@@ -146,10 +145,6 @@ query.get(q_string, {
         // error is a Parse.Error with an error code and message.
     }
 });
-
-var metal = $("#displaymetal").innerHTML;
-
-console.log(metal);
 
 
 
