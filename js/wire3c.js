@@ -203,7 +203,9 @@ $("#platinum_table").on("click", ".no", function () {
 
 $("#platinum_table").on("click", ".yes", function () {
     var x = this.parentNode.parentNode.parentNode.parentNode;
-    $("#" + x.id).fadeOut();
+    $("#" + x.id).fadeOut(function () {
+        $("#" + x.id).remove();
+    });
     deleteFromStack(x.id);
 });
 

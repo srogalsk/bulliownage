@@ -203,8 +203,9 @@ $("#gold_table").on("click", ".no", function () {
 
 $("#gold_table").on("click", ".yes", function () {
     var x = this.parentNode.parentNode.parentNode.parentNode;
-    $("#" + x.id).fadeOut();
-    $("#" + x.id).remove();
+    $("#" + x.id).fadeOut(function () {
+        $("#" + x.id).remove();
+    });
     deleteFromStack(x.id);
 });
 
