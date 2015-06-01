@@ -15,47 +15,54 @@ $(document).ready(function () {
         var username =  $("#usernamesignup").val();
         var email = $("#emailsignup").val();
         var pass = $("#passwordsignup").val();
+        var passconfirm = $("#passwordsignup_confirm").val();
 
         user.set("username", username);
         user.set("email", email);
         user.set("password", pass);
+        var passMatch = (pass == passconfirm);
+        if(passMatch){
 
-        user.signUp(null, {
-            success: function (user) {
-                // Sign up successful!
-                console.log("Sign up worked");
+            user.signUp(null, {
+                success: function (user) {
+                    // Sign up successful!
+                    //console.log("Sign up worked");
 
-                var currUser = Parse.User.current();
-                var d = new Date();
+                    var currUser = Parse.User.current();
+                    var d = new Date();
 
-                for(var i = 1; i <= 31; i++)
-                {
-                    currUser.add("goldHistory", null);
-                    currUser.add("silverHistory", null);
-                    currUser.add("platHistory", null);
-                }
-
-                currUser.set("time", 9001);
-
-                currUser.save(null, {
-                    success: function(currUser)
+                    for(var i = 1; i <= 31; i++)
                     {
-                        console.log("array saved successfully");
-                    },
-                    error: function(error, currUser)
-                    {
-                        console.log("Error, array not saved successfully, " + error);
+                        currUser.add("goldHistory", null);
+                        currUser.add("silverHistory", null);
+                        currUser.add("platHistory", null);
                     }
-                });
 
-                window.location.href = "login.html";
+                    currUser.set("time", 9001);
 
-            },
-            error: function (user, error) {
-                // Display error message
-                alert("Error: " + error.message);
-            }
-        });
+                    currUser.save(null, {
+                        success: function(currUser)
+                        {
+                            console.log("array saved successfully");
+                        },
+                        error: function(error, currUser)
+                        {
+                            console.log("Error, array not saved successfully, " + error);
+                        }
+                    });
+
+                    window.location.href = "login.html";
+
+                },
+                error: function (user, error) {
+                    // Display error message
+                    alert("Error: " + error.message);
+                }
+            });
+        }
+        else{
+            alert("Error: Your passwords do not match!");
+        }
     });
 
 });
