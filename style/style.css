@@ -901,7 +901,6 @@ a:visited {
     height: 200px;
     margin-left: auto;
     margin-right: auto;
-    border: 1px dashed white;
 }
 
 .img_circle {
@@ -1129,4 +1128,7 @@ select {
     }
     .trashicon {
         cursor: pointer;
+    }
+    .coin_img {
+        size:100%;
     }
