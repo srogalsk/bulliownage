@@ -987,6 +987,21 @@ select {
     margin-top: 15px;
 }
 
+#remove:hover {
+    border: 1px solid #68CEDE;
+}
+
+#remove {
+    background: #696969;
+    border: 1px solid #151515;
+    color: white;
+    text-decoration: none;
+    width: 275px;
+    height: 40px;
+    line-height: 40px;
+    margin-top: 15px;
+}
+
 #cancel:hover {
     border: 1px solid #68CEDE;
 }
