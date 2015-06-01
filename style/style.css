@@ -812,6 +812,70 @@ a:visited {
     margin-right: auto;
     background-color: #5D5D5D;
 }
+
+
+/* * * * * * * * * * * * * * * *
+ *                             *
+ *           WIRE 3B            *
+ *                             *
+ * * * * * * * * * * * * * * * */
+
+.current_silver {
+    margin-top: -24px;
+    margin-left: 170px;
+    margin-bottom: 0;
+}
+
+.current_silver tr > td {
+    padding-bottom: 5px;
+}
+
+.current_silver tr > td:first-child {
+    text-align: right;
+    padding-right: 10px;
+}
+
+.current_silver tr > td:nth-child(2) {
+    color: #A7FF8B;
+}
+
+#my_silver_value {
+    position: absolute;
+    margin-top: -23px;
+    font-size: 12px;
+}
+
+/* * * * * * * * * * * * * * * *
+ *                             *
+ *           WIRE 3C            *
+ *                             *
+ * * * * * * * * * * * * * * * */
+
+.current_platinum {
+    margin-top: -24px;
+    margin-left: 170px;
+    margin-bottom: 0;
+}
+
+.current_platinum tr > td {
+    padding-bottom: 5px;
+}
+
+.current_platinum tr > td:first-child {
+    text-align: right;
+    padding-right: 10px;
+}
+
+.current_platinum tr > td:nth-child(2) {
+    color: #A7FF8B;
+}
+
+#my_platinum_value {
+    position: absolute;
+    margin-top: -23px;
+    font-size: 12px;
+}
+
 /* * * * * * * * * * * * * * * *
  *                             *
  *           WIRE 4            *

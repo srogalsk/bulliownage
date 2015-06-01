@@ -66,7 +66,7 @@ function loadSideNav(selected){
 	document.write("            <figcaption>My Gold<\/figcaption>");
 	document.write("        <\/figure>       ");
 	document.write("        <\/a> ");
-	document.write("        <a href=\"wire3.html\">");
+	document.write("        <a href=\"wire3b.html\">");
 	if(selected == 2)
 		document.write("        <figure class='nav-selected'>");
 	else
@@ -163,7 +163,6 @@ function parseData(recentVal, callback, metaltype){
     "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
 
 	var user = Parse.User.current();
-	var table = document.getElementById("gold_table");
 
 	var Coin = Parse.Object.extend("Coin");
 	var query = new Parse.Query(Coin);
@@ -235,7 +234,7 @@ function timeCheck()
 	//console.log("Their difference is: " + (currTime - time));
 	//console.log("Is their difference greater than 24 hours: " + ((currTime-time) >= 86400000));
 
-	if((currTime - time) >= 20000) //86400000
+	if((currTime - time) >= 86400000)
 	{
 		user.set("time", currTime);
 		user.save();
@@ -626,7 +625,7 @@ $(window).load(function() {
 	 		parseData(goldGraphData.data[0][1], callback, "Silver");
 
 	        for(var i = 30; i >= 0; i--){
-	          	goldLabelset.push(goldGraphData.data[i][0]);
+	          	goldLabelset.push(goldGraphData.data[i][0].replace("2015-", ""));
 	            goldDataset.push(goldGraphData.data[i][1]);
 	        }
 
@@ -735,7 +734,7 @@ $(window).load(function() {
 	 		parseData(goldGraphData.data[0][1], callback, "Platinum");
 
 	        for(var i = 30; i >= 0; i--){
-	          	goldLabelset.push(goldGraphData.data[i][0]);
+	          	goldLabelset.push(goldGraphData.data[i][0].replace("2015-", ""));
 	            goldDataset.push(goldGraphData.data[i][1]);
 	        }
 

@@ -34,31 +34,54 @@ Overall: We split the tasks into two categories.
 
 	f) When the database was finally working, the remaining graph features and numerical calculations were completed. This required fetching the bullion items from Parse and utilizing the current maret price and item details to calculate the values. 
 
+
+
+
 # # # # # # # # # # # # # # # 
 #   Cross-Platform Issues   #
 # # # # # # # # # # # # # # #
-- One feature did not work on Chrome (Version 43.0.2357.65 (64-bit)) on Ubuntu 14.04
+- One feature did not work on Chrome (Version 43.0.2357.65 (64-bit)) on Ubuntu 14.04. When logging in, a Parse command used to initialize some data in the database did not properly so the object was never created. We tested this on Firefox on Ubuntu as well as IE, Chrome, and Firefox in Windows and the feature worked properly.
+
+- When editing or adding a new item in Wire4/Wire5, the Date Selector did not work in Firefox and IE so the date needs to be manually entered. 
+
+
+
+
 # # # # # # # # # # # # # # # 
 #       Other Concerns      #
 # # # # # # # # # # # # # # #	
+- Sometimes, fetching data from Quandl can take much longer than expected and would require up to 5-10 seconds to fetch the page and load the data. This can drastically impact the user experience and we should look into possible fixes/patches for the next homework.
+
+- If we are in offline mode, much of the pages will not load properly. We wanted to but did not have time to send a message to the user when this is the case. This is also a feature we will work on for the next homework.
+
+- We decided to have a number of popular coins and bullion load up as options for the user. This was our initial goal since the app is geared towards mainly novice users who may not have knowledge of some of the details of an item. Our app solves that problem by pre-populating the page. The problem with this is that users may have coins that they cannot add to the inventory. As a feature for homework 5, we will implement this so that users can either select from our list (for novice/typical users) or enter their own information from scratch (for more advanced users).
+
+
 
 
 # # # # # # # # # # # # # # # 
 #     Validation Issues     #
 # # # # # # # # # # # # # # #	
+- Other than the existing CSS validation errors from the previous group that implemented the wireframe, everything validates properly.
+
+
+
 
 # # # # # # # # # # # # # # # 
 #    Implementation Tech    #
 # # # # # # # # # # # # # # #
+- We used Parse as our database for the reasons stated in "Steps to Building the App 1a".
+
+- We also continued to use Chart.js since it was already somewhat integrated into the app. It also had a reasonable amount of support for our purposes.
+
+- To implement all our features, we almost completely utilized vanilla javascript and html5. The only other tool we used was some basic JQuery when it was more convenient to use. We chose to do this since we wanted to keep the size of our code smaller and we also wanted to practice javascript for the final :).
+
+
+# # # # # # # # # # # # # # # 
+#     Useful Information    #
+# # # # # # # # # # # # # # #
+- As useful information, we were short one man for this assignment. Although he showed up to one meeting, he did not contribute much if any tangible contributions to the assignment.
 
 # # # # # # # # # # # # # # # 
 #        Thank you!         #
 # # # # # # # # # # # # # # #
-
-ToDo
-Refresh and Settings button should do something
-Dropdown should filter our results based on the type of metal selected
-	For example: if metal is gold, then Type should only show Gold bullion
-Image button needs to either have default pictures or be able to add pics by user
-Items page needs to have information gathered on the items from somehwere
-	Apparently hard to find an API for this
