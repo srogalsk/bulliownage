@@ -437,7 +437,14 @@ function saveToStack() {
 
         coin.save(null, {
             success: function(coin) {
-                window.location = "wire3.html";
+                var metal = select.options[select.selectedIndex].text;
+		        if (metal == "Gold") {
+                    window.location = "wire3.html";
+                } else if (metal == "Silver") {
+                    window.location = "wire3b.html";
+                } else if (metal == "Silver") {
+                    window.location = "wire3c.html";
+                }
                 alert("Bullion added successfully");
             },
             error: function(coin, error) {

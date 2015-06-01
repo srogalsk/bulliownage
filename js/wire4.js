@@ -31,7 +31,14 @@ function updateToStack() {
                 coin.set("quantity", Number(document.getElementById("editquantity").value));
                 coin.set("premium", Number(document.getElementById("editpremium").value));
                 coin.save();
-                window.location = "wire3.html";
+		var metal = document.getElementById("displaymetal").innerHTML;
+		if (metal == "Gold") {
+                    window.location = "wire3.html";
+                } else if (metal == "Silver") {
+                    window.location = "wire3b.html";
+                } else if (metal == "Platinum") {
+                    window.location = "wire3c.html";
+                }
                 alert("Bullion saved successfully");
             },
             error: function(error) {
@@ -41,6 +48,17 @@ function updateToStack() {
     } else {
         alert("Invalid information");
     }
+}
+
+function cancel() {
+	var metal = document.getElementById("displaymetal").innerHTML;
+	if (metal == "Gold") {
+	    window.location = "wire3.html";
+	} else if (metal == "Silver") {
+	    window.location = "wire3b.html";
+	} else if (metal == "Platinum") {
+	    window.location = "wire3c.html";
+	}
 }
 
 var q_string = window.location.search;
