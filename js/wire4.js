@@ -66,10 +66,11 @@ query.get(q_string, {
         var percent = coin.get("percent");
         var grams = coin.get("grams"); //weight per unit
 
-
+	var img = "images/" + name + ".jpg";
+	$(".coin_img")[0].setAttribute("src", img);
         $("#displaymetal").text(metal);
         $("#displayname").text(name);
-        var date = purchasedAt.getDate();
+        var date = purchasedAt.getDate() + 1;
         var month = purchasedAt.getMonth() + 1;
         var year = purchasedAt.getFullYear();
         	if(month < 10)
