@@ -3,7 +3,7 @@ Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
 var nugget =
 {
     type: "gold",
-    name: "Gold Nugget",
+    name: "Australian Gold Nugget",
     percent: 0.9999,
     weight: 0.05
 }
@@ -32,7 +32,7 @@ var vienna =
 var maple =
 {
     type: "gold",
-    name: "Maple Leaf",
+    name: "Canadian Maple Leaf",
     percent: 0.9999,
     weight: 0.067
 }
@@ -89,7 +89,7 @@ var centenario =
 var orzel =
 {
     type: "gold",
-    name: "Orzel bielik",
+    name: "Orzel Bielik",
     percent: 0.9999,
     weight: 0.1
 }
@@ -105,7 +105,7 @@ var bene =
 var george =
 {
     type: "gold",
-    name: "George the Victorious",
+    name: "Saint George the Victorious",
     percent: 0.999,
     weight: 0.2537
 }
@@ -161,7 +161,7 @@ var britannia =
 var eagle =
 {
     type: "gold",
-    name: "Gold Eagle",
+    name: "US Eagle",
     percent: 0.9167,
     weight: 0.1
 }
@@ -297,7 +297,7 @@ var scorpion =
 var dragon =
 {
     type: "silver",
-    name: "Noah's Ark",
+    name: "The Great Dragon",
     percent: 0.999,
     weight: 0.5
 }
