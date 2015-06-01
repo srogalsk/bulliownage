@@ -295,7 +295,7 @@ $(window).load(function() {
 	 		var goldDataset = [];
 	 		var goldLabelset = [];
 	        for(var i = 30; i >= 0; i--){
-	          	goldLabelset.push(goldGraphData.data[i][0]);
+	          	goldLabelset.push(goldGraphData.data[i][0].replace("2015-", ""));
                 goldDataset.push(Number(Math.round(goldGraphData.data[i][1]+'e'+2)+'e-'+2));
 	        }
 
@@ -517,7 +517,7 @@ $(window).load(function() {
 	 		parseData(goldGraphData.data[0][1], callback, "Gold");
 
 	        for(var i = 30; i >= 0; i--){
-	          	goldLabelset.push(goldGraphData.data[i][0]);
+	          	goldLabelset.push(goldGraphData.data[i][0].replace("2015-", ""));
 	            goldDataset.push(goldGraphData.data[i][1]);
 	        }
 

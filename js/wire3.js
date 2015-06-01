@@ -1,31 +1,32 @@
-/*------ POPULATE DATA ------*/
+/*------ POPULATE Numerical Data Wire3 ------*/
+// API call to Quandl
 var json_obj_daily=Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",1);
 // Collect Critical Data points
-var recentVal=json_obj_daily.data[0][1];
-var recentVal2=json_obj_daily.data[1][1];
-var datalen=json_obj_daily.data.length;
-var oldestVal=json_obj_daily.data[datalen-1][1];
+var recentVal=json_obj_daily.data[0][1]; // most recent stock value
+var recentVal2=json_obj_daily.data[1][1]; // second most recent stock value
+var datalen=json_obj_daily.data.length; // number of data elements we have for the month
+var oldestVal=json_obj_daily.data[datalen-1][1];  // oldest value within a month
 
 // Calculate the 1D percentage change 
 var oneDayChange=(100*((recentVal-recentVal2)/recentVal2));
 // Round two digits
 oneDayChange=Number(Math.round(oneDayChange+'e'+2)+'e-'+2);
 
-// Calculate the overall change over the graph's timespan
+// Calculate the overall change over the graph's timespan (Currently 1 month)
 var overallChange=(100*((recentVal-oldestVal)/oldestVal));
 // Round two digits
 overallChange=Number(Math.round(overallChange+'e'+2)+'e-'+2);
 
-// Calculate sign extension and add to html
+// Calculate sign extension for HTML (Need to append + sign only)
 var sign1, sign2;
 sign1 = (oneDayChange < 0 ? "" : "+");
 sign2 = (overallChange < 0 ? "" : "+");
 var ODC = document.getElementById("oneDayChange");
-ODC.className = (oneDayChange < 0 ? "neg-change" : "pos-change");
-ODC.innerHTML = sign1+oneDayChange+"%";
+  ODC.className = (oneDayChange < 0 ? "neg-change" : "pos-change");
+  ODC.innerHTML = sign1+oneDayChange+"%";
 var OC = document.getElementById("overallChange");
-OC.className = (overallChange < 0 ? "neg-change" : "pos-change");
-OC.innerHTML = sign2+overallChange+"%";
+  OC.className = (overallChange < 0 ? "neg-change" : "pos-change");
+  OC.innerHTML = sign2+overallChange+"%";
 
 // get Change data
 var change = json_obj_daily.data[0][1] - json_obj_daily.data[1][1];
@@ -36,6 +37,8 @@ CA.className = (changeAmount < 0 ? "neg-change" : "pos-change");
 CA.innerHTML=sign3 + change;
 
 // Fill bid and asking prices
+// Requires call to external page created by another student
+// This will not work if page is down!
 function getData() {
     return $.ajax({
         type: "GET",
@@ -59,47 +62,51 @@ function handleData( csvdata ) {
 getData().done(handleData);
 
 // Search Bar Functionality
+// When a key is released, check the search bar for changes 
+// and hide items that do not contain the substring
 $('#search').keyup(function() {
     var table = document.getElementById("gold_table");
     var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
     for (var i = 1 ; i < table.rows.length; i++){
         var coin = table.rows[i].firstChild.nextSibling.innerHTML.toLowerCase();
         if (i > 0 && coin.includes(val)){
-            table.rows[i].style.display = "";
+            table.rows[i].style.display = ""; // Default hidden value
         }
         else {
-            table.rows[i].style.display = "none";
+            table.rows[i].style.display = "none"; // Adds hidden style
         }
     }
 });
 
-/*------ PARSE STUFF -----*/
+/*------ PARSE Communication and Calculations -----*/
 Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
     "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
 
+// Get current user
 var user = Parse.User.current();
 var table = document.getElementById("gold_table");
 
 var Coin = Parse.Object.extend("Coin");
 var query = new Parse.Query(Coin);
-query.equalTo("owner", user.id);
-query.equalTo("metal", "Gold");
-var coins = new Coin();
+query.equalTo("owner", user.id); // Owner must match current user
+query.equalTo("metal", "Gold"); // Only get Gold metals
+var coins = new Coin(); // An array to hold all our items from database
 var totalVal = 0;
 
 query.find({
   success: function(coins) {
-    // Do something with the returned Parse.Object values
+    // Do something with the each returned Parse.Object values
     for (var i = 0; i < coins.length; i++) {
       var coin = coins[i];
 
+      // Get corresponding values from database
       var name = coin.get("name");
       var quantity = coin.get("quantity");
       var weight = coin.get("grams");
       var percent = coin.get("percent");
       var premium = coin.get("premium");
 
-
+      // Create table cell for each element and add to HTML page
       var row = table.insertRow(i+1);
       row.setAttribute("id", coin.id);
       row.setAttribute("class", "clickable");
@@ -121,13 +128,16 @@ query.find({
       var cell5 = row.insertCell(5);
       cell5.setAttribute("onClick", "loadData(\"" + coin.id + "\")");
 
+      // Calculate the worth of all the coins and update HTML page
       var goldperunit = Math.round((weight * percent) * 10000) / 10000;
       var ozt = Math.round((goldperunit / (31.1034768)) * 10000) / 10000;
       var price = ((ozt*recentVal) + premium)* quantity;
       cell5.innerHTML = Number(Math.round(price+'e'+2)+'e-'+2);
       totalVal += Number(Math.round(price+'e'+2)+'e-'+2);
       document.getElementById("total-dollars").innerHTML = "$ "+ Number(Math.round(totalVal+'e'+2)+'e-'+2);
-      //console.log(name);
+      
+      // Deletion (Trash Can) feature
+      // Add trash can at the end of each element
       var cell6 = row.insertCell(6);
       cell6.setAttribute("class", "trashcol");
       var child1 = document.createElement("span");
@@ -141,6 +151,7 @@ query.find({
       child2.setAttribute("width", "20px");
       child2.setAttribute("onClick", "deleteCoin(\"" + coin.id + "\")");
 
+      // Confirmation for deletions
       var sure = document.createElement("span");
       sure = child1.appendChild(sure);
       sure.style.display = "none";
@@ -155,7 +166,6 @@ query.find({
       yes_child.setAttribute("class", "yes");
       yes_child.innerHTML = "yes ";
 
-
       var no_child = document.createElement("span");
       yes_child=sure.appendChild(no_child);
       yes_child.setAttribute("class", "no");
@@ -164,8 +174,9 @@ query.find({
     }
 
   },
-  error: function(error) {
-    alert("Error: " + error.code + " " + error.message);
+  error: function(error) { 
+    // Display error message if fetch fails
+    alert("Error: " + error.message);
   }
 
 });
