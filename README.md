@@ -3,7 +3,13 @@
                                Bulliownage - HW4
 ===============================================================================
 
-Regardless of how you approach your implementation you must provide a README.MD file that indicates how you built your app, concerns you have with and other useful information for the graders.
+1. Start from index.html
+2. Signup to create a New Account
+3. Login with your new account
+4. Navigate to My Gold or any other page
+5. Click the "+" symbol to add new items
+6. On My Gold, Silver, or plat, you can see and click your new item to edit or delete it
+7. The graphs for total value updates every 24 hours. You will only have one point initially.
 
 # # # # # # # # # # # # # # # 
 #  Steps to Building App    #
@@ -56,7 +62,7 @@ Overall: We split the tasks into two categories.
 
 - We decided to have a number of popular coins and bullion load up as options for the user. This was our initial goal since the app is geared towards mainly novice users who may not have knowledge of some of the details of an item. Our app solves that problem by pre-populating the page. The problem with this is that users may have coins that they cannot add to the inventory. As a feature for homework 5, we will implement this so that users can either select from our list (for novice/typical users) or enter their own information from scratch (for more advanced users).
 
-
+- In order to reduce the size of our site, we are merging wire3b and wire 3c into a single wire3 and adding different calls depending on the page we are on. This should reduce our code by a few hundred lines.
 
 
 # # # # # # # # # # # # # # # 

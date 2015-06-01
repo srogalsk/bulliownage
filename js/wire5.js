@@ -1,5 +1,7 @@
 Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
     "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
+
+// Default Selections for user
 var nugget =
 {
     type: "gold",
