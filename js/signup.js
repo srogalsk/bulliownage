@@ -1,4 +1,4 @@
-/**
+    /**
  * Created by gevorg on 5/23/15.
  */
 
@@ -7,8 +7,8 @@ Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
 
 $(document).ready(function () {
 
-    $('#signup-button').on('click', function () {
-        alert('signup button has been pressed');
+    $('#signup-button').on('click', function (event) {
+        //alert('signup button has been pressed');
         event.preventDefault();
         var user = new Parse.User();
 
@@ -28,7 +28,7 @@ $(document).ready(function () {
                 var currUser = Parse.User.current();
                 var d = new Date();
 
-                for(var i = 0; i<31; i++)
+                for(var i = 1; i <= 31; i++)
                 {
                     currUser.add("goldHistory", null);
                     currUser.add("silverHistory", null);
@@ -48,7 +48,7 @@ $(document).ready(function () {
                     }
                 });
 
-                window.location.href = "wire2.html";
+                window.location.href = "login.html";
 
             },
             error: function (user, error) {
