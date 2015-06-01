@@ -74,7 +74,7 @@ var kijang =
 var libertad =
 {
     type: "gold",
-    name: "Libertad",
+    name: "Gold Libertad",
     percent: 0.999,
     weight: 0.05
 }
