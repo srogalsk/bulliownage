@@ -83,8 +83,13 @@
 
                     <a><span id="cancel2" style="display:none;"onClick="window.location.reload()">Cancel</span></a>
 
+                    <a><span style="background-color: red;" id="remove" onclick="confirm()">Delete Account</span></a>
 
-                    <a><span style="background-color: red;" id="remove" onclick="removeFromStack()">Delete Account</span></a>
+                    <span id="confirm" style="display: none; font-size: 12px">Are you sure you want to delete your account?</span>
+                    <br/>
+                    <span style="background-color: red; display:none" id="yes" onclick="destroyAccount()">Yes</span>
+                    <span style="background-color: green; display:none;" id="no" onclick="hide()">No</span>
+
                 </section>
             </div>
         </section>
@@ -95,9 +100,11 @@
 
     <script type="text/javascript" src="js/parse-1.4.2.min.js"></script>
     <script type="text/javascript">
+
+    Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
+                "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
+    
         function logout(){
-            Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
-    "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
             Parse.User.logOut();
             window.location = "index.html";
         }
@@ -127,8 +134,7 @@
                 var password = oldpass.value;
 
 
-                Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
-    "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
+                
 
                 if(newpass.value == newpassconfirm.value){
                     Parse.User.logIn(username, password, {
@@ -151,9 +157,46 @@
 
         }
 
+          function confirm() {
+            document.getElementById("confirm").style.display = "inline";
+            document.getElementById("yes").style.display = "inline";
+            document.getElementById("no").style.display = "inline";
+        }
+
+        function hide() {
+            document.getElementById("confirm").style.display = "none";
+            document.getElementById("yes").style.display = "none";
+            document.getElementById("no").style.display = "none";
+        }
+
+        function destroyAccount(){
+            var user = Parse.User.current();
+            var Coin = Parse.Object.extend("Coin");
+            var query = new Parse.Query(Coin);
+            query.equalTo("owner", user.id);
+            var coins = new Coin();
+            query.find({
+                success: function(coins) {
+                    Parse.Object.destroyAll(coins, {success: function() {}, error: function() {}, });
+                    window.location = "index.html";
+                },
+                error: function(coins, error) {
+                    alert("Failed to destory");
+                }
+            });
+            user.destroy();
+        }
+
 
     </script>
 
 </body>
 
 </html>
+
+
+
+
+
+
+

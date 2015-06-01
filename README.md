@@ -88,6 +88,8 @@ Overall: We split the tasks into two categories.
 # # # # # # # # # # # # # # #
 - As useful information, we were short one man for this assignment. Although he showed up to one meeting, he did not contribute much if any tangible contributions to the assignment.
 
+- The settings page was implemented last about an hour before the deadline. 
+
 # # # # # # # # # # # # # # # 
 #        Thank you!         #
 # # # # # # # # # # # # # # #
