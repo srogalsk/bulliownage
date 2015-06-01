@@ -364,7 +364,6 @@ changeList = function () {
     fillList(document.getElementById("type"), newlist);
 }
 
-
 changeValue = function()
 {
     var arr;
@@ -391,13 +390,11 @@ changeValue = function()
         if(name == coin_obj.name) {
             var grams = (coin_obj.weight / 0.032151).toString();
             var total = ((coin_obj.weight) * $("#quantity").val());
-            document.getElementById("percent").innerHTML = coin_obj.percent;
-            document.getElementById("ozt").innerHTML = coin_obj.weight;
-            document.getElementById("grams").innerHTML = grams;
+            document.getElementById("percent").innerHTML = coin_obj.percent.toFixed(2);
+            document.getElementById("ozt").innerHTML = coin_obj.weight.toFixed(2);
             invalid();
             break;
         }
-
     }
 }
 
@@ -405,12 +402,14 @@ changeValue = function()
 function invalid() {
     var quantity = Number(document.getElementById("quantity").value);
     var premium = Number(document.getElementById("premium").value);
-  	var percent = Number(document.getElementById("percent").innerHTML);
-    var unitgrams = Number(document.getElementById("unitgrams").innerHTML);
-    var unitgoldgrams = percent * unitgrams;
-    //var unitgoldozt = Number(0.0321507466 * unitgoldgrams);
+	var percent = Number(document.getElementById("percent").innerHTML);
+    var unitgoldozt = Number(document.getElementById("ozt").innerHTML);
+    var unitgrams = unitgoldozt / 0.032151;
+    var unitgoldgrams = percent * unitgrams / 100;
     var totalgoldozt = $("#ozt").text() * quantity;
     var invalid = isNaN(quantity) || quantity < 1 || isNaN(premium) || premium < 0;
+    document.getElementById("unitgrams").innerHTML = invalid? "N/A" : unitgrams.toFixed(2);
+    document.getElementById("grams").innerHTML = invalid? "N/A" : unitgoldgrams.toFixed(2);
     document.getElementById("total").innerHTML = invalid? "N/A" : totalgoldozt.toFixed(2);
     return invalid;
 }
@@ -424,7 +423,7 @@ function saveToStack() {
 
         var select = document.getElementById("category");
         coin.set("metal", select.options[select.selectedIndex].text);
-        coin.set("name", document.getElementById("type").value);
+        coin.set("name", $("#type option:selected").text());
         coin.set("purchasedAt", new Date(document.getElementById("purchase_date").value));
         coin.set("quantity", Number(document.getElementById("quantity").value));
         coin.set("premium", Number(document.getElementById("premium").value));
@@ -446,6 +445,8 @@ function saveToStack() {
     }
 }
 
+changeList();
+changeValue();
 invalid();
 table = document.addEventListener("keyup", invalid);
 table = document.addEventListener("onchange", changeValue);
