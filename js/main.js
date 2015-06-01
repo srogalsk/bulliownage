@@ -150,7 +150,7 @@ function parseArrayUpdate(historyArr, columnName){
 	var user = Parse.User.current();
 	user.unset(columnName);
 	user.save();
-	console.log(historyArr.length);
+	//console.log(historyArr.length);
 	for (var i = 0; i < 31; i++){
 		user.add(columnName, historyArr[i]);
 	}
@@ -205,7 +205,7 @@ function parseData(recentVal, callback, metaltype){
 	    
 	    try{
 	    	historyArr.push(totalVal);
-	    	console.log(historyArr);
+	    	//console.log(historyArr);
 	    	callback(historyArr);
 		}
 		catch(err){
