@@ -36,13 +36,53 @@
                 </a>
                 ITEM DETAIL
             </div>
-            <div>
 
-                <section id="buttonspan" style="position:fixed; top:50%; left:50%; margin-top:-300px; margin-left: -130px;" class="coin_detail">
+
+
+            <div id="form" style="position:fixed; top:10%; left:43%;" hidden="none"> 
+            <div id="register" class="animate form">
+                <form autocomplete="off" method="post">
+                    <h1> Password Management </h1>
+                    <p>
+                        <label for="username" class="youpasswd" data-icon="p">Username </label>
+                        <input id="username" name="passwordsignup" required="required" type="password" placeholder="eg. L33TH4X0R"/>
+                    </p>
+                    <br/>
+                    <p>
+                        <label for="oldpass" class="youpasswd" data-icon="p">Old password </label>
+                        <input id="oldpass" name="passwordsignup" required="required" type="password" placeholder="eg. X8df!90EO"/>
+                    </p>
+                    <br/>
+                    <p>
+                        <label for="newpass" class="youpasswd" data-icon="p">New password </label>
+                        <input id="newpass" name="passwordsignup" required="required" type="password" placeholder="eg. X8df!90EO"/>
+                    </p>
+                    <br/>
+                    <p>
+                        <label for="newpassconfirm" class="youpasswd" data-icon="p">Please confirm your password </label>
+                        <input id="newpassconfirm" name="passwordsignup_confirm" required="required" type="password" placeholder="eg. X8df!90EO"/>
+                    </p>
+
+                </form>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+            <div>
+                <section id="buttonspan" style="position:fixed; top:10%; left:43%;" class="coin_detail">
 
                     <a><span id="save" onclick="logout()">Logout</span></a>
 
                     <a><span id="cancel" onclick="changePassword()">Change Password</span></a>
+
+                    <a><span id="cancel2" style="display:none;"onClick="window.location.reload()">Cancel</span></a>
+
 
                     <a><span style="background-color: red;" id="remove" onclick="removeFromStack()">Delete Account</span></a>
                 </section>
@@ -63,11 +103,51 @@
         }
         
         function changePassword(){
+
             var button1 = document.getElementById("save");
             var button2 = document.getElementById("cancel");
             var button3 = document.getElementById("remove");
-            button1.style.display="none";
-            button3.style.display="none";
+            var button4 = document.getElementById("cancel2");
+            if(button1.style.display == ""){
+                button1.style.display="none";
+                button3.style.display="none";
+                var span = document.getElementById("buttonspan");
+                span.style.marginTop="200px";
+                var form = document.getElementById("form");
+                form.style.display="block";
+                button4.style.display="block";
+            }
+            else{
+                var uname = document.getElementById("username");
+               var oldpass = document.getElementById("oldpass");
+               var newpass = document.getElementById("newpass");
+               var newpassconfirm = document.getElementById("newpassconfirm");
+
+                var username = uname.value;
+                var password = oldpass.value;
+
+
+                Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
+    "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
+
+                if(newpass.value == newpassconfirm.value){
+                    Parse.User.logIn(username, password, {
+                        success: function(user) {
+                                user.set("password", newpass.value);
+                                user.save();
+                                alert("Password Change Successful");
+                                window.location = "settings.html";                             },
+                        error: function(user, error) {
+                            // Login failed!
+                            alert("Error: Your Username or Password is Incorrect.");
+
+                        }
+                    });
+                }
+                else{
+                    alert("Your Passwords do not match.");
+                }
+            }
 
         }
 
