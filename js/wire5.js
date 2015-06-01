@@ -370,6 +370,10 @@ changeValue = function()
 
     var name = $("#type option:selected").text();
 
+    var img = "images/" + name + ".jpg";
+    console.log(img);
+    $(".coin_img")[0].setAttribute("src", img);
+
     if(type == "gold") {
         arr = goldArr;
     }
