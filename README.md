@@ -64,6 +64,8 @@ Overall: We split the tasks into two categories.
 
 - In order to reduce the size of our site, we are merging wire3b and wire 3c into a single wire3 and adding different calls depending on the page we are on. This should reduce our code by a few hundred lines.
 
+- Clicking the browser's refresh or backbutton can lead to issues with the login session and will clear the session.
+
 
 # # # # # # # # # # # # # # # 
 #     Validation Issues     #
