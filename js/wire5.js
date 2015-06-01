@@ -50,7 +50,7 @@ changeList = function () {
 }
 
 function invalid() {
-	var quantity = Number(document.getElementById("quantity").value);
+    var quantity = Number(document.getElementById("quantity").value);
     var premium = Number(document.getElementById("premium").value);
     	var percent = Number(document.getElementById("percent").innerHTML);
     var unitgrams = Number(document.getElementById("unitgrams").innerHTML);
