@@ -1194,6 +1194,10 @@ select {
         cursor: pointer;
     }
     .coin_img {
-        height: 100%;
-	width: 100%;
+    width:100%;
+    max-height:120%;
+    }
+    .img_thumb {
+    height:40px;
+    max-width:40px;
     }
