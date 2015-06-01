@@ -446,7 +446,7 @@ function saveToStack() {
                     window.location = "wire3.html";
                 } else if (metal == "Silver") {
                     window.location = "wire3b.html";
-                } else if (metal == "Silver") {
+                } else if (metal == "Platinum") {
                     window.location = "wire3c.html";
                 }
                 alert("Bullion added successfully");

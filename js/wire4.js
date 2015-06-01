@@ -6,7 +6,7 @@ function invalid() {
     var premium = Number(document.getElementById("editpremium").value);
     	var percent = Number(document.getElementById("displaypercent").innerHTML);
     var unitgrams = Number(document.getElementById("displayweightperunit").innerHTML);
-    var unitgoldgrams = percent * unitgrams / 100;
+    var unitgoldgrams = percent * unitgrams;
     var unitgoldozt = Number(0.0321507466 * unitgoldgrams);
     var totalgoldozt = unitgoldozt * quantity;
     document.getElementById("displayozt").innerHTML = unitgoldozt.toFixed(4);
