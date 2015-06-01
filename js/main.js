@@ -114,15 +114,15 @@ function Get(yourPartialUrl, months){
     return json_obj;
 }    
 
-function parseArrayUpdate(historyArr){
+function parseArrayUpdate(historyArr, columnName){
 	Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
     "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
 	var user = Parse.User.current();
-	user.unset("goldHistory");
+	user.unset(columnName);
 	user.save();
 	console.log(historyArr.length);
 	for (var i = 0; i < 31; i++){
-		user.add("goldHistory", historyArr[i]);
+		user.add(columnName, historyArr[i]);
 	}
 	user.save();
 } 
@@ -277,7 +277,7 @@ $(window).load(function() {
 				//var coinChartGold =  new Chart(ctxGold).Line(data,options);
 				//coinChartGold.update();
 				if(timeCheck()){
-					parseArrayUpdate(goldHistory);
+					parseArrayUpdate(goldHistory, "goldHistory");
 				}
 			}
 	 		parseData(goldGraphData.data[0][1], callback, "Gold");
@@ -299,7 +299,7 @@ $(window).load(function() {
 				//var coinChartGold =  new Chart(ctxGold).Line(data,options);
 				//coinChartGold.update();
 				if(timeCheck()){
-					parseArrayUpdate(silverHistory);
+					parseArrayUpdate(silverHistory, "silverHistory");
 				}
 			}
 	        parseData(silverGraphData.data[0][1], callback1, "Silver");
@@ -319,10 +319,10 @@ $(window).load(function() {
 				var coinChartGold =  new Chart(ctxGold).Line(data,options);
 				coinChartGold.update();
 				if(timeCheck()){
-					parseArrayUpdate(platHistory);
+					parseArrayUpdate(platHistory, "platHistory");
 				}
-				var sum = data.datasets[0].data[30];// + data.datasets[1].data[30] + data.datasets[2].data[30];
-				var prevsum = data.datasets[0].data[29];// + data.datasets[1].data[29] + data.datasets[2].data[29];
+				var sum = (data.datasets[0].data[30] || 0) + (data.datasets[1].data[30] || 0) + (data.datasets[2].data[30] || 0);
+				var prevsum = (data.datasets[0].data[29] || 0) + (data.datasets[1].data[29] || 0) + (data.datasets[2].data[29] || 0);
 				var percentchange = 0;
 				//console.log(sum);
 				//console.log(prevsum);
@@ -479,7 +479,7 @@ $(window).load(function() {
 				coinChartGold.update();
 
 				if(timeCheck()){
-					parseArrayUpdate(goldHistory);
+					parseArrayUpdate(goldHistory, "goldHistory");
 				}
 			}
 	 		parseData(goldGraphData.data[0][1], callback, "Gold");
@@ -570,6 +570,225 @@ $(window).load(function() {
 			//var coinChartGold = new Chart(ctxGold).Line(data,options);
 			//coinChartGold.update();
 		}
+
+		else if(page =="wire3b.html"){
+			var goldHistory = [];
+			var ctxGold = document.getElementById("total-chart").getContext("2d");
+
+			// 	Get Gold Graph Data
+			var goldGraphData = Get("https://www.quandl.com/api/v1/datasets/OFDP/SILVER_5.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
+	 		var goldDataset = [];
+	 		var goldLabelset = [];
+
+	 		function callback(goldHistoryUpdate){
+	 			goldHistoryUpdate.shift();
+				goldHistory = goldHistoryUpdate;
+				data.datasets[0].data = goldHistory;
+				var coinChartGold =  new Chart(ctxGold).Line(data,options);
+				coinChartGold.update();
+
+				if(timeCheck()){
+					parseArrayUpdate(goldHistory, "silverHistory");
+				}
+			}
+	 		parseData(goldGraphData.data[0][1], callback, "Silver");
+
+	        for(var i = 30; i >= 0; i--){
+	          	goldLabelset.push(goldGraphData.data[i][0]);
+	            goldDataset.push(goldGraphData.data[i][1]);
+	        }
+
+			var data = {
+				labels: goldLabelset,
+				datasets: [
+				{
+					label: "Silver Total",
+					fillColor: "rgba(104, 206, 222, 0.05)",
+					strokeColor: "#FF6D67",
+					pointColor: "#FF6D67",
+					pointStrokeColor: pointStroke,
+					pointHighlightFill: pointHighlightFill,
+					pointHighlightStroke: pointHighlightStroke,
+					data: goldHistory
+				},
+				{
+					label: "1oz t Silver",
+					fillColor: "rgba(104, 206, 222, 0.05)",
+					strokeColor: "#9FFF98",
+					pointColor: "#9FFF98",
+					pointStrokeColor: pointStroke,
+					pointHighlightFill: pointHighlightFill,
+					pointHighlightStroke: pointHighlightStroke,
+					data: goldDataset
+				}
+				]
+			};
+
+
+			var options = {
+
+			    ///Boolean - Whether grid lines are shown across the chart
+			    scaleShowGridLines : true,
+
+			    //String - Colour of the grid lines
+			    scaleGridLineColor : "rgba(104, 206, 222, 0.1)",
+
+			    //Number - Width of the grid lines
+			    scaleGridLineWidth : 1,
+
+			    //Boolean - Whether to show horizontal lines (except X axis)
+			    scaleShowHorizontalLines: true,
+
+			    //Boolean - Whether to show vertical lines (except Y axis)
+			    scaleShowVerticalLines: true,
+
+			    //Boolean - Whether the line is curved between points
+			    bezierCurve : false,
+
+			    //Boolean - Whether to show a dot for each point
+			    pointDot : true,
+
+			    //Number - Radius of each point dot in pixels
+			    pointDotRadius : 4,
+
+			    //Number - Pixel width of point dot stroke
+			    pointDotStrokeWidth : 1,
+
+			    //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+			    pointHitDetectionRadius : 5,
+
+			    //Boolean - Whether to show a stroke for datasets
+			    datasetStroke : true,
+
+			    //Number - Pixel width of dataset stroke
+			    datasetStrokeWidth : 1,
+
+			    //Boolean - Whether to fill the dataset with a colour
+			    datasetFill : true,
+
+			    //String - A legend template
+			    legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
+
+			    responsive: true,
+
+			    maintainAspectRatio: false
+
+
+			};
+
+			//var coinChartGold = new Chart(ctxGold).Line(data,options);
+			//coinChartGold.update();
+		}
+
+		else if(page =="wire3c.html"){
+			var goldHistory = [];
+			var ctxGold = document.getElementById("total-chart").getContext("2d");
+
+			// 	Get Gold Graph Data
+			var goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LPPM/PLAT.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
+	 		var goldDataset = [];
+	 		var goldLabelset = [];
+
+	 		function callback(goldHistoryUpdate){
+	 			goldHistoryUpdate.shift();
+				goldHistory = goldHistoryUpdate;
+				data.datasets[0].data = goldHistory;
+				var coinChartGold =  new Chart(ctxGold).Line(data,options);
+				coinChartGold.update();
+
+				if(timeCheck()){
+					parseArrayUpdate(goldHistory, "platHistory");
+				}
+			}
+	 		parseData(goldGraphData.data[0][1], callback, "Platinum");
+
+	        for(var i = 30; i >= 0; i--){
+	          	goldLabelset.push(goldGraphData.data[i][0]);
+	            goldDataset.push(goldGraphData.data[i][1]);
+	        }
+
+			var data = {
+				labels: goldLabelset,
+				datasets: [
+				{
+					label: "Platinum Total",
+					fillColor: "rgba(104, 206, 222, 0.05)",
+					strokeColor: "#FF6D67",
+					pointColor: "#FF6D67",
+					pointStrokeColor: pointStroke,
+					pointHighlightFill: pointHighlightFill,
+					pointHighlightStroke: pointHighlightStroke,
+					data: goldHistory
+				},
+				{
+					label: "1oz t Platinum",
+					fillColor: "rgba(104, 206, 222, 0.05)",
+					strokeColor: "#9FFF98",
+					pointColor: "#9FFF98",
+					pointStrokeColor: pointStroke,
+					pointHighlightFill: pointHighlightFill,
+					pointHighlightStroke: pointHighlightStroke,
+					data: goldDataset
+				}
+				]
+			};
+
+
+			var options = {
+
+			    ///Boolean - Whether grid lines are shown across the chart
+			    scaleShowGridLines : true,
+
+			    //String - Colour of the grid lines
+			    scaleGridLineColor : "rgba(104, 206, 222, 0.1)",
+
+			    //Number - Width of the grid lines
+			    scaleGridLineWidth : 1,
+
+			    //Boolean - Whether to show horizontal lines (except X axis)
+			    scaleShowHorizontalLines: true,
+
+			    //Boolean - Whether to show vertical lines (except Y axis)
+			    scaleShowVerticalLines: true,
+
+			    //Boolean - Whether the line is curved between points
+			    bezierCurve : false,
+
+			    //Boolean - Whether to show a dot for each point
+			    pointDot : true,
+
+			    //Number - Radius of each point dot in pixels
+			    pointDotRadius : 4,
+
+			    //Number - Pixel width of point dot stroke
+			    pointDotStrokeWidth : 1,
+
+			    //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+			    pointHitDetectionRadius : 5,
+
+			    //Boolean - Whether to show a stroke for datasets
+			    datasetStroke : true,
+
+			    //Number - Pixel width of dataset stroke
+			    datasetStrokeWidth : 1,
+
+			    //Boolean - Whether to fill the dataset with a colour
+			    datasetFill : true,
+
+			    //String - A legend template
+			    legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
+
+			    responsive: true,
+
+			    maintainAspectRatio: false
+
+
+			};
+
+			//var coinChartGold = new Chart(ctxGold).Line(data,options);
+			//coinChartGold.update();
+		}
+
 	};
 
 	drawGraph();
@@ -618,6 +837,5 @@ $(window).load(function() {
 	 };
 
 	 $(window).resize(resizer);
-
 
 	});

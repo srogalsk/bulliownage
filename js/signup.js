@@ -53,7 +53,7 @@ $(document).ready(function () {
             },
             error: function (user, error) {
                 // Display error message
-                console.log("Error: " + error.code + " " + error.message);
+                alert("Error: " + error.message);
             }
         });
     });
