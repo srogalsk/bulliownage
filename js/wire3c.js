@@ -92,12 +92,9 @@ query.equalTo("owner", user.id); // Owner must match current user
 query.equalTo("metal", "Platinum"); // Only get Platinum metals
 var coins = new Coin(); // An array to hold all our items from database
 var totalVal = 0;
-console.log("wtf");
 
 query.find({
   success: function(coins) {
-	console.log("wtf");
-	console.log(coins);
     // Do something with the each returned Parse.Object values
     for (var i = 0; i < coins.length; i++) {
       var coin = coins[i];

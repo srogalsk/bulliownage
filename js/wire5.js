@@ -392,7 +392,7 @@ changeValue = function()
         arr = platArr;
     }
 
-    console.log(arr);
+    var name = $("#type option:selected").text();
 
     for (i = 0; i < arr[0].length; i++) {
         // Create a new drop down option with the
