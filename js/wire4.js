@@ -110,3 +110,21 @@ query.get(q_string, {
         // error is a Parse.Error with an error code and message.
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

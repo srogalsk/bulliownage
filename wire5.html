@@ -57,8 +57,7 @@
                         <tr>
                             <td>Type</td>
                             <td>
-                                <select id="type">
-                                    <option value="us_eagle">US Eagle</option>
+                                <select onchange="changeValue()" id="type">
                                 </select>
                             </td>
                         </tr>
@@ -71,7 +70,7 @@
                         <tr>
                             <td>Qty.</td>
                             <td>
-                                <input id="quantity"/>
+                                <input id="quantity" value="1"/>
                             </td>
                         </tr>
                         <tr>
@@ -90,15 +89,15 @@
                         </tr>
                         <tr>
                             <td>Gold g/u</td>
-                            <td id="grams"></td>
+                            <td id="grams">1</td>
                         </tr>
                         <tr>
                             <td>Gold ozt/u</td>
-                            <td id="ozt"></td>
+                            <td id="ozt">1</td>
                         </tr>
                         <tr>
                             <td>Total au (ozt)</td>
-                            <td id="total"></td>
+                            <td id="total">1</td>
                         </tr>
                     </table>
                     <a><span id="save" onclick="saveToStack()">Save to My Stack</span></a>

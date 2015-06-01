@@ -112,7 +112,37 @@ function Get(yourPartialUrl, months){
     Httpreq.send(null);
     var json_obj = JSON.parse(Httpreq.responseText); 
     return json_obj;
-}    
+}
+
+function deleteFromStack(id) {
+    var Coin = Parse.Object.extend("Coin");
+    var query = new Parse.Query(Coin);
+    query.equalTo("objectId", id);
+    query.first({
+        success: function(coin) {
+            coin.destroy({
+                success: function(deleted) {
+                    window.location = "wire3.html";
+                    alert("Bullion removed successfully");
+                },
+                error: function(deleted, error) {
+                    alert("Bullion not found");
+                }
+            });
+        },
+        error: function(error) {
+            alert("Invalid information");
+        }
+    });
+}
+
+function removeFromStack() {
+    var q_string = window.location.search;
+    if (q_string.substring(0, 1) == '?') {
+        q_string = q_string.substring(1);
+    }
+    deleteFromStack(q_string);
+}
 
 function parseArrayUpdate(historyArr, columnName){
 	Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
@@ -409,6 +439,8 @@ $(window).load(function() {
  			};
 
  			var options = {
+
+
 
 			    ///Boolean - Whether grid lines are shown across the chart
 			    scaleShowGridLines : true,
