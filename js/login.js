@@ -24,13 +24,13 @@ $(document).ready(function () {
         Parse.User.logIn(username, password, {
             success: function(user) {
                 // Login successful!
-                console.log("Login Worked");
+                console.log("Login Success!");
                 window.location.href = "wire2.html";
 
                 },
             error: function(user, error) {
                 // Login failed!
-                console.log("Error: " + error.code + " " + error.message);
+                alert("Error: Your Username or Password is Incorrect.");
 
             }
         });
