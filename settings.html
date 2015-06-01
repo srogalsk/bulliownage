@@ -32,33 +32,10 @@
 <p id="backButton"><a href="index.html">&#9664; Back</a> </p>
 
 <div id="wrapper">
-    <div id="register" class="animate form">
-        <form autocomplete="on" method="post">
-            <h1> Sign up </h1>
-            <p>
-                <label for="usernamesignup" class="uname" data-icon="u">Your username</label>
-                <input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="mysuperusername690" />
-            </p>
-            <p>
-                <label for="emailsignup" class="youmail" data-icon="e" > Your email</label>
-                <input id="emailsignup" name="emailsignup" required="required" type="email" placeholder="mysupermail@mail.com"/>
-            </p>
-            <p>
-                <label for="passwordsignup" class="youpasswd" data-icon="p">Your password </label>
-                <input id="passwordsignup" name="passwordsignup" required="required" type="password" placeholder="eg. X8df!90EO"/>
-            </p>
-            <p>
-                <label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Please confirm your password </label>
-                <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password" placeholder="eg. X8df!90EO"/>
-            </p>
-            <p class="signin button">
-                <input type="submit" id="signup-button" value="Sign up">
-            </p>
-            <p class="change_link">
-                Already a member ?
-                <a href="login.html" class="to_register"> Go and log in </a>
-            </p>
-        </form>
+    <div id="logout" class="animate form">
+        <p class="signin button">
+            <input type="submit" id="logout" value="Logout" onclick="logout()"/>
+        </p>
     </div>
 </div>
 
@@ -66,7 +43,15 @@
 
 <script src="js/jquery-1.11.2.min.js"></script>
 <script src="js/parse-1.4.2.min.js"></script>
-<script src="js/signup.js"></script>
+<script>
+    Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
+        "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
+    logout = function()
+    {
+        Parse.User.logOut();
+        window.location = "index.html";
+    }
+</script>
 
 </body>
 </html>
