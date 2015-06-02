@@ -1,6 +1,35 @@
+
+On Thursday: Need everything to package and pass project on for the future
+
+
+
+
+
+
+Alvin:
+- Sleep
 - If going directly to wire2 or some other page, check if user is logged in. If not, redirect.
-- Delete button should have verification and show username 
-- Fix chart Y axis scaling
-- Offline mode
+- Delete button should have verification and show username (just follow the code for the change email)
+
+Jesus:
+- Check min length and characters. display a dynamic security indicator.
+
+
+Steven:
+- sort coin list alphabetically
+- add more types of bullion, like bars, in.
+
+Gev:
 - Facebook/ Google login
-- Noah's Ark.jpg should have the apostrophe removed
+- email confirmation
+
+Patrick:
+- Offline mode
+- Clicking silver should redirect to silver page
+
+
+
+
+- Try to fix chart Y axis scaling
+- Customization 
+- allow user to add custom item or weight.
