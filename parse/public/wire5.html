@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="description" content="bullion management site, rare coins, gold, silver, platinum">
+    <meta name="author" content="CSE134B Dream Team">
+    <link rel="stylesheet" type="text/css" href="./style/style.css">
+    <meta name=viewport content="width=device-width, initial-scale=.8, minimum-scale = .8, user-scalable=yes">
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <script src="./js/jquery-1.11.2.min.js"></script>
+    <script src="./js/velocity.min.js"></script>
+    <script src="./js/main.js"></script>
+    <title>New Item - BULLIOWNAGE</title>
+</head>
+
+<body onload="changeList()">
+    <script type="text/javascript">
+    loadTopNav();
+    </script>
+    <script type="text/javascript">
+    loadSideNav();
+    </script>
+    <section class="main-section">
+        <section class="coin_wrapper">
+            <div class="mobile-nav">
+                <a href="wire3.html">
+                    <svg class="icon icon-keyboard-arrow-left">
+                        <symbol id="icon-keyboard-arrow-left" viewBox="0 0 1024 1024">
+                            <title>keyboard-arrow-left</title>
+                            <path class="path1" d="M657.707 696.96l-195.627-195.627 195.627-195.627-60.373-60.373-256 256 256 256z"></path>
+                        </symbol>
+                        <use xlink:href="#icon-keyboard-arrow-left"></use>
+                    </svg>
+                </a>
+                ADD ITEM
+            </div>
+            <div>
+                <section class="coin_image">
+                    <div class="img_box">
+                        <img class="coin_img" src="images/Napoleon.jpg" alt="Coin">
+                    </div>
+                </section>
+                <section class="coin_detail">
+                    <table id="form">
+                        <tr>
+                            <td>Metal</td>
+                            <td>
+                                <select onchange="changeList()" id="category">
+                                    <option value="gold">Gold</option>
+                                    <option value="silver">Silver</option>
+                                    <option value="platinum">Platinum</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Type</td>
+                            <td>
+                                <select onchange="changeValue()" id="type">
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Purchase Date</td>
+                            <td>
+                                <input type="date" id="purchase_date" placeholder="mm/dd/yyyy"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Qty.</td>
+                            <td>
+                                <input id="quantity" value="1"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Premium</td>
+                            <td>
+                                <input id="premium"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="metalpercent"></td>
+                            <td id="percent"></td>
+                        </tr>
+                        <tr>
+                            <td>Weight/unit (g)</td>
+                            <td id="unitgrams"></td>
+                        </tr>
+                        <tr>
+                            <td id="metalgrams"></td>
+                            <td id="grams"></td>
+                        </tr>
+                        <tr>
+                            <td id="metalozt"></td>
+                            <td id="ozt"></td>
+                        </tr>
+                        <tr>
+                            <td>Total ozt</td>
+                            <td id="total"></td>
+                        </tr>
+                    </table>
+                    <a><span id="save" onclick="saveToStack()">Save to My Stack</span></a>
+                    <a href="wire3.html"><span id="cancel">Cancel</span></a>
+                </section>
+            </div>
+        </section>
+    </section>
+
+    <script type="text/javascript">loadFooter();</script>
+    <script type="text/javascript" src="js/parse-1.4.2.min.js"></script>
+    <script src="./js/wire5.js"></script>
+
+</body>
+
+
+</html>

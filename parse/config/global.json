@@ -1,0 +1,14 @@
+{
+  "global": {
+    "parseVersion": "1.4.2"
+  },
+  "applications": {
+    "Bulliownage": {
+      "applicationId": "lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
+      "masterKey": "rqkXXBtj4VfPi6ZsISNeJm2cuROM40U6qDMRPdL9"
+    },
+    "_default": {
+      "link": "Bulliownage"
+    }
+  }
+}

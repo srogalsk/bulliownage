@@ -1,0 +1,6 @@
+- If going directly to wire2 or some other page, check if user is logged in. If not, redirect.
+- Delete button should have verification and show username 
+- Fix chart Y axis scaling
+- Offline mode
+- Facebook/ Google login
+- Noah's Ark.jpg should have the apostrophe removed

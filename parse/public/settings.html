@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="description" content="bullion management site, rare coins, gold, silver, platinum">
+    <meta name="author" content="CSE134B Dream Team">
+    <link rel="stylesheet" type="text/css" href="./style/style.css">
+    <meta name=viewport content="width=device-width, initial-scale=.8, minimum-scale = .8, user-scalable=yes">
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <script src="./js/jquery-1.11.2.min.js"></script>
+    <script src="./js/velocity.min.js"></script>
+    <script src="./js/main.js"></script>
+    <title>Account Management</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+    loadTopNav();
+    </script>
+    <script type="text/javascript">
+    loadSideNav();
+    </script>
+    <section class="main-section">
+        <section class="coin_wrapper">
+            <div class="mobile-nav">
+                <a href="wire3.html">
+                    <svg class="icon icon-keyboard-arrow-left">
+                        <symbol id="icon-keyboard-arrow-left" viewBox="0 0 1024 1024">
+                            <title>keyboard-arrow-left</title>
+                            <path class="path1" d="M657.707 696.96l-195.627-195.627 195.627-195.627-60.373-60.373-256 256 256 256z"></path>
+                        </symbol>
+                        <use xlink:href="#icon-keyboard-arrow-left"></use>
+                    </svg>
+                </a>
+                ITEM DETAIL
+            </div>
+
+
+
+            <div id="form" style="position:fixed; top:10%; left:10%;" hidden="none"> 
+            <div id="register" class="animate form">
+                <form autocomplete="off" method="post">
+                    <h1> Password Management </h1>
+                    <br/>
+                    <p>
+                        <label for="username" class="youpasswd" data-icon="p">Username </label>
+                        <input id="username" name="passwordsignup" required="required" type="password" placeholder="eg. L33TH4X0R"/>
+                    </p>
+                    <br/>
+                    <p>
+                        <label for="oldpass" class="youpasswd" data-icon="p">Old password </label>
+                        <input id="oldpass" name="passwordsignup" required="required" type="password" placeholder="eg. X8df!90EO"/>
+                    </p>
+                    <br/>
+                    <p>
+                        <label for="newpass" class="youpasswd" data-icon="p">New password </label>
+                        <input id="newpass" name="passwordsignup" required="required" type="password" placeholder="eg. X8df!90EO"/>
+                    </p>
+                    <br/>
+                    <p>
+                        <label for="newpassconfirm" class="youpasswd" data-icon="p">Please confirm your password </label>
+                        <input id="newpassconfirm" name="passwordsignup_confirm" required="required" type="password" placeholder="eg. X8df!90EO"/>
+                    </p>
+
+                </form>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+            <div>
+                <section id="buttonspan" style="position:fixed; top:15%; left:10%;" class="coin_detail">
+
+                    <a><span id="save" onclick="logout()">Logout</span></a>
+
+                    <a><span id="cancel" onclick="changePassword()">Change Password</span></a>
+
+                    <a><span id="cancel2" style="display:none;"onClick="window.location.reload()">Cancel</span></a>
+
+                    <a><span style="background-color: red;" id="remove" onclick="confirm()">Delete Account</span></a>
+
+                    <span id="confirm" style="display: none; font-size: 12px">Are you sure you want to delete your account?</span>
+                    <br/>
+                    <span style="background-color: red; display:none" id="yes" onclick="destroyAccount()">Yes</span>
+                    <span style="background-color: green; display:none;" id="no" onclick="hide()">No</span>
+
+                </section>
+            </div>
+        </section>
+    </section>
+    <script type="text/javascript">
+    loadFooter();
+    </script>
+
+    <script type="text/javascript" src="js/parse-1.4.2.min.js"></script>
+    <script type="text/javascript">
+
+    Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
+                "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
+
+        function logout(){
+            Parse.User.logOut();
+            window.location = "index.html";
+        }
+        
+        function changePassword(){
+
+            var button1 = document.getElementById("save");
+            var button2 = document.getElementById("cancel");
+            var button3 = document.getElementById("remove");
+            var button4 = document.getElementById("cancel2");
+            if(button1.style.display == ""){
+                button1.style.display="none";
+                button3.style.display="none";
+                var span = document.getElementById("buttonspan");
+                span.style.marginTop="180px";
+                var form = document.getElementById("form");
+                form.style.display="block";
+                button4.style.display="block";
+            }
+            else{
+                var uname = document.getElementById("username");
+               var oldpass = document.getElementById("oldpass");
+               var newpass = document.getElementById("newpass");
+               var newpassconfirm = document.getElementById("newpassconfirm");
+
+                var username = uname.value;
+                var password = oldpass.value;
+
+
+                
+
+                if(newpass.value == newpassconfirm.value){
+                    Parse.User.logIn(username, password, {
+                        success: function(user) {
+                                user.set("password", newpass.value);
+                                user.save();
+                                alert("Password Change Successful");
+                                window.location = "settings.html";                             },
+                        error: function(user, error) {
+                            // Login failed!
+                            alert("Error: Your Username or Password is Incorrect.");
+
+                        }
+                    });
+                }
+                else{
+                    alert("Your Passwords do not match.");
+                }
+            }
+
+        }
+
+          function confirm() {
+            document.getElementById("confirm").style.display = "inline";
+            document.getElementById("yes").style.display = "inline";
+            document.getElementById("no").style.display = "inline";
+        }
+
+        function hide() {
+            document.getElementById("confirm").style.display = "none";
+            document.getElementById("yes").style.display = "none";
+            document.getElementById("no").style.display = "none";
+        }
+
+        function destroyAccount(){
+            var user = Parse.User.current();
+            var Coin = Parse.Object.extend("Coin");
+            var query = new Parse.Query(Coin);
+            query.equalTo("owner", user.id);
+            var coins = new Coin();
+            query.find({
+                success: function(coins) {
+                    Parse.Object.destroyAll(coins, {success: function() {}, error: function() {}, });
+                    window.location = "index.html";
+                },
+                error: function(coins, error) {
+                    alert("Failed to destory");
+                }
+            });
+            user.destroy();
+        }
+
+
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
