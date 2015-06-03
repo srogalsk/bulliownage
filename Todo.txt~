@@ -1,22 +1,36 @@
 
-- Try to fix chart Y axis scaling
+On Thursday: Need everything to package and pass project on for the future
 
 
-- Noah's Ark.jpg should have the apostrophe removed. Also fix in code
+
+
 
 
 Alvin:
+- Sleep
 - If going directly to wire2 or some other page, check if user is logged in. If not, redirect.
-- Delete button should have verification and show username 
+- Delete button should have verification and show username (just follow the code for the change email)
 
 Jesus:
+- Check min length and characters. display a dynamic security indicator.
+
 
 Steven:
 - sort coin list alphabetically
-- add more types of bullion in?
+- add more types of bullion, like bars, in.
 
 Gev:
 - Facebook/ Google login
+- email confirmation
 
-Patrick:
-- Offline mode
+Patrick: 
+- Offline mode (Done)
+- Clicking silver should redirect to silver page (Done)
+- Fixed a bug with time
+
+
+
+
+- Try to fix chart Y axis scaling
+- Customization 
+- allow user to add custom item or weight.

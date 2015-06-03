@@ -1,6 +1,14 @@
 /*------ POPULATE Numerical Data Wire3 ------*/
 // API call to Quandl
-var json_obj_daily=Get("https://www.quandl.com/api/v1/datasets/OFDP/SILVER_5.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",1);
+var json_obj_daily = [];
+    try{
+        json_obj_daily = Get("https://www.quandl.com/api/v1/datasets/OFDP/SILVER_5.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",1);
+        localStorage.setItem("lastSilverDataONEMONTH", JSON.stringify(json_obj_daily));
+    }
+    catch(err){
+        json_obj_daily = JSON.parse(localStorage.getItem("lastSilverDataONEMONTH"));
+    }
+
 // Collect Critical Data points
 var recentVal=json_obj_daily.data[0][1]; // most recent stock value
 var recentVal2=json_obj_daily.data[1][1]; // second most recent stock value
@@ -45,6 +53,11 @@ function getData() {
         dataType: 'text',
         url: "https://cse134b.herokuapp.com/jm",
         crossDomain : true,
+        error: function(msg){
+                var jsonAB = JSON.parse(localStorage.getItem("bidask"));
+                document.getElementById("bidVal").innerHTML = jsonAB[2].bid;
+    document.getElementById("askVal").innerHTML = jsonAB[2].ask; 
+            },
         xhrFields: {
             withCredentials: false
         }
@@ -53,6 +66,7 @@ function getData() {
 function handleData( csvdata ) {
     var bidAskVals = [];
     var jsonAB = eval(csvdata);
+    localStorage.setItem("bidask", JSON.stringify(eval(csvdata)));
     // 0 for gold, 1 for silver, 2 for plat
     document.getElementById("bidVal").innerHTML = jsonAB[1].bid;
     document.getElementById("askVal").innerHTML = jsonAB[1].ask;

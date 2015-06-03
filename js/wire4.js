@@ -121,13 +121,34 @@ query.get(q_string, {
         var spot_price;
         var json_obj_daily;
         if(metal == "Gold") {
-            json_obj_daily = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",1);
+            try{
+                json_obj_daily = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",1);
+                localStorage.setItem("lastGoldDataONEMONTH", JSON.stringify(json_obj_daily));
+            }
+            catch(err){
+                json_obj_daily = JSON.parse(localStorage.getItem("lastGoldDataONEMONTH"));
+            }
+            
         }
         else if(name == "Silver") {
-            json_obj_daily = Get("https://www.quandl.com/api/v1/datasets/OFDP/SILVER_5.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",1);
+                try{
+                    json_obj_daily = Get("https://www.quandl.com/api/v1/datasets/OFDP/SILVER_5.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",1);
+                    localStorage.setItem("lastSilverDataONEMONTH", JSON.stringify(json_obj_daily));
+                }
+                catch(err){
+                    json_obj_daily = JSON.parse(localStorage.getItem("lastSilverDataONEMONTH"));
+                }
+            
         }
         else {
-            json_obj_daily = Get("https://www.quandl.com/api/v1/datasets/LPPM/PLAT.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",1);
+                try{
+                    json_obj_daily = Get("https://www.quandl.com/api/v1/datasets/LPPM/PLAT.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",1);
+                    localStorage.setItem("lastPlatDataONEMONTH", JSON.stringify(json_obj_daily));
+                }
+                catch(err){
+                    json_obj_daily = JSON.parse(localStorage.getItem("lastPlatDataONEMONTH"));
+                }
+            
         }
 
         spot_price=json_obj_daily.data[0][1];
