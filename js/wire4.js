@@ -84,7 +84,9 @@ query.get(q_string, {
         var grams = coin.get("grams"); //weight per unit
 
 	var img = "images/" + name + ".jpg";
-	$(".coin_img")[0].setAttribute("src", img);
+	var img_tag = $(".def_img")[0];
+	img_tag.setAttribute("src", img);
+	img_tag.setAttribute("class", "coin_img");
         $("#displaymetal").text(metal);
         $("#displayname").text(name);
         var date = purchasedAt.getDate() + 1;
