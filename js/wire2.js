@@ -158,7 +158,9 @@ var plat_json_obj_daily = [];
 "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
 
 var user = Parse.User.current();
-console.log(user.get("username"));
+if (user == null) {
+	window.location = "login.html";
+}
 
 var Coin = Parse.Object.extend("Coin");
 var query = new Parse.Query(Coin);

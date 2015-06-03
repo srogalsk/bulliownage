@@ -98,6 +98,9 @@ Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
 
 // Get current user
 var user = Parse.User.current();
+if (user == null) {
+	window.location = "login.html";
+}
 var table = document.getElementById("silver_table");
 
 var Coin = Parse.Object.extend("Coin");

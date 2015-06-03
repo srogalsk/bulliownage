@@ -469,6 +469,11 @@ function saveToStack() {
     }
 }
 
+var user = Parse.User.current();
+if (user == null) {
+	window.location = "login.html";
+}
+
 changeList();
 changeValue();
 invalid();

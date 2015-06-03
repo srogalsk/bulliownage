@@ -1,6 +1,11 @@
 Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
     "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
 
+var user = Parse.User.current();
+if (user == null) {
+	window.location = "login.html";
+}
+
 function invalid() {
 	var quantity = Number(document.getElementById("editquantity").value);
     var premium = Number(document.getElementById("editpremium").value);
@@ -66,7 +71,6 @@ if (q_string.substring(0, 1) == '?') {
     q_string = q_string.substring(1);
   }
 
-var user = Parse.User.current();
 var Coin = Parse.Object.extend("Coin");
 var query = new Parse.Query(Coin);
 var coin = new Coin();
