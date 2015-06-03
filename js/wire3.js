@@ -90,6 +90,8 @@ var Coin = Parse.Object.extend("Coin");
 var query = new Parse.Query(Coin);
 query.equalTo("owner", user.id); // Owner must match current user
 query.equalTo("metal", "Gold"); // Only get Gold metals
+query.ascending("name");
+
 var coins = new Coin(); // An array to hold all our items from database
 var totalVal = 0;
 

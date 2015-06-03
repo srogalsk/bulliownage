@@ -89,7 +89,8 @@ var table = document.getElementById("platinum_table");
 var Coin = Parse.Object.extend("Coin");
 var query = new Parse.Query(Coin);
 query.equalTo("owner", user.id); // Owner must match current user
-query.equalTo("metal", "Platinum"); // Only get Platinum metals
+query.equalTo("metal", "Platinum"); // Only get Platinum
+query.ascending("name");
 var coins = new Coin(); // An array to hold all our items from database
 var totalVal = 0;
 
