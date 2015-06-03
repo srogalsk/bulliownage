@@ -1,5 +1,12 @@
 // Get and populate Gold Data
-    var json_obj_daily = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=", 1);
+    var json_obj_daily = [];
+        try{
+            json_obj_daily = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=", 1);
+            localStorage.setItem("lastGoldDataONEMONTH", JSON.stringify(json_obj_daily));
+        }
+        catch(err){
+            json_obj_daily = JSON.parse(localStorage.getItem("lastGoldDataONEMONTH"));
+        }
 
     // get Change data
     var goldChange = json_obj_daily.data[0][1] - json_obj_daily.data[1][1];
@@ -14,7 +21,14 @@
     document.getElementById("goldChange").innerHTML = sign + goldChange;
 
 // Get and populate Silver Data
-    var silver_json_obj_daily=Get("https://www.quandl.com/api/v1/datasets/OFDP/SILVER_5.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=", 1);
+    var silver_json_obj_daily = [];
+        try{
+            silver_json_obj_daily = Get("https://www.quandl.com/api/v1/datasets/OFDP/SILVER_5.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=", 1);
+            localStorage.setItem("lastSilverDataONEMONTH", JSON.stringify(silver_json_obj_daily));
+        }
+        catch(err){
+            silver_json_obj_daily = JSON.parse(localStorage.getItem("lastSilverDataONEMONTH"));
+        }
 
     // get Change data
     var silverChange = silver_json_obj_daily.data[0][1] - silver_json_obj_daily.data[1][1];
@@ -29,7 +43,15 @@
     document.getElementById("silverChange").innerHTML = sign + silverChange;
 
 // Get and populate Plat Data
-    var plat_json_obj_daily = Get("https://www.quandl.com/api/v1/datasets/LPPM/PLAT.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",1 );
+var plat_json_obj_daily = [];
+        try{
+            plat_json_obj_daily = Get("https://www.quandl.com/api/v1/datasets/LPPM/PLAT.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",1 );
+            localStorage.setItem("lastPlatDataONEMONTH", JSON.stringify(plat_json_obj_daily));
+        }
+        catch(err){
+            plat_json_obj_daily = JSON.parse(localStorage.getItem("lastPlatDataONEMONTH"));
+        }
+
 
     var platChange = plat_json_obj_daily.data[0][1] - plat_json_obj_daily.data[1][1];
     platChange = Number(Math.round(platChange + 'e' + 2) + 'e-' + 2);
@@ -63,7 +85,13 @@
 // Check if market is currently open
     if (today > opentime && today < closetime && today.getDay() !=0 && today.getDay() != 6){
         var hourleft = closetime.getHours() - today.getHours();
-        var minleft = closetime.getMinutes() - today.getMinutes();
+        var minleft = 0;
+        if(today.getMinutes() <= 30){
+            minleft = closetime.getMinutes() - today.getMinutes();
+        }
+        else{
+            minleft = 30 + (60-today.getMinutes());
+        }
         document.getElementById("marketStatus").innerHTML = "Market is OPEN";
         document.getElementById("closeTime").innerHTML = "Closes in " + hourleft +"h " + minleft + "min";
         
@@ -93,6 +121,15 @@
             dataType: 'text',
             url: "https://cse134b.herokuapp.com/jm",
             crossDomain : true,
+            error: function(msg){
+                var jsonAB = JSON.parse(localStorage.getItem("bidask"));
+                document.getElementById("goldBidVal").innerHTML = jsonAB[0].bid;
+                document.getElementById("goldAskVal").innerHTML = jsonAB[0].ask;
+                document.getElementById("silverBidVal").innerHTML = jsonAB[1].bid;
+                document.getElementById("silverAskVal").innerHTML = jsonAB[1].ask;
+                document.getElementById("platBidVal").innerHTML = jsonAB[2].bid;
+                document.getElementById("platAskVal").innerHTML = jsonAB[2].ask;  
+            },
             xhrFields: {
                 withCredentials: false
             }
@@ -100,7 +137,10 @@
     }
     function handleData( csvdata ) {
         var bidAskVals = [];
-        var jsonAB = eval(csvdata);
+        var jsonAB = [];
+        jsonAB = eval(csvdata);
+        localStorage.setItem("bidask", JSON.stringify(eval(csvdata)));
+
         // 0 for gold, 1 for silver, 2 for plat
         document.getElementById("goldBidVal").innerHTML = jsonAB[0].bid;
         document.getElementById("goldAskVal").innerHTML = jsonAB[0].ask;
@@ -109,7 +149,9 @@
         document.getElementById("platBidVal").innerHTML = jsonAB[2].bid;
         document.getElementById("platAskVal").innerHTML = jsonAB[2].ask;  
     }
+
     getData().done(handleData);
+
 
 /* ----- Parse Related -----*/
     Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",

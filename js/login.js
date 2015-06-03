@@ -15,8 +15,8 @@ $(document).ready(function () {
         var password = $("#login-password").val();
 
 
-        console.log("Username is: " + username);
-        console.log("Password is: " + password);
+        //console.log("Username is: " + username);
+        //console.log("Password is: " + password);
 
 
 

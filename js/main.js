@@ -303,7 +303,15 @@ $(window).load(function() {
  			var ctxGold = document.getElementById("total-chart").getContext("2d");
 
  		// 	Get Gold Graph Data
-			var goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
+ 		var goldGraphData = [];
+ 		try{
+			goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
+			localStorage.setItem("lastGoldData", JSON.stringify(goldGraphData));
+		}
+		catch(err){
+			//alert(JSON.parse(localStorage.getItem("lastGoldData")));
+			goldGraphData = JSON.parse(localStorage.getItem("lastGoldData"));
+		}
 	 		var goldDataset = [];
 	 		var goldLabelset = [];
 	        for(var i = 30; i >= 0; i--){
@@ -326,7 +334,15 @@ $(window).load(function() {
 
 
 	    // Get Silver Graph Data
-            var silverGraphData = Get("https://www.quandl.com/api/v1/datasets/OFDP/SILVER_5.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
+	    var silverGraphData = [];
+	    try{
+			silverGraphData = Get("https://www.quandl.com/api/v1/datasets/OFDP/SILVER_5.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
+			localStorage.setItem("lastSilverData", JSON.stringify(silverGraphData));
+		}
+		catch(err){
+			silverGraphData = JSON.parse(localStorage.getItem("lastSilverData"));
+		}
+           
 	 		var silverDataset = [];
 	 		var silverLabelset = [];
 	        for(var i = 30; i >= 0; i--){
@@ -346,7 +362,15 @@ $(window).load(function() {
 			}
 	        parseData(silverGraphData.data[0][1], callback1, "Silver");
 	    // Get Plat Graph Data
-	        var platGraphData = Get("https://www.quandl.com/api/v1/datasets/LPPM/PLAT.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
+	    var platGraphData = [];
+	   	try{
+			platGraphData = Get("https://www.quandl.com/api/v1/datasets/LPPM/PLAT.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
+			localStorage.setItem("lastPlatData", JSON.stringify(platGraphData));
+		}
+		catch(err){
+			platGraphData  = JSON.parse(localStorage.getItem("lastPlatData"));
+		}
+	        
 	 		var platDataset = [];
 	 		var platLabelset = [];
 	        for(var i = 30; i >= 0; i--){
@@ -510,8 +534,14 @@ $(window).load(function() {
 			var goldHistory = [];
 			var ctxGold = document.getElementById("total-chart").getContext("2d");
 
-			// 	Get Gold Graph Data
-			var goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
+		// 	Get Gold Graph Data
+		var goldGraphData = [];
+		try{
+			goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
+		}
+		catch(err){
+			goldGraphData = JSON.parse(localStorage.getItem("lastGoldData"));
+		}
 	 		var goldDataset = [];
 	 		var goldLabelset = [];
 
@@ -619,9 +649,15 @@ $(window).load(function() {
 			var goldHistory = [];
 			var ctxGold = document.getElementById("total-chart").getContext("2d");
 
-			// 	Get Gold Graph Data
-			var goldGraphData = Get("https://www.quandl.com/api/v1/datasets/OFDP/SILVER_5.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
-	 		var goldDataset = [];
+			// 	Get Silver Graph Data
+			var goldGraphData = [];
+			try{
+				goldGraphData = Get("https://www.quandl.com/api/v1/datasets/OFDP/SILVER_5.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
+			}
+			catch(err){
+				goldGraphData = JSON.parse(localStorage.getItem("lastSilverData"));
+			}
+			var goldDataset = [];
 	 		var goldLabelset = [];
 
 	 		function callback(goldHistoryUpdate){
@@ -728,8 +764,14 @@ $(window).load(function() {
 			var goldHistory = [];
 			var ctxGold = document.getElementById("total-chart").getContext("2d");
 
-			// 	Get Gold Graph Data
-			var goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LPPM/PLAT.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
+			// 	Get Plat Graph Data
+			var goldGraphData = [];
+			try{
+				goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LPPM/PLAT.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
+			}
+			catch(err){
+				goldGraphData = JSON.parse(localStorage.getItem("lastPlatData"));
+			}
 	 		var goldDataset = [];
 	 		var goldLabelset = [];
 

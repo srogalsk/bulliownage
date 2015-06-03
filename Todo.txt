@@ -23,9 +23,10 @@ Gev:
 - Facebook/ Google login
 - email confirmation
 
-Patrick:
-- Offline mode
-- Clicking silver should redirect to silver page
+Patrick: 
+- Offline mode (Done)
+- Clicking silver should redirect to silver page (Done)
+- Fixed a bug with market time
 
 
 
