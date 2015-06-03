@@ -116,6 +116,7 @@
 "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
 
 var user = Parse.User.current();
+console.log(user.get("username"));
 
 var Coin = Parse.Object.extend("Coin");
 var query = new Parse.Query(Coin);
