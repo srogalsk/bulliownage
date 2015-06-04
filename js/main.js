@@ -121,14 +121,13 @@ function Get(yourPartialUrl, months){
 function deleteFromStack(id) {
     var Coin = Parse.Object.extend("Coin");
     var query = new Parse.Query(Coin);
+    var metal = document.getElementById("displaymetal").innerHTML;
     query.equalTo("objectId", id);
     query.first({
         success: function(coin) {
             coin.destroy({
                 success: function(deleted) {
-                    var select = document.getElementById("category");
-                    var metal = select.options[select.selectedIndex].text;
-		            if (metal == "Gold") {
+		    if (metal == "Gold") {
                         window.location = "wire3.html";
                     } else if (metal == "Silver") {
                         window.location = "wire3b.html";
