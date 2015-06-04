@@ -45,7 +45,7 @@ function checkPassStrength(pass) {
 $(document).ready(function () {
 
     $("#passwordsignup").on("keypress keyup keydown", function() {
-        $("#strengthCheck").css('opacity', '1');
+        $("#strengthCheck").css('display', 'inline');
         var pass = $(this).val();
         $("#strength_human").text(checkPassStrength(pass));
         $("#strength_score").text(scorePassword(pass));
