@@ -16,7 +16,7 @@
     <title>Account Management</title>
 </head>
 
-<body>
+<body onload="getUserName();">
     <script type="text/javascript">
     loadTopNav();
     </script>
@@ -47,7 +47,7 @@
                     <br/>
                     <p>
                         <label for="username" class="youpasswd" data-icon="p">Username </label>
-                        <input id="username" name="passwordsignup" required="required" type="password" placeholder="eg. L33TH4X0R"/>
+                        <input id="username" name="passwordsignup" required="required" type="textarea" placeholder="eg. L33TH4X0R"/>
                     </p>
                     <br/>
                     <p>
@@ -55,6 +55,7 @@
                         <input id="oldpass" name="passwordsignup" required="required" type="password" placeholder="eg. X8df!90EO"/>
                     </p>
                     <br/>
+                    <div id="passwordFeatures">
                     <p>
                         <label id="newpasslabel" for="newpass" class="youpasswd" data-icon="p">New password </label>
                         <input id="newpass" name="passwordsignup" required="required" type="password" placeholder="eg. X8df!90EO"/>
@@ -64,6 +65,20 @@
                         <label id="newpassconfirmlabel" for="newpassconfirm" class="youpasswd" data-icon="p">Please confirm your password </label>
                         <input id="newpassconfirm" name="passwordsignup_confirm" required="required" type="password" placeholder="eg. X8df!90EO"/>
                     </p>
+                    <br/>
+                    </div>
+                    <div id="emailFeatures" hidden = "none">
+                    <p>
+                        <label id="newemaillabel" for="newemail" class="youpasswd" data-icon="p">New Email </label>
+                        <input id="newemail" name="passwordsignup" required="required" type="email" placeholder="eg. user@gmail.com"/>
+                    </p>
+                    <br/>
+                    <p>
+                        <label id="newemailconfirmlabel" for="newemailconfirm" class="youpasswd" data-icon="p">Please confirm your Email </label>
+                        <input id="newemailconfirm" name="passwordsignup_confirm" required="required" type="email" />
+                    </p>
+                </div>
+
 
                 </form>
             </div>
@@ -78,8 +93,11 @@
 
             <div>
                 <section id="buttonspan" style="position:fixed; top:15%; left:10%;" class="coin_detail">
-
+                    <div id="userName" hidden="none"> </div>
+                    <span id="welcome"> Welcome!</span>
                     <a><span id="save" onclick="logout()">Logout</span></a>
+
+                    <a><span id="emailChange" style="background-color: grey"; onclick="changeEmail()">Change Email</span></a>
 
                     <a><span id="cancel" style="background-color: grey"; onclick="changePassword()">Change Password</span></a>
 
@@ -102,6 +120,17 @@
     Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
                 "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
 
+    function getUserName(){
+        user.fetch().then(function(fetchedUser){
+            var name = fetchedUser.getUsername();
+            document.getElementById("welcome").innerHTML = "Welcome, "+name;
+            document.getElementById("userName").innerHTML = name;
+            //console.log(name);
+        }, function(error){
+            alert("User is not logged in.");
+        });
+    }
+
     var user = Parse.User.current();
     if (user == null) {
 	    window.location = "login.html";
@@ -117,9 +146,13 @@
         var button2 = document.getElementById("cancel");
         var button3 = document.getElementById("remove");
         var button4 = document.getElementById("cancel2");
+        var welcome = document.getElementById("welcome");
+        var emailChange = document.getElementById("emailChange");
         if(button1.style.display == ""){
+            welcome.style.display="none";
             button1.style.display="none";
             button2.style.display="none";
+            emailChange.style.display="none"
             var span = document.getElementById("buttonspan");
             span.style.marginTop="180px";
             form.style.display="block";
@@ -152,20 +185,86 @@
 
     }
     
+     function changeEmail(){
+
+        var button1 = document.getElementById("save");
+        var button2 = document.getElementById("cancel");
+        var button3 = document.getElementById("remove");
+        var button4 = document.getElementById("cancel2");
+        var welcome = document.getElementById("welcome");
+        var emailFeatures = document.getElementById("emailFeatures");
+        var passwordFeatures = document.getElementById("passwordFeatures");
+        var passheader = document.getElementById("passheader");
+        passheader.innerHTML = "Email Management";
+        if(button1.style.display == ""){
+            button1.style.display="none";
+            button3.style.display="none";
+            welcome.style.display="none";
+            button2.style.display="none";
+            var span = document.getElementById("buttonspan");
+            span.style.marginTop="180px";
+            var form = document.getElementById("form");
+            button4.style.display="block";
+            emailFeatures.style.display="block";
+            passwordFeatures.style.display="none";
+            form.style.display="block";
+
+        }
+        else{
+            var uname = document.getElementById("username");
+            var pass = document.getElementById("oldpass");
+           var newemail = document.getElementById("newemail");
+           var newemailconfirm = document.getElementById("newemailconfirm");
+           var newpassconfirm = document.getElementById("newpassconfirm");
+
+            var username = uname.value;
+            var password = oldpass.value;
+
+            
+            if(username.toLowerCase() == document.getElementById("userName").innerHTML.toLowerCase()){
+                if(newemail.value == newemailconfirm.value){
+                    Parse.User.logIn(username, password, {
+                        success: function(user) {
+                                user.set("email", newemail.value);
+                                user.save();
+                                alert("Email Change Successful");
+                                window.location = "settings.html";                             },
+                        error: function(user, error) {
+                            // Login failed!
+                            alert("Error: Your Username or Password is Incorrect.");
+
+                        }
+                    });
+                }
+                else{
+                    alert("Your Passwords do not match.");
+                }
+            }
+            else{
+                alert("Your username is incorrect.");
+            }
+        }
+
+    }
+
     function changePassword(){
 
         var button1 = document.getElementById("save");
         var button2 = document.getElementById("cancel");
         var button3 = document.getElementById("remove");
         var button4 = document.getElementById("cancel2");
+        var welcome = document.getElementById("welcome");
+        var emailChange = document.getElementById("emailChange");
         if(button1.style.display == ""){
             button1.style.display="none";
             button3.style.display="none";
+            welcome.style.display="none";
             var span = document.getElementById("buttonspan");
             span.style.marginTop="180px";
             var form = document.getElementById("form");
             form.style.display="block";
             button4.style.display="block";
+            emailChange.style.display="none";
         }
         else{
             var uname = document.getElementById("username");
@@ -176,25 +275,31 @@
             var username = uname.value;
             var password = oldpass.value;
 
-
             
+            
+            console.log("1: " + username);
+            console.log("2: " + document.getElementById("userName").innerHTML.toLowerCase().split(' '));
+            if(username.toLowerCase() == document.getElementById("userName").innerHTML.toLowerCase()){
+                if(newpass.value == newpassconfirm.value){
+                    Parse.User.logIn(username, password, {
+                        success: function(user) {
+                                user.set("password", newpass.value);
+                                user.save();
+                                alert("Password Change Successful");
+                                window.location = "settings.html";                             },
+                        error: function(user, error) {
+                            // Login failed!
+                            alert("Error: Your Username or Password is Incorrect.");
 
-            if(newpass.value == newpassconfirm.value){
-                Parse.User.logIn(username, password, {
-                    success: function(user) {
-                            user.set("password", newpass.value);
-                            user.save();
-                            alert("Password Change Successful");
-                            window.location = "settings.html";                             },
-                    error: function(user, error) {
-                        // Login failed!
-                        alert("Error: Your Username or Password is Incorrect.");
-
-                    }
-                });
+                        }
+                    });
+                }
+                else{
+                    alert("Your Passwords do not match.");
+                }
             }
             else{
-                alert("Your Passwords do not match.");
+                alert("Your username is incorrect.");
             }
         }
 

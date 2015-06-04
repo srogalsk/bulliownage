@@ -1,36 +1,56 @@
 
-On Thursday: Need everything to package and pass project on for the future
 
-
-
-
-
-
+Improvements: 
 Alvin:
-- Sleep
-- If going directly to wire2 or some other page, check if user is logged in. If not, redirect.
-- Delete button should have verification and show username (just follow the code for the change email)
+X If going directly to wire2 or some other page, check if user is logged in. If not, redirect.
+X Delete button should have verification and show username (just follow the code for the change email)
+X cannot remove coin from stack (Done)
+- minify
+- help patrick
 
 Jesus:
-- Check min length and characters. display a dynamic security indicator.
-
+X Check min length and characters. display a dynamic security indicator.
+- Error Tracking
 
 Steven:
-- sort coin list alphabetically
-- add more types of bullion, like bars, in.
+X sort coin list alphabetically
+X add more types of bullion, like bars, in.
+- Work with gev
 
 Gev:
-- Facebook/ Google login
-- email confirmation
+X Facebook/ Google login
+X email confirmation
+- Analytics
 
 Patrick: 
-- Offline mode (Done)
-- Clicking silver should redirect to silver page (Done)
-- Fixed a bug with market time
-
-
-
-
+X Offline mode (Done)
+X Clicking silver should redirect to silver page (Done)
+X Fixed a bug with market time
+X Fixed change password security hole
+X Created welcome message on settings page
+- Report
+- test in various browsers (note any bugs for report)
+- Put note for graph not working in chrome
+- Change background
+X Update Email
+- Change time period on Graph?
 - Try to fix chart Y axis scaling
-- Customization 
+
+Other:
+
 - allow user to add custom item or weight.
+
+
+
+
+Packaging:
+
+
+
+
+
+
+fix any flaws and bugs
+
+
+
