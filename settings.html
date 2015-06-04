@@ -42,7 +42,7 @@
             <div id="form" style="position:fixed; top:10%; left:10%;" hidden="none"> 
             <div id="register" class="animate form">
                 <form autocomplete="off" method="post">
-                    <h1> Password Management </h1>
+                    <h1 id="passheader"> Password Management </h1>
                     <br/>
                     <p>
                         <label for="username" class="youpasswd" data-icon="p">Username </label>
@@ -50,17 +50,17 @@
                     </p>
                     <br/>
                     <p>
-                        <label for="oldpass" class="youpasswd" data-icon="p">Old password </label>
+                        <label for="oldpass" class="youpasswd" data-icon="p">Password </label>
                         <input id="oldpass" name="passwordsignup" required="required" type="password" placeholder="eg. X8df!90EO"/>
                     </p>
                     <br/>
                     <p>
-                        <label for="newpass" class="youpasswd" data-icon="p">New password </label>
+                        <label id="newpasslabel" for="newpass" class="youpasswd" data-icon="p">New password </label>
                         <input id="newpass" name="passwordsignup" required="required" type="password" placeholder="eg. X8df!90EO"/>
                     </p>
                     <br/>
                     <p>
-                        <label for="newpassconfirm" class="youpasswd" data-icon="p">Please confirm your password </label>
+                        <label id="newpassconfirmlabel" for="newpassconfirm" class="youpasswd" data-icon="p">Please confirm your password </label>
                         <input id="newpassconfirm" name="passwordsignup_confirm" required="required" type="password" placeholder="eg. X8df!90EO"/>
                     </p>
 
@@ -80,16 +80,12 @@
 
                     <a><span id="save" onclick="logout()">Logout</span></a>
 
-                    <a><span id="cancel" onclick="changePassword()">Change Password</span></a>
-
-                    <a><span id="cancel2" style="display:none;"onClick="window.location.reload()">Cancel</span></a>
+                    <a><span id="cancel" style="background-color: grey"; onclick="changePassword()">Change Password</span></a>
 
                     <a><span style="background-color: red;" id="remove" onclick="confirm()">Delete Account</span></a>
 
-                    <span id="confirm" style="display: none; font-size: 12px">Are you sure you want to delete your account?</span>
+                    <a><span id="cancel2" style="display:none;"onClick="window.location.reload()">Cancel</span></a>
                     <br/>
-                    <span style="background-color: red; display:none" id="yes" onclick="destroyAccount()">Yes</span>
-                    <span style="background-color: green; display:none;" id="no" onclick="hide()">No</span>
 
                 </section>
             </div>
@@ -110,89 +106,116 @@
 	    window.location = "login.html";
     }
 
-        function logout(){
-            Parse.User.logOut();
-            window.location = "index.html";
+    function logout(){
+        Parse.User.logOut();
+        window.location = "index.html";
+    }
+
+      function confirm() {
+        var button1 = document.getElementById("save");
+        var button2 = document.getElementById("cancel");
+        var button3 = document.getElementById("remove");
+        var button4 = document.getElementById("cancel2");
+        if(button1.style.display == ""){
+            button1.style.display="none";
+            button2.style.display="none";
+            var span = document.getElementById("buttonspan");
+            span.style.marginTop="180px";
+            form.style.display="block";
+            button4.style.display="block";
+            document.getElementById("passheader").style.display="none";
+            document.getElementById("newpasslabel").style.display="none";
+            document.getElementById("newpass").style.display="none";
+            document.getElementById("newpassconfirmlabel").style.display="none";
+            document.getElementById("newpassconfirm").style.display="none";
         }
-        
-        function changePassword(){
+        else{
+            var uname = document.getElementById("username");
+            var oldpass = document.getElementById("oldpass");
+            var username = uname.value;
+            var password = oldpass.value;
 
-            var button1 = document.getElementById("save");
-            var button2 = document.getElementById("cancel");
-            var button3 = document.getElementById("remove");
-            var button4 = document.getElementById("cancel2");
-            if(button1.style.display == ""){
-                button1.style.display="none";
-                button3.style.display="none";
-                var span = document.getElementById("buttonspan");
-                span.style.marginTop="180px";
-                var form = document.getElementById("form");
-                form.style.display="block";
-                button4.style.display="block";
-            }
-            else{
-                var uname = document.getElementById("username");
-               var oldpass = document.getElementById("oldpass");
-               var newpass = document.getElementById("newpass");
-               var newpassconfirm = document.getElementById("newpassconfirm");
+            Parse.User.logIn(username, password, {
+                success: function(user) {
+                        destroyAccount();
+                        alert("Account deleted successfully");
+                        window.location = "index.html";
+                     },
+                error: function(user, error) {
+                    // Login failed!
+                    alert("Error: Your Username or Password is Incorrect.");
 
-                var username = uname.value;
-                var password = oldpass.value;
-
-
-                
-
-                if(newpass.value == newpassconfirm.value){
-                    Parse.User.logIn(username, password, {
-                        success: function(user) {
-                                user.set("password", newpass.value);
-                                user.save();
-                                alert("Password Change Successful");
-                                window.location = "settings.html";                             },
-                        error: function(user, error) {
-                            // Login failed!
-                            alert("Error: Your Username or Password is Incorrect.");
-
-                        }
-                    });
-                }
-                else{
-                    alert("Your Passwords do not match.");
-                }
-            }
-
-        }
-
-          function confirm() {
-            document.getElementById("confirm").style.display = "inline";
-            document.getElementById("yes").style.display = "inline";
-            document.getElementById("no").style.display = "inline";
-        }
-
-        function hide() {
-            document.getElementById("confirm").style.display = "none";
-            document.getElementById("yes").style.display = "none";
-            document.getElementById("no").style.display = "none";
-        }
-
-        function destroyAccount(){
-            var user = Parse.User.current();
-            var Coin = Parse.Object.extend("Coin");
-            var query = new Parse.Query(Coin);
-            query.equalTo("owner", user.id);
-            var coins = new Coin();
-            query.find({
-                success: function(coins) {
-                    Parse.Object.destroyAll(coins, {success: function() {}, error: function() {}, });
-                    window.location = "index.html";
-                },
-                error: function(coins, error) {
-                    alert("Failed to destory");
                 }
             });
-            user.destroy();
         }
 
+    }
+    
+    function changePassword(){
+
+        var button1 = document.getElementById("save");
+        var button2 = document.getElementById("cancel");
+        var button3 = document.getElementById("remove");
+        var button4 = document.getElementById("cancel2");
+        if(button1.style.display == ""){
+            button1.style.display="none";
+            button3.style.display="none";
+            var span = document.getElementById("buttonspan");
+            span.style.marginTop="180px";
+            var form = document.getElementById("form");
+            form.style.display="block";
+            button4.style.display="block";
+        }
+        else{
+            var uname = document.getElementById("username");
+           var oldpass = document.getElementById("oldpass");
+           var newpass = document.getElementById("newpass");
+           var newpassconfirm = document.getElementById("newpassconfirm");
+
+            var username = uname.value;
+            var password = oldpass.value;
+
+
+            
+
+            if(newpass.value == newpassconfirm.value){
+                Parse.User.logIn(username, password, {
+                    success: function(user) {
+                            user.set("password", newpass.value);
+                            user.save();
+                            alert("Password Change Successful");
+                            window.location = "settings.html";                             },
+                    error: function(user, error) {
+                        // Login failed!
+                        alert("Error: Your Username or Password is Incorrect.");
+
+                    }
+                });
+            }
+            else{
+                alert("Your Passwords do not match.");
+            }
+        }
+
+    }
+
+    function destroyAccount(){
+        var user = Parse.User.current();
+        var Coin = Parse.Object.extend("Coin");
+        var query = new Parse.Query(Coin);
+        query.equalTo("owner", user.id);
+        var coins = new Coin();
+        query.find({
+            success: function(coins) {
+                Parse.Object.destroyAll(coins, {success: function() {}, error: function() {}, });
+                window.location = "index.html";
+            },
+            error: function(coins, error) {
+                alert("Failed to destory");
+            }
+        });
+        user.destroy();
+    }
 
     </script>
 
