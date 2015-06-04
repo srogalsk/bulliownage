@@ -268,7 +268,6 @@ $(window).load(function() {
 	var page = path.split("/").pop();
 
 
-
 	/* * * * * * * * * * * * * *
 	 *                         *
 	 *        GENERAL          *
