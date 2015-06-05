@@ -537,10 +537,19 @@ function saveToStack() {
                 var metal = select.options[select.selectedIndex].text;
 		        if (metal == "Gold") {
                     window.location = "wire3.html";
+                    mixpanel.track("Gold", {
+                        name: $("#type option:selected").text() }
+                    );
                 } else if (metal == "Silver") {
                     window.location = "wire3b.html";
+                    mixpanel.track("Silver", {
+                        name: $("#type option:selected").text() }
+                    );
                 } else if (metal == "Platinum") {
                     window.location = "wire3c.html";
+                    mixpanel.track("Platinum", {
+                        name: $("#type option:selected").text() }
+                    );
                 }
                 alert("Bullion added successfully");
             },
