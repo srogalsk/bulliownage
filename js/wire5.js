@@ -304,18 +304,101 @@ var dragon =
     weight: 0.5
 }
 
+var fortuna =
+{
+    type: "gold",
+    name: "Gold Fortuna",
+    percent: 0.999,
+    weight: 0.5
+}
+
+var perth =
+{
+    type: "gold",
+    name: "Gold Perth Mint Bar",
+    percent: 0.999,
+    weight: 1
+}
+
+var cast =
+{
+    type: "gold",
+    name: "Gold Cast",
+    percent: 0.999,
+    weight: 1
+}
+
+var goat =
+{
+    type: "gold",
+    name: "Lunar Goat",
+    percent: 0.999,
+    weight: 1
+}
+
+var eureka =
+{
+    type: "silver",
+    name: "Eureka",
+    percent: 0.999,
+    weight: 1
+}
+
+var southern =
+{
+    type: "silver",
+    name: "Southern Cross Minted Silver Bar",
+    percent: 0.999,
+    weight: 10
+}
+
+var old =
+{
+    type: "silver",
+    name: "Silver Bar Old Style",
+    percent: 0.999,
+    weight: 100
+}
+
+var engelhard =
+{
+    type: "platinum",
+    name: "Engelhard",
+    percent: 0.999,
+    weight: 1
+}
+
+var valcambi =
+{
+    type: "platinum",
+    name: "Platinum Valcambi",
+    percent: 0.999,
+    weight: 1
+}
+
+var pFortuna =
+{
+    type: "platinum",
+    name: "Platinum Fortuna",
+    percent: 0.999,
+    weight: 10
+}
+
+
 
 var goldArr = [[nugget.name, lunar1.name, lunar2.name, vienna.name, maple.name, panda.name, napoleon.name, david.name,
     ibris.name, kijang.name, libertad.name, centenario.name, orzel.name, bene.name, george.name,
     elephant.name, krugerrand.name, vreneli.name, archangel.name, sovereign.name, britannia.name,
-    eagle.name, buffalo.name, doubleEagle.name, chervonets.name],
+    eagle.name, buffalo.name, doubleEagle.name, chervonets.name, fortuna.name, perth.name, cast.name, goat.name],
     [nugget, lunar1, lunar2, vienna, maple, panda, napoleon, david, ibris, kijang, libertad, centenario, orzel, bene,
-        george, elephant, krugerrand, vreneli, archangel, sovereign, britannia, eagle, buffalo, doubleEagle, chervonets]];
+        george, elephant, krugerrand, vreneli, archangel, sovereign, britannia, eagle, buffalo, doubleEagle, chervonets,
+        fortuna, perth, cast, goat]];
 
-var silverArr = [[ark.name, kangaroo.name, gorilla.name, fox.name, lion.name, lutra.name, scorpion.name, dragon.name],
-    [ark, kangaroo, gorilla, fox, lion, lutra, scorpion, dragon]];
-var platArr = [[koala.name, platypus.name, leaf.name, noble.name, pLibertad.name, pEagle.name],
-    [koala, platypus, leaf, noble, pLibertad, pEagle]];
+var silverArr = [[ark.name, kangaroo.name, gorilla.name, fox.name, lion.name, lutra.name, scorpion.name, dragon.name,
+    eureka.name, southern.name, old.name],
+    [ark, kangaroo, gorilla, fox, lion, lutra, scorpion, dragon, eureka. southern, old, valcambi.name, pfortuna.name]];
+var platArr = [[koala.name, platypus.name, leaf.name, noble.name, pLibertad.name, pEagle.name, engelhard.name],
+    [koala, platypus, leaf, noble, pLibertad, pEagle, engelhard, valcambi, pfortuna]];
 
 var type;
 
