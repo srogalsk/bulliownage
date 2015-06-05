@@ -14,6 +14,7 @@
     <script src="./js/velocity.min.js"></script>
     <script src="./js/main.js"></script>
     <title>Account Management</title>
+
 </head>
 
 <body onload="getUserName();">
@@ -44,6 +45,7 @@
             <div id="register" class="animate form">
                 <form autocomplete="off" method="post">
                     <h1 id="passheader"> Password Management </h1>
+                    <div id="userpass">
                     <br/>
                     <p>
                         <label for="username" class="youpasswd" data-icon="p">Username </label>
@@ -55,6 +57,7 @@
                         <input id="oldpass" name="passwordsignup" required="required" type="password" placeholder="eg. X8df!90EO"/>
                     </p>
                     <br/>
+                    </div>
                     <div id="passwordFeatures">
                     <p>
                         <label id="newpasslabel" for="newpass" class="youpasswd" data-icon="p">New password </label>
@@ -77,10 +80,14 @@
                         <label id="newemailconfirmlabel" for="newemailconfirm" class="youpasswd" data-icon="p">Please confirm your Email </label>
                         <input id="newemailconfirm" name="passwordsignup_confirm" required="required" type="email" />
                     </p>
+                
                 </div>
-
-
+                    <p>
+                        <input id="colorpick" style="display:none;" type="color" />
+                    </p>
                 </form>
+
+                
             </div>
         </div>
 
@@ -96,6 +103,9 @@
                     <div id="userName" hidden="none"> </div>
                     <span id="welcome"> Welcome!</span>
                     <a><span id="save" onclick="logout()">Logout</span></a>
+                    <br/>
+
+                    <a><span id="colorbutton"  onclick="changeColor()">Change Color</span></a>
 
                     <a><span id="emailChange" style="background-color: grey"; onclick="changeEmail()">Change Email</span></a>
 
@@ -105,6 +115,7 @@
 
                     <a><span id="cancel2" style="display:none;"onClick="window.location.reload()">Cancel</span></a>
                     <br/>
+
 
                 </section>
             </div>
@@ -141,47 +152,86 @@
         window.location = "index.html";
     }
 
-      function confirm() {
+    function changeColor(){
         var button1 = document.getElementById("save");
         var button2 = document.getElementById("cancel");
         var button3 = document.getElementById("remove");
         var button4 = document.getElementById("cancel2");
         var welcome = document.getElementById("welcome");
+        var userpass = document.getElementById("userpass");
         var emailChange = document.getElementById("emailChange");
+        var color = document.getElementById("colorpick");
         if(button1.style.display == ""){
             welcome.style.display="none";
             button1.style.display="none";
             button2.style.display="none";
-            emailChange.style.display="none"
+            button3.style.display="none";
+            emailChange.style.display="none";
+            color.style.display="block";
+            userpass.style.display="none";
+            oldpass.style.display="none";
             var span = document.getElementById("buttonspan");
             span.style.marginTop="180px";
             form.style.display="block";
             button4.style.display="block";
-            document.getElementById("passheader").style.display="none";
+            document.getElementById("passheader").innerHTML="Pick your color below!";
             document.getElementById("newpasslabel").style.display="none";
             document.getElementById("newpass").style.display="none";
             document.getElementById("newpassconfirmlabel").style.display="none";
             document.getElementById("newpassconfirm").style.display="none";
         }
-        else{
-            var uname = document.getElementById("username");
-            var oldpass = document.getElementById("oldpass");
-            var username = uname.value;
-            var password = oldpass.value;
+     else{
+        user.set("color", document.getElementById("colorpick").value);
+        user.save();
+        alert("Color Change Successful");
+        window.location = "settings.html";
+     }
+    }
 
-            Parse.User.logIn(username, password, {
-                success: function(user) {
-                        destroyAccount();
-                        alert("Account deleted successfully");
-                        window.location = "index.html";
-                     },
-                error: function(user, error) {
-                    // Login failed!
-                    alert("Error: Your Username or Password is Incorrect.");
+  function confirm() {
+    var button1 = document.getElementById("save");
+    var button2 = document.getElementById("cancel");
+    var button3 = document.getElementById("remove");
+    var button4 = document.getElementById("cancel2");
+    var welcome = document.getElementById("welcome");
+    var emailChange = document.getElementById("emailChange");
+    var color = document.getElementById("colorbutton");
+    var colorpick = document.getElementById("colorpicker");
+    if(button1.style.display == ""){
+        welcome.style.display="none";
+        button1.style.display="none";
+        button2.style.display="none";
+        emailChange.style.display="none"
+        color.style.display="none"
+        var span = document.getElementById("buttonspan");
+        span.style.marginTop="180px";
+        form.style.display="block";
+        button4.style.display="block";
+        document.getElementById("passheader").innerHTML ="Sorry to see you go! <br/> Please confirm your account details.";
+        document.getElementById("newpasslabel").style.display="none";
+        document.getElementById("newpass").style.display="none";
+        document.getElementById("newpassconfirmlabel").style.display="none";
+        document.getElementById("newpassconfirm").style.display="none";
+    }
+    else{
+        var uname = document.getElementById("username");
+        var oldpass = document.getElementById("oldpass");
+        var username = uname.value;
+        var password = oldpass.value;
 
-                }
-            });
-        }
+        Parse.User.logIn(username, password, {
+            success: function(user) {
+                    destroyAccount();
+                    alert("Account deleted successfully");
+                    window.location = "index.html";
+                 },
+            error: function(user, error) {
+                // Login failed!
+                alert("Error: Your Username or Password is Incorrect.");
+
+            }
+        });
+    }
 
     }
     
@@ -193,6 +243,7 @@
         var button4 = document.getElementById("cancel2");
         var welcome = document.getElementById("welcome");
         var emailFeatures = document.getElementById("emailFeatures");
+        var color = document.getElementById("colorbutton");
         var passwordFeatures = document.getElementById("passwordFeatures");
         var passheader = document.getElementById("passheader");
         passheader.innerHTML = "Email Management";
@@ -201,6 +252,7 @@
             button3.style.display="none";
             welcome.style.display="none";
             button2.style.display="none";
+            color.style.display="none"
             var span = document.getElementById("buttonspan");
             span.style.marginTop="180px";
             var form = document.getElementById("form");
@@ -255,10 +307,12 @@
         var button4 = document.getElementById("cancel2");
         var welcome = document.getElementById("welcome");
         var emailChange = document.getElementById("emailChange");
+        var color = document.getElementById("colorbutton");
         if(button1.style.display == ""){
             button1.style.display="none";
             button3.style.display="none";
             welcome.style.display="none";
+            color.style.display="none";
             var span = document.getElementById("buttonspan");
             span.style.marginTop="180px";
             var form = document.getElementById("form");

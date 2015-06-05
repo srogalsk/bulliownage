@@ -260,9 +260,15 @@ function timeCheck()
 	}
 }
 
+function changeBackground() {
+   var user = Parse.User.current();
+   var color = user.get("color");
+   document.body.style.background = color;
+}
 
 $(window).load(function() {
-
+	Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
+		"nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
 	var path = window.location.pathname;
 	var page = path.split("/").pop();
 
@@ -277,6 +283,8 @@ $(window).load(function() {
 	 	location.reload();	
 	 });
 
+	 // Color Change
+	 changeBackground();
 	 //$('tr').click(function(){
 	 	//$(this).find('a')[0].click();
 	 //});
