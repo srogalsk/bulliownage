@@ -118,6 +118,26 @@ function Get(yourPartialUrl, months){
     return json_obj;
 }
 
+function trashCoin(id) {
+    var Coin = Parse.Object.extend("Coin");
+    var query = new Parse.Query(Coin);
+    query.equalTo("objectId", id);
+    query.first({
+        success: function(coin) {
+            coin.destroy({
+                success: function(deleted) {
+                },
+                error: function(deleted, error) {
+                    alert("Bullion not found");
+                }
+            });
+        },
+        error: function(error) {
+            alert("Invalid information");
+        }
+    });
+}
+
 function deleteFromStack(id) {
     var Coin = Parse.Object.extend("Coin");
     var query = new Parse.Query(Coin);

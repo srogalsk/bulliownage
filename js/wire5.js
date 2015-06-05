@@ -364,7 +364,7 @@ var engelhard =
 {
     type: "platinum",
     name: "Engelhard",
-    percent: 0.999,
+    percent: 0.9995,
     weight: 1
 }
 
@@ -372,7 +372,7 @@ var valcambi =
 {
     type: "platinum",
     name: "Platinum Valcambi",
-    percent: 0.999,
+    percent: 0.9995,
     weight: 1
 }
 
@@ -380,7 +380,7 @@ var pFortuna =
 {
     type: "platinum",
     name: "Platinum Fortuna",
-    percent: 0.999,
+    percent: 0.9995,
     weight: 10
 }
 

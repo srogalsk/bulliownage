@@ -224,6 +224,6 @@ $("#silver_table").on("click", ".yes", function () {
     $("#" + x.id).fadeOut(function () {
         $("#" + x.id).remove();
     });
-    deleteFromStack(x.id);
+    trashCoin(x.id);
 });
 
