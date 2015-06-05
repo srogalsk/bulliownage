@@ -396,9 +396,10 @@ var goldArr = [[nugget.name, lunar1.name, lunar2.name, vienna.name, maple.name, 
 
 var silverArr = [[ark.name, kangaroo.name, gorilla.name, fox.name, lion.name, lutra.name, scorpion.name, dragon.name,
     eureka.name, southern.name, old.name],
-    [ark, kangaroo, gorilla, fox, lion, lutra, scorpion, dragon, eureka. southern, old, valcambi.name, pfortuna.name]];
-var platArr = [[koala.name, platypus.name, leaf.name, noble.name, pLibertad.name, pEagle.name, engelhard.name],
-    [koala, platypus, leaf, noble, pLibertad, pEagle, engelhard, valcambi, pfortuna]];
+    [ark, kangaroo, gorilla, fox, lion, lutra, scorpion, dragon, eureka, southern, old]];
+var platArr = [[koala.name, platypus.name, leaf.name, noble.name, pLibertad.name, pEagle.name, engelhard.name,
+    valcambi.name, pFortuna.name],
+    [koala, platypus, leaf, noble, pLibertad, pEagle, engelhard, valcambi, pFortuna]];
 
 var type;
 
