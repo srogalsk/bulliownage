@@ -348,7 +348,7 @@ a:visited {
 }
 
 #w1-left {
-    height: 230px;
+    height: 286.5px;
     text-align: left;
 }
 
@@ -393,6 +393,18 @@ a:visited {
 #log-in-button:hover {
     border: 1px solid #68CEDE;
 }
+
+#facebook {
+    background: #6470b1;
+    border: 1px solid #151515;
+    user-select: none;
+    cursor: pointer;
+}
+
+#facebook:hover {
+    border: 1px solid #68CEDE;
+}
+
 
 #w1-right {
     height: 450px;
@@ -1037,6 +1049,7 @@ select {
 
 #save:hover {
     border: 1px solid #68CEDE;
+    cursor: pointer;
 }
 
 #cancel {
@@ -1087,9 +1100,6 @@ select {
 }
 
 
-#remove:hover {
-    border: 1px solid #68CEDE;
-}
 
 #remove {
     background: #696969;
@@ -1102,20 +1112,31 @@ select {
     margin-top: 15px;
 }
 
+#remove:hover {
+    border: 1px solid #68CEDE;
+    cursor: pointer;
+}
+
+
 #cancel:hover {
     border: 1px solid #68CEDE;
+    cursor: pointer;
 }
 #cancel2:hover {
     border: 1px solid #68CEDE;
+    cursor: pointer;
 }
 #remove:hover {
     border: 1px solid #68CEDE;
+    cursor: pointer;
 }
 #emailChange:hover {
     border: 1px solid #68CEDE;
+    cursor: pointer;
 }
 #colorbutton:hover {
     border: 1px solid #68CEDE;
+    cursor: pointer;
 }
 /* * * * * * * * * * * * * * * *
  *                             *
