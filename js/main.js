@@ -349,14 +349,15 @@ $(window).load(function() {
 
     var user = Parse.User.current();
     /* save information about the user */
-    mixpanel.identify(user.get("username"));
-    mixpanel.people.set({
-        "$email": user.get("email"),    // only special properties need the $
+    if(user != null) {
+        mixpanel.identify(user.get("username"));
+        mixpanel.people.set({
+            "$email": user.get("email"),    // only special properties need the $
 
-        "$created": user.get("createdAt"),
-        "$last_login": new Date(),         // properties can be dates...
-    });
-
+            "$created": user.get("createdAt"),
+            "$last_login": new Date(),         // properties can be dates...
+        });
+    }
 	var path = window.location.pathname;
 	var page = path.split("/").pop();
 
