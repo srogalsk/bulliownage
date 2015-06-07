@@ -44,7 +44,7 @@ mixpanel.init("c82992f46a44aadabc804a361493dead");</script><!-- end Mixpanel -->
 
 
 
-            <div id="form" style="position:fixed; top:10%; left:10%;" hidden="none"> 
+            <div id="form" style="position:fixed; top:10%; left:10%; display:none;">
             <div id="register" class="animate form">
                 <form autocomplete="off" method="post">
                     <h1 id="passheader"> Password Management </h1>
@@ -52,7 +52,7 @@ mixpanel.init("c82992f46a44aadabc804a361493dead");</script><!-- end Mixpanel -->
                     <br/>
                     <p>
                         <label for="username" class="youpasswd" data-icon="p">Username </label>
-                        <input id="username" name="passwordsignup" required="required" type="textarea" placeholder="eg. L33TH4X0R"/>
+                        <input id="username" name="passwordsignup" required="required" type="text" placeholder="eg. L33TH4X0R"/>
                     </p>
                     <br/>
                     <p>
@@ -73,7 +73,7 @@ mixpanel.init("c82992f46a44aadabc804a361493dead");</script><!-- end Mixpanel -->
                     </p>
                     <br/>
                     </div>
-                    <div id="emailFeatures" hidden = "none">
+                    <div id="emailFeatures" style="display:none;">
                     <p>
                         <label id="newemaillabel" for="newemail" class="youpasswd" data-icon="p">New Email </label>
                         <input id="newemail" name="passwordsignup" required="required" type="email" placeholder="eg. user@gmail.com"/>
@@ -87,7 +87,7 @@ mixpanel.init("c82992f46a44aadabc804a361493dead");</script><!-- end Mixpanel -->
                 </div>
 
                 </form>
-                <form action="" id="color-form" style="display:block">
+                <form id="color-form" style="display:block">
                     <input type="radio" id="defaultcolor" name="color">Default<br>
                     <input type="radio" id="optioncolor" name="color">Custom:<br>
                 </form>
@@ -108,20 +108,20 @@ mixpanel.init("c82992f46a44aadabc804a361493dead");</script><!-- end Mixpanel -->
 
             <div>
                 <section id="buttonspan" style="position:fixed; top:15%; left:10%;" class="coin_detail">
-                    <div id="userName" hidden="none"> </div>
+                    <div id="userName" style="display:none;"> </div>
                     <span id="welcome"> Welcome!</span>
                     <a><span id="save" onclick="logout()">Logout</span></a>
                     <br/>
 
                     <a><span id="colorbutton"  onclick="changeColor()">Change Color</span></a>
 
-                    <a><span id="emailChange" style="background-color: grey"; onclick="changeEmail()">Change Email</span></a>
+                    <a><span id="emailChange" style="background-color: grey;" onclick="changeEmail()">Change Email</span></a>
 
-                    <a><span id="cancel" style="background-color: grey"; onclick="changePassword()">Change Password</span></a>
+                    <a><span id="cancel" style="background-color: grey;" onclick="changePassword()">Change Password</span></a>
 
                     <a><span style="background-color: red;" id="remove" onclick="confirm()">Delete Account</span></a>
 
-                    <a><span id="cancel2" style="display:none;"onClick="window.location.reload()">Cancel</span></a>
+                    <a><span id="cancel2" style="display:none;" onClick="window.location.reload()">Cancel</span></a>
                     <br/>
 
 
