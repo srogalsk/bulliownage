@@ -333,7 +333,13 @@ function timeCheck()
 
 function changeBackground() {
    var user = Parse.User.current();
-   var color = user.get("color");
+   color = "";
+   try{
+   		color = user.get("color");
+   }
+   catch(err){
+   	 	color = "#1D1D1D";
+   }
    document.body.style.background = color;
 }
 
