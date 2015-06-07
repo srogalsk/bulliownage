@@ -1,6 +1,7 @@
 Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
                 "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
 
+    /* Display welcome message */
     function getUserName(){
         user.fetch().then(function(fetchedUser){
             var name = fetchedUser.getUsername();
@@ -13,6 +14,7 @@ Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
     }
 
     var user = Parse.User.current();
+    //check if logged in
     if (user == null) {
 	    window.location = "login.html";
     }
@@ -22,6 +24,7 @@ Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
         window.location = "index.html";
     }
 
+    //Displays text and buttons relevant to color changing and hides others
     function changeColor(){
         var button1 = document.getElementById("save");
         var button2 = document.getElementById("cancel");
@@ -53,8 +56,10 @@ Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
             document.getElementById("newpassconfirm").style.display="none";
         }
      else{
+        //set color to default
         if(document.getElementById("defaultcolor").checked)
             user.set("color", "#1D1D1D");
+        //use color chosen in colorpick
         else
             user.set("color", document.getElementById("colorpick").value);
         user.save();
@@ -63,6 +68,7 @@ Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
      }
     }
 
+  //account deletion
   function confirm() {
     var button1 = document.getElementById("save");
     var button2 = document.getElementById("cancel");
@@ -73,6 +79,7 @@ Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
     var color = document.getElementById("colorbutton");
     var colorpick = document.getElementById("colorpicker");
     var color_form = document.getElementById("color-form");
+    //display forms for account deletion and hide other elements
     if(button1.style.display == ""){
         welcome.style.display="none";
         button1.style.display="none";
@@ -125,6 +132,7 @@ Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
         var passwordFeatures = document.getElementById("passwordFeatures");
         var passheader = document.getElementById("passheader");
         passheader.innerHTML = "Email Management";
+        //display form for email change and hide others
         if(button1.style.display == ""){
             button1.style.display="none";
             button3.style.display="none";
@@ -151,7 +159,7 @@ Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
             var username = uname.value;
             var password = oldpass.value;
 
-
+            //update email address in parse
             if(username.toLowerCase() == document.getElementById("userName").innerHTML.toLowerCase()){
                 if(newemail.value == newemailconfirm.value){
                     Parse.User.logIn(username, password, {
@@ -178,6 +186,7 @@ Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
 
     }
 
+
     function changePassword(){
 
         var button1 = document.getElementById("save");
@@ -188,6 +197,7 @@ Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
         var emailChange = document.getElementById("emailChange");
         var color = document.getElementById("colorbutton");
         var color_form = document.getElementById("color-form");
+        //display forms for password change and hide other elements
         if(button1.style.display == ""){
             button1.style.display="none";
             button3.style.display="none";
@@ -216,6 +226,7 @@ Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
             console.log("2: " + document.getElementById("userName").innerHTML.toLowerCase().split(' '));
             if(username.toLowerCase() == document.getElementById("userName").innerHTML.toLowerCase()){
                 if(newpass.value == newpassconfirm.value){
+                    //update pw in parse
                     Parse.User.logIn(username, password, {
                         success: function(user) {
                                 user.set("password", newpass.value);
