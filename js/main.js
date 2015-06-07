@@ -357,7 +357,7 @@ $(window).load(function() {
 	 *                         *
 	 * * * * * * * * * * * * * */
  	// graph for wire2 page
- 	var drawGraph = function(){
+	var drawGraph = function(){
  		var pointStroke = "rgba(255,255,255,0.6)";
  		var pointHighlightFill = "#fff";
  		var pointHighlightStroke = "#fff";
@@ -368,16 +368,17 @@ $(window).load(function() {
 	 		var platHistory = [];
  			var ctxGold = document.getElementById("total-chart").getContext("2d");
 
- 		// 	Get Gold Graph Data
- 		var goldGraphData = [];
- 		try{
-			goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
-			localStorage.setItem("lastGoldData", JSON.stringify(goldGraphData));
-		}
-		catch(err){
-			//alert(JSON.parse(localStorage.getItem("lastGoldData")));
-			goldGraphData = JSON.parse(localStorage.getItem("lastGoldData"));
-		}
+ 			/*** 	Get Gold Graph Data ***/
+	 		var goldGraphData = [];
+	 		try{
+				goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
+				localStorage.setItem("lastGoldData", JSON.stringify(goldGraphData));
+			}
+			catch(err){
+				//alert(JSON.parse(localStorage.getItem("lastGoldData")));
+				goldGraphData = JSON.parse(localStorage.getItem("lastGoldData"));
+			}
+
 	 		var goldDataset = [];
 	 		var goldLabelset = [];
 	        for(var i = 30; i >= 0; i--){
@@ -385,29 +386,25 @@ $(window).load(function() {
                 goldDataset.push(Number(Math.round(goldGraphData.data[i][1]+'e'+2)+'e-'+2));
 	        }
 
-	        
-			function callback(historyUpdate){
+	        function callback(historyUpdate){
 				historyUpdate.shift();
 				goldHistory = historyUpdate;
 				datasetsta.datasets[0].data = goldHistory;
-				//var coinChartGold =  new Chart(ctxGold).Line(data,options);
-				//coinChartGold.update();
 				if(timeCheck()){
 					parseArrayUpdate(goldHistory, "goldHistory");
 				}
 			}
-	 		parseData(goldGraphData.data[0][1], callback, "Gold");
+			parseData(goldGraphData.data[0][1], callback, "Gold");
 
-
-	    // Get Silver Graph Data
-	    var silverGraphData = [];
-	    try{
-			silverGraphData = Get("https://www.quandl.com/api/v1/datasets/OFDP/SILVER_5.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
-			localStorage.setItem("lastSilverData", JSON.stringify(silverGraphData));
-		}
-		catch(err){
-			silverGraphData = JSON.parse(localStorage.getItem("lastSilverData"));
-		}
+			// Get Silver Graph Data
+		    var silverGraphData = [];
+		    try{
+				silverGraphData = Get("https://www.quandl.com/api/v1/datasets/OFDP/SILVER_5.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
+				localStorage.setItem("lastSilverData", JSON.stringify(silverGraphData));
+			}
+			catch(err){
+				silverGraphData = JSON.parse(localStorage.getItem("lastSilverData"));
+			}
            
 	 		var silverDataset = [];
 	 		var silverLabelset = [];
@@ -420,27 +417,26 @@ $(window).load(function() {
 	        	historyUpdate.shift();
 				silverHistory = historyUpdate;
 				data.datasets[2].data = silverHistory;
-				//var coinChartGold =  new Chart(ctxGold).Line(data,options);
-				//coinChartGold.update();
 				if(timeCheck()){
 					parseArrayUpdate(silverHistory, "silverHistory");
 				}
 			}
 	        parseData(silverGraphData.data[0][1], callback1, "Silver");
-	    // Get Plat Graph Data
-	    var platGraphData = [];
-	   	try{
-			platGraphData = Get("https://www.quandl.com/api/v1/datasets/LPPM/PLAT.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
-			localStorage.setItem("lastPlatData", JSON.stringify(platGraphData));
-		}
-		catch(err){
-			platGraphData  = JSON.parse(localStorage.getItem("lastPlatData"));
-		}
+
+	         // Get Plat Graph Data
+		    var platGraphData = [];
+		   	try{
+				platGraphData = Get("https://www.quandl.com/api/v1/datasets/LPPM/PLAT.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
+				localStorage.setItem("lastPlatData", JSON.stringify(platGraphData));
+			}
+			catch(err){
+				platGraphData  = JSON.parse(localStorage.getItem("lastPlatData"));
+			}
 	        
 	 		var platDataset = [];
 	 		var platLabelset = [];
 	        for(var i = 30; i >= 0; i--){
-	            	platLabelset.push(platGraphData.data[i][0]);
+	            platLabelset.push(platGraphData.data[i][0]);
                 platDataset.push(Number(Math.round(platGraphData.data[i][1]+'e'+2)+'e-'+2));
 	        }
 
@@ -472,7 +468,11 @@ $(window).load(function() {
 				var CA = document.getElementById("percentChange");
 				CA.className = (percentchange < 0 ? "total-change neg-change" : "total-change pos-change");
 			}
-	        parseData(platGraphData.data[0][1], callback2, "Platinum");
+
+			parseData(platGraphData.data[0][1], callback2, "Platinum");
+
+
+
 
  			var data = {
  				labels: goldLabelset,
@@ -508,7 +508,7 @@ $(window).load(function() {
  					data: []
  				},
  				{
- 					label: "1oz t Gold",
+ 					label: "1oz Gold",
  					fillColor: "rgba(104, 206, 222, 0.05)",
  					strokeColor: "#9FFF98",
  					pointColor: "#9FFF98",
@@ -518,7 +518,7 @@ $(window).load(function() {
  					data: goldDataset
  				},
  				{
- 					label: "1oz t Platinum",
+ 					label: "1oz Platinum",
  					fillColor: "rgba(104, 206, 222, 0.05)",
  					strokeColor: "#BBF5FF",
  					pointColor: "#BBF5FF",
@@ -528,7 +528,7 @@ $(window).load(function() {
  					data: platDataset
  				},
  				{
- 					label: "50oz t Silver",
+ 					label: "1oz Silver",
  					fillColor: "rgba(104, 206, 222, 0.05)",
  					strokeColor: "#C29FFF",
  					pointColor: "#C29FFF",
@@ -536,13 +536,11 @@ $(window).load(function() {
  					pointHighlightFill: pointHighlightFill,
  					pointHighlightStroke: pointHighlightStroke,
  					data: silverDataset
- 				}
+ 				},
  				]
  			};
 
  			var options = {
-
-
 
 			    ///Boolean - Whether grid lines are shown across the chart
 			    scaleShowGridLines : true,
@@ -560,7 +558,10 @@ $(window).load(function() {
 			    scaleShowVerticalLines: true,
 
 			    //Boolean - Whether the line is curved between points
-			    bezierCurve : false,
+			    bezierCurve : true,
+
+			    //Number - Tension of the bezier curve between points
+			    bezierCurveTension : 0.4,
 
 			    //Boolean - Whether to show a dot for each point
 			    pointDot : true,
@@ -569,7 +570,7 @@ $(window).load(function() {
 			    pointDotRadius : 4,
 
 			    //Number - Pixel width of point dot stroke
-			    pointDotStrokeWidth : 2,
+			    pointDotStrokeWidth : 1,
 
 			    //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
 			    pointHitDetectionRadius : 20,
@@ -588,11 +589,12 @@ $(window).load(function() {
 
 			    responsive: true,
 
-			    maintainAspectRatio: false
+			    maintainAspectRatio: false,
 
 
 			};
 
+			//var ctx = document.getElementById("total-chart").getContext("2d");
 			//var coinChart = new Chart(ctx).Line(data,options);
 			//coinChart.update();
 		}
@@ -600,14 +602,14 @@ $(window).load(function() {
 			var goldHistory = [];
 			var ctxGold = document.getElementById("total-chart").getContext("2d");
 
-		// 	Get Gold Graph Data
-		var goldGraphData = [];
-		try{
-			goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
-		}
-		catch(err){
-			goldGraphData = JSON.parse(localStorage.getItem("lastGoldData"));
-		}
+			// 	Get Gold Graph Data
+			var goldGraphData = [];
+			try{
+				goldGraphData = Get("https://www.quandl.com/api/v1/datasets/LBMA/GOLD.json?auth_token=F1s2QQVicUxmZi2jGRjz&trim_start=",3);
+			}
+			catch(err){
+				goldGraphData = JSON.parse(localStorage.getItem("lastGoldData"));
+			}
 	 		var goldDataset = [];
 	 		var goldLabelset = [];
 
@@ -643,7 +645,7 @@ $(window).load(function() {
 					data: goldHistory
 				},
 				{
-					label: "1oz t Gold",
+					label: "1oz Gold",
 					fillColor: "rgba(104, 206, 222, 0.05)",
 					strokeColor: "#9FFF98",
 					pointColor: "#9FFF98",
@@ -654,7 +656,6 @@ $(window).load(function() {
 				}
 				]
 			};
-
 
 			var options = {
 
@@ -674,7 +675,10 @@ $(window).load(function() {
 			    scaleShowVerticalLines: true,
 
 			    //Boolean - Whether the line is curved between points
-			    bezierCurve : false,
+			    bezierCurve : true,
+
+			    //Number - Tension of the bezier curve between points
+			    bezierCurveTension : 0.4,
 
 			    //Boolean - Whether to show a dot for each point
 			    pointDot : true,
@@ -686,13 +690,13 @@ $(window).load(function() {
 			    pointDotStrokeWidth : 1,
 
 			    //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
-			    pointHitDetectionRadius : 5,
+			    pointHitDetectionRadius : 20,
 
 			    //Boolean - Whether to show a stroke for datasets
 			    datasetStroke : true,
 
 			    //Number - Pixel width of dataset stroke
-			    datasetStrokeWidth : 1,
+			    datasetStrokeWidth : 2,
 
 			    //Boolean - Whether to fill the dataset with a colour
 			    datasetFill : true,
@@ -702,15 +706,15 @@ $(window).load(function() {
 
 			    responsive: true,
 
-			    maintainAspectRatio: false
+			    maintainAspectRatio: false,
 
 
 			};
 
-			//var coinChartGold = new Chart(ctxGold).Line(data,options);
-			//coinChartGold.update();
+			//var ctx = document.getElementById("total-chart").getContext("2d");
+			//var coinChart = new Chart(ctx).Line(data,options);
+			//coinChart.update();
 		}
-
 		else if(page =="wire3b.html"){
 			var goldHistory = [];
 			var ctxGold = document.getElementById("total-chart").getContext("2d");
@@ -825,7 +829,6 @@ $(window).load(function() {
 			//var coinChartGold = new Chart(ctxGold).Line(data,options);
 			//coinChartGold.update();
 		}
-
 		else if(page =="wire3c.html"){
 			var goldHistory = [];
 			var ctxGold = document.getElementById("total-chart").getContext("2d");
@@ -940,7 +943,6 @@ $(window).load(function() {
 			//var coinChartGold = new Chart(ctxGold).Line(data,options);
 			//coinChartGold.update();
 		}
-
 	};
 
 	drawGraph();
