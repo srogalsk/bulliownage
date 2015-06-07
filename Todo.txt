@@ -31,7 +31,7 @@ X Created welcome message on settings page
 - Report
 - test in various browsers (note any bugs for report)
 - Put note for graph not working in chrome
-- Change background
+X Change background
 X Update Email
 - Change time period on Graph?
 - Try to fix chart Y axis scaling
