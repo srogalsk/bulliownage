@@ -600,7 +600,7 @@ $(window).load(function() {
 
 			    responsive: true,
 
-			    maintainAspectRatio: false,
+			    maintainAspectRatio: false
 
 
 			};
@@ -717,7 +717,7 @@ $(window).load(function() {
 
 			    responsive: true,
 
-			    maintainAspectRatio: false,
+			    maintainAspectRatio: false
 
 
 			};
