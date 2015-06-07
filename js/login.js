@@ -25,6 +25,13 @@ $(document).ready(function () {
             success: function(user) {
                 // Login successful!
                 console.log("Login Success!");
+                mixpanel.identify(user.get("username"));
+                mixpanel.people.set({
+                    "$email": user.get("email"),    // only special properties need the $
+
+                    "$created": user.get("createdAt"),
+                    "$last_login": new Date(),         // properties can be dates...
+                });
                 mixpanel.track("Standard Login");
                 window.location.href = "wire2.html";
 
