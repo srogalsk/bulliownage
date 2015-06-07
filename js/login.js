@@ -2,6 +2,7 @@
  * Created by gevorg on 5/23/15.
  */
 
+
 Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
     "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
 
@@ -27,9 +28,11 @@ $(document).ready(function () {
                         alert("User logged in through Facebook!");
                     }
                     window.location.replace("wire2.html");
+
                 },
                 error: function (user, error) {
                     alert("User cancelled the Facebook login or did not fully authorize.");
+
                 }
             });
         };
