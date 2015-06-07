@@ -72,14 +72,14 @@ Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
     var emailChange = document.getElementById("emailChange");
     var color = document.getElementById("colorbutton");
     var colorpick = document.getElementById("colorpicker");
-    //var color_form = document.getElementById("color-form");
+    var color_form = document.getElementById("color-form");
     if(button1.style.display == ""){
         welcome.style.display="none";
         button1.style.display="none";
         button2.style.display="none";
         emailChange.style.display="none";
         color.style.display="none";
-        //color_form.style.display="none";
+        color_form.style.display="none";
         var span = document.getElementById("buttonspan");
         span.style.marginTop="180px";
         form.style.display="block";
@@ -121,7 +121,7 @@ Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
         var welcome = document.getElementById("welcome");
         var emailFeatures = document.getElementById("emailFeatures");
         var color = document.getElementById("colorbutton");
-        //var color_form = document.getElementById("color-form");
+        var color_form = document.getElementById("color-form");
         var passwordFeatures = document.getElementById("passwordFeatures");
         var passheader = document.getElementById("passheader");
         passheader.innerHTML = "Email Management";
@@ -131,7 +131,7 @@ Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
             welcome.style.display="none";
             button2.style.display="none";
             color.style.display="none";
-            //color_form.style.display="none";
+            color_form.style.display="none";
             var span = document.getElementById("buttonspan");
             span.style.marginTop="180px";
             var form = document.getElementById("form");
@@ -187,13 +187,13 @@ Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
         var welcome = document.getElementById("welcome");
         var emailChange = document.getElementById("emailChange");
         var color = document.getElementById("colorbutton");
-        //var color_form = document.getElementById("color-form");
+        var color_form = document.getElementById("color-form");
         if(button1.style.display == ""){
             button1.style.display="none";
             button3.style.display="none";
             welcome.style.display="none";
             color.style.display="none";
-            //color_form.style.display="none";
+            color_form.style.display="none";
             var span = document.getElementById("buttonspan");
             span.style.marginTop="180px";
             var form = document.getElementById("form");
