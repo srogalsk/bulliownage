@@ -1,6 +1,7 @@
 Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
     "nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
 
+
 // Default Selections for user
 var nugget =
 {
@@ -385,7 +386,7 @@ var pFortuna =
 }
 
 
-
+//arrays which store the above coin objects which will be used to fill form fields and display information
 var goldArr = [[nugget.name, lunar1.name, lunar2.name, vienna.name, maple.name, panda.name, napoleon.name, david.name,
     ibris.name, kijang.name, libertad.name, centenario.name, orzel.name, bene.name, george.name,
     elephant.name, krugerrand.name, vreneli.name, archangel.name, sovereign.name, britannia.name,
@@ -499,7 +500,7 @@ changeValue = function()
     $("#metalgrams").text(metal + " g/u");
 }
 
-
+//form validation
 function invalid() {
     var quantity = Number(document.getElementById("quantity").value);
     var premium = Number(document.getElementById("premium").value);
@@ -523,6 +524,8 @@ function saveToStack() {
         var coin = new Coin();
 
         var select = document.getElementById("category");
+
+        //set coin object fields
         coin.set("metal", select.options[select.selectedIndex].text);
         coin.set("name", $("#type option:selected").text());
         coin.set("purchasedAt", new Date(document.getElementById("purchase_date").value));
@@ -532,20 +535,26 @@ function saveToStack() {
         coin.set("grams", Number(document.getElementById("grams").innerHTML));
         coin.set("owner", user.id);
 
+        //save coin object to Parse
         coin.save(null, {
             success: function(coin) {
                 var metal = select.options[select.selectedIndex].text;
+
+                //switch statement determines whether to redirect to gold, silver, or plat page
 		        if (metal == "Gold") {
+		            //records a gold stack creation to mixpanel
                     mixpanel.track("Gold", {
                         "name": $("#type option:selected").text() }
                     );
                     window.location = "wire3.html";
                 } else if (metal == "Silver") {
+		            //records a silver stack creation to mixpanel
                     mixpanel.track("Silver", {
                         "name": $("#type option:selected").text() }
                     );
                     window.location = "wire3b.html";
                 } else if (metal == "Platinum") {
+		            //records a platinum stack creation to mixpanel
                     mixpanel.track("Platinum", {
                         "name": $("#type option:selected").text() }
                     );
@@ -554,6 +563,7 @@ function saveToStack() {
                 alert("Bullion added successfully");
             },
             error: function(coin, error) {
+                mixpanel.track("Error Saving");
                 alert("Invalid information");
             }
         });
@@ -562,6 +572,7 @@ function saveToStack() {
     }
 }
 
+//checks if the user is signed in
 var user = Parse.User.current();
 if (user == null) {
 	window.location = "login.html";
