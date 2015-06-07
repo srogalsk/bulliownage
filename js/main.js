@@ -329,6 +329,17 @@ function changeBackground() {
 $(window).load(function() {
 	Parse.initialize("lvKnEQfyaRezqqgnktnDZhTZQP3Yf9cpJV1lDXzf",
 		"nKE6VI1LruKg7LMkpRmNin4IqldZfIYvE7KyyKCd");
+
+    var user = Parse.User.current();
+    /* save information about the user */
+    mixpanel.identify(user.get("username"));
+    mixpanel.people.set({
+        "$email": user.get("email"),    // only special properties need the $
+
+        "$created": user.get("createdAt"),
+        "$last_login": new Date(),         // properties can be dates...
+    });
+
 	var path = window.location.pathname;
 	var page = path.split("/").pop();
 

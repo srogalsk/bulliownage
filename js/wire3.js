@@ -211,19 +211,20 @@ function loadData(id) {
     window.location.assign("wire4.html" + "?" + id);
 }
 
-
+//cancel deleting item
 $("#gold_table").on("click", ".no", function () {
     var x = this.parentNode;
-    x.style.display="none";
-    x.parentNode.childNodes[0].style.display="inline";
+    x.style.display="none"; //remove "are you sure? y/n"
+    x.parentNode.childNodes[0].style.display="inline"; //display trash icon
 
 });
 
+//confirmation of delete item
 $("#gold_table").on("click", ".yes", function () {
     var x = this.parentNode.parentNode.parentNode.parentNode;
     $("#" + x.id).fadeOut(function () {
-        $("#" + x.id).remove();
+        $("#" + x.id).remove(); //remove HTML element from DOM tree
     });
-    trashCoin(x.id);
+    trashCoin(x.id);  //delete from Parse db
 });
 
