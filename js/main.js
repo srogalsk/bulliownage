@@ -117,6 +117,7 @@ function facebookLogin()
 		// Run code after the Facebook SDK is loaded.
 		Parse.FacebookUtils.logIn(null, {
 			success: function (user) {
+                mixpanel.track("Facebook Login");
 				window.location.replace("wire2.html");
 			},
 			error: function (user, error) {

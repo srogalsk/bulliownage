@@ -57,11 +57,11 @@ $(document).ready(function () {
 
 
 
-
         Parse.User.logIn(username, password, {
             success: function(user) {
                 // Login successful!
                 console.log("Login Success!");
+                mixpanel.track("Standard Login");
                 window.location.href = "wire2.html";
 
                 },

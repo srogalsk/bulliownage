@@ -536,20 +536,20 @@ function saveToStack() {
             success: function(coin) {
                 var metal = select.options[select.selectedIndex].text;
 		        if (metal == "Gold") {
-                    window.location = "wire3.html";
                     mixpanel.track("Gold", {
-                        name: $("#type option:selected").text() }
+                        "name": $("#type option:selected").text() }
                     );
+                    window.location = "wire3.html";
                 } else if (metal == "Silver") {
-                    window.location = "wire3b.html";
                     mixpanel.track("Silver", {
-                        name: $("#type option:selected").text() }
+                        "name": $("#type option:selected").text() }
                     );
+                    window.location = "wire3b.html";
                 } else if (metal == "Platinum") {
-                    window.location = "wire3c.html";
                     mixpanel.track("Platinum", {
-                        name: $("#type option:selected").text() }
+                        "name": $("#type option:selected").text() }
                     );
+                    window.location = "wire3c.html";
                 }
                 alert("Bullion added successfully");
             },
